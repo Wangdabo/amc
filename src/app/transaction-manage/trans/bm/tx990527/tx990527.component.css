@@ -1,0 +1,110 @@
+.container {
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .action {
+    height: 40px;
+  }
+
+  .topDiv {
+    padding: 10px 0;
+  }
+
+  .fontSpan {
+    line-height: 30px;
+    /* text-align: center; */
+    color: #1890ff;
+    /* display: flex */
+
+  }
+  .divBorder{
+    border: 1px solid ; 
+    border-radius: 10px;
+    padding: 16px;
+    color: #00fdfe;
+    display: inline-block;
+    width: 100%;
+    margin: 24px 0;
+  }
+.iconS{
+  font-size: 60px;
+  color: #00fdfe;
+}
+.div2{
+  padding-left: 5px;
+}
+.p1{
+  font-size: 18px;
+  margin-bottom: 0;
+}
+.p2{
+  font-size: 30px;
+  margin-bottom: 0;
+}
+  .chartDiv {
+    /* padding-top: 2rem; */
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  :host {
+    overflow: hidden;
+    display: block;
+  }
+
+  .card-container ::ng-deep .ant-tabs-card .ant-tabs-content {
+
+    margin-top: -16px;
+  }
+
+  .card-container ::ng-deep .ant-tabs-card .ant-tabs-content .ant-tabs-tabpane {
+    background: #fff;
+    padding: 16px;
+  }
+
+  .card-container ::ng-deep .ant-tabs-card .ant-tabs-bar {
+
+  }
+
+  .card-container ::ng-deep .ant-tabs-card .ant-tabs-bar .ant-tabs-tab {
+    border-color: transparent;
+    background: transparent;
+  }
+
+  .card-container ::ng-deep .ant-tabs-card .ant-tabs-bar .ant-tabs-tab-active {
+    border-color: #fff;
+
+  }
+  .steps ::ng-deep .ant-steps-item-process>.ant-steps-item-container>.ant-steps-item-content>.ant-steps-item-title {
+    color: #fff !important;
+  }
+  .steps ::ng-deep .ant-steps-item-process>.ant-steps-item-container>.ant-steps-item-content> .ant-steps-item-description {
+    color: #fff !important;
+  }
+
+
+
+/*  10.9 新樣式  */
+.redtimeRank {
+  background: url("../../../../../assets/newimage/home/content_bg_shishijiaoyi.png");
+  background-size:100% 100%;
+  padding: 5%
+}
+
+.tabs img {
+  width: 100%;
+}
+.tabs div {
+  color:#fff;
+  text-align: center;
+  cursor: pointer;
+}
+.tabs span {
+  position: relative;
+  top: -40px;
+  font-size: 20px
+}

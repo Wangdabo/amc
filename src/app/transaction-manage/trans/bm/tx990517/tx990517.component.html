@@ -1,0 +1,41 @@
+<div nz-row class="container">
+  <nz-card>
+    <div nz-col nzSpan="8">
+      <tms-tree [treeTitle]="'服务器信息'" [menuList]="menuList" [treeFlatData]="treeData"
+                (treeEventHandler)="treeEvent($event)" (clickEventHandler)="clickEventHandler($event)"
+                (rightClickEventHandler)="rightClickEventHandler($event)" (rightEventHandler)="rightEventHandler($event)"></tms-tree>
+    </div>
+    <div nz-col nzSpan="16" *ngIf="treeData.length === 0 && isShow === true"
+         style="text-align: center;position: relative;top:50px;">
+      <p>暂无服务器信息</p>
+      <button nz-button nzType="primary" (click)="add('')">立即新增</button>
+    </div>
+    <div nz-col nzSpan="16" *ngIf="!isShow">
+
+      <tms-form #baseForm (formDataHandler)="changesValue($event)" nz-row nzType="flex" nzJustify="start">
+        <tms-filed nz-col [nzSpan]="12" [labelSpan]="9" [inputType]="'select'" [dictId]="'USER_COUNTER_SYS_TYPE'"
+                   [formsName]="'type'" [filedName]="'类型'" [required]="true"></tms-filed>
+        <tms-filed nz-col [nzSpan]="12" [labelSpan]="9" [inputType]="'input'" [formsName]="'group_name'"
+                   [filedName]="'组名'" [hidden]="isZu === '2'" [required]="true"></tms-filed>
+        <tms-filed nz-col [nzSpan]="12" hidden="true" [labelSpan]="9" [inputType]="'input'"
+                   [formsName]="'parent_id'" [filedName]="'所属组'" [required]="true"></tms-filed>
+        <tms-filed nz-col [nzSpan]="12" [hidden]="isZu === '1'" [labelSpan]="9" [inputType]="'input'"
+                   [formsName]="'server_name'" [filedName]="'系统名称'" [required]="true"></tms-filed>
+        <tms-filed nz-col [nzSpan]="12" [hidden]="isZu === '1'" [labelSpan]="9" [inputType]="'input'"
+                   [formsName]="'ip'" [filedName]="'IP地址'" [required]="true"></tms-filed>
+        <tms-filed nz-col [nzSpan]="12" [labelSpan]="9" [inputType]="'input'" [formsName]="'user'"
+                   [filedName]="'系统用户'" [hidden]="isZu === '1'" [required]="true"></tms-filed>
+        <tms-filed nz-col [nzSpan]="12" [labelSpan]="9" [inputType]="'input'" [formsName]="'passwd'"
+                   [hidden]="isZu === '1'" [filedName]="'密码'" [required]="true"></tms-filed>
+      </tms-form>
+      <button nz-button nzType="default" *ngIf="isZu === '2'" (click)="testClick()" style="position: relative;
+    left: 47%;
+    top: -60px;">连接测试</button>
+      <div nz-row>
+        <button nz-button nzType="primary" (click)="submitForm()" style="position: relative;left:45%">提交</button>
+        <button nz-button nzType="default" (click)="cancelClick()" style="position: relative;left:55%">取消</button>
+
+      </div>
+    </div>
+  </nz-card>
+</div>

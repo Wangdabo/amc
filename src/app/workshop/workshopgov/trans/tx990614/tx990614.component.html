@@ -1,0 +1,69 @@
+<app-titleback [titleName]="'工作日志查询'"></app-titleback>  
+<div class="container" style="margin-top: 24px;padding:20px;background-color: #fff;">
+<div class="header" style="text-align: center;margin-top: 48px;">
+  <nz-radio-group [(ngModel)]="radioValue" [nzButtonStyle]="'solid'">
+    <label nz-radio-button nzValue="B" (click)="select('B')" style="font-size: 18px">设施检查</label>
+    <label nz-radio-button nzValue="C" (click)="select('C')" style="font-size: 18px">失物招领</label>
+    <label nz-radio-button nzValue="D" (click)="select('D')" style="font-size: 18px">客户投诉</label>
+    <label nz-radio-button nzValue="E" (click)="select('E')" style="font-size: 18px">需求建议</label>
+  </nz-radio-group>
+</div>
+<div class="content" style="margin-top: 24px;background-color: #fff;">
+  <div class="checkout" *ngIf="Flag === 'B'">
+    <tms-list [listHeader]="listHeader6"
+    [listData]="listOfData"
+    [isShowPagination]="false"
+    [showAlert]="false"
+    (rowActionsHandler) = 'rowActionsHandler($event)'
+    [isrowActionsFlag] = "true"
+    [isEdit] = 'true'
+    [rowActions] = 'rowActions'
+    [isShowCheckbox] = "false">
+    </tms-list>
+  </div>
+  <div class="lost" *ngIf="Flag === 'C'">
+      <tms-list [listHeader]="listHeader2"
+      [listData]="listData"
+      [isShowPagination]="false"
+      [showAlert]="false"
+      [isrowActionsFlag] = "true"
+      [isShowCheckbox] = "false">
+      </tms-list>
+  </div>
+  <div class="complaint" *ngIf="Flag === 'D'">
+      <tms-list [listHeader]="listHeader3"
+      [listData]="listData"
+      [isShowPagination]="false"
+      [showAlert]="false"
+      [isrowActionsFlag] = "true"
+      [isShowCheckbox] = "false">
+      </tms-list>
+  </div>
+  <div class="suggest" *ngIf="Flag === 'E'">
+      <tms-list [listHeader]="listHeader4"
+      [listData]="listData"
+      [isShowPagination]="false"
+      [showAlert]="false"
+      [isrowActionsFlag] = "true"
+      [isShowCheckbox] = "false">
+      </tms-list>
+  </div>
+</div>
+</div>
+
+<nz-modal
+[(nzVisible)]="isVisible"
+nzWidth = '700'
+nzTitle="详情"
+nzOkText="确认"
+nzCancelText="取消"
+(nzOnOk)="isVisible = false"
+(nzOnCancel)="isVisible = false">
+<tms-list [listHeader]="listTitle"
+[listData]="infoData"
+[isShowPagination]="false"
+[showAlert]="false"
+[isrowActionsFlag] = "true"
+[isShowCheckbox] = "false">
+</tms-list>
+</nz-modal>

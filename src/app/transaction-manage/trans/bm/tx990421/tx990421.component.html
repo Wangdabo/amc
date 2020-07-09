@@ -1,0 +1,41 @@
+<div class="container">
+  <div nz-row>
+    <tms-query
+      #baseQuery
+      [headerDate]="queryModel.queryHeader"
+      (getQuery)="getQueryData($event)"
+      (resetButton)="reset($event)"></tms-query>
+  </div>
+  <div class="table">
+    <tms-list
+      [listHeader]="queryModel.header"
+      [listData]="queryModel.data"
+      [pageSize]="queryModel.condition.pagesize"
+      [totalCount]="queryModel.totalCount"
+      [isLoading]="queryModel.isLoading"
+      (pageChangeHandler)="pageChange($event)"
+      (selectRowsHandler)="selectRowsHandler($event)"
+      [topActions]="queryModel.topActions"
+      (topActionsHandler)="topActionsHandler($event)"
+      [rowActions]="queryModel.rowActions"
+      (rowActionsHandler)="rowActionsHandler($event)">
+    </tms-list>
+  </div>
+</div>
+<nz-modal nzWidth='{{settingService.modal.mid}}' [(nzVisible)]="insertOrUpdateModel.isVisible"
+          nzTitle="{{insertOrUpdateModel.isUpdate ? '新增区块' : '修改区块'}}"
+          (nzOnCancel)="handleCancel()"
+          (nzOnOk)="handleOk()"
+          [nzOkLoading]="insertOrUpdateModel.isOkLoading">
+  <tms-form #baseForm nz-row [nzGutter]="24">
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'block_num'" [filedName]="'区块号'"  [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'data_hash'" [filedName]="'ͨ数据哈希值'" [required]="true"></tms-filed>
+  <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'block_hash'" [filedName]="'ͨ块哈希值'"  [required]="true"></tms-filed>
+  <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'pre_block_hash'" [filedName]="'ͨ前块哈希值'" [required]="true"></tms-filed>
+  <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'tx_count'" [filedName]="'ͨ交易count'"  [required]="true"></tms-filed>
+
+
+
+
+  </tms-form>
+</nz-modal>

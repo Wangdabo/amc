@@ -1,0 +1,43 @@
+<div class="container">
+  <div nz-row>
+    <tms-query
+      #baseQuery
+      [headerDate]="queryModel.queryHeader"
+      (getQuery)="getQueryData($event)"
+      (resetButton)="reset($event)"></tms-query>
+  </div>
+  <div class="table">
+    <tms-list
+      [tableClass]="'bmtableClass'"
+      [listHeader]="queryModel.header"
+      [listData]="queryModel.data"
+      [pageSize]="queryModel.condition.pagesize"
+      [totalCount]="queryModel.totalCount"
+      [isLoading]="queryModel.isLoading"
+      (pageChangeHandler)="pageChange($event)"
+      (selectRowsHandler)="selectRowsHandler($event)"
+      [topActions]="queryModel.topActions"
+      (topActionsHandler)="topActionsHandler($event)"
+      [rowActions]="queryModel.rowActions"
+      (rowActionsHandler)="rowActionsHandler($event)"
+      [isclickPointer]="false"
+      [isEdit]="true"
+      [isrowActionsFlag]="true">
+    </tms-list>
+  </div>
+
+</div>
+<nz-modal nzWidth='{{settingService.modal.mid}}' [(nzVisible)]="insertOrUpdateModel.isVisible"
+          nzTitle="{{insertOrUpdateModel.isUpdate ? '修改功能组-交易关联' : '新增功能组-交易关联'}}"
+          (nzOnCancel)="handleCancel()"
+          (nzOnOk)="handleOk()"
+          [nzOkLoading]="insertOrUpdateModel.isOkLoading">
+  <tms-form #baseForm  nz-row    >
+    <tms-filed nz-col [nzSpan]="24" [labelSpan]="5" [controlSpan]="17" [inputType]="'input'" [formsName]="'trans_set_code'" [filedName]="'功能组代码'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [labelSpan]="5" [controlSpan]="17" [inputType]="'input'" [formsName]="'trans_code'" [filedName]="'交易代码'" [required]="true"></tms-filed>
+
+  </tms-form>
+</nz-modal>
+
+
+

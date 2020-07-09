@@ -1,0 +1,70 @@
+<!--  gov 类型的表头-->
+<div nz-row style="height: 40px;margin-bottom: 15px;" *ngIf="!isBack && navbarType !=='aiops'">
+  <div nz-col nzSpan="22">
+    <nz-breadcrumb style="margin-left:2%; line-height: 40px;">
+      <nz-breadcrumb-item>
+        <img style="vertical-align: baseline;margin-right: 10px;" src="./assets/bmimage/BM1/icon_flag@2x.png" alt="">
+        <a style="font-size: 18px;" [routerLink]="['../../']">首页</a>
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item style="font-size: 18px;">
+        交易
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item *ngIf="oldTransDef" style="font-size: 18px;">
+        {{oldTransDef.transName}}
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item style="font-size: 18px;">
+        {{currentTransactionDef.transName}}
+        <!-- <i title="返回上一级" style="cursor: pointer;" *ngIf="oldTransDef" nz-icon type="enter" theme="outline"
+          (click)="sonRouteBack()"></i> -->
+          <button *ngIf="oldTransDef" style="margin-left: 10px;" nz-button  nzType="primary" [nzSize]="'Small'" (click)="sonRouteBack()">返回</button>
+        </nz-breadcrumb-item>
+    </nz-breadcrumb>
+  </div>
+</div>
+
+
+<!-- 智能运营的表头 -->
+<div nz-row style="height: 40px; margin-bottom: 30px;" *ngIf="!isBack && navbarType !=='GOV'">
+  <div nz-col nzSpan="22">
+    <nz-breadcrumb style="margin-left:2%; line-height: 40px;" nzSeparator="">
+      <nz-breadcrumb-item class="lie" style="padding-left: 30px;">
+        <span style="color:#fff" [routerLink]="['../../']">首页</span>
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item style="padding-left: 30px;">
+        <img src="./assets/newimage/content_header_right.png" alt="">
+      </nz-breadcrumb-item>
+      <!-- <nz-breadcrumb-item class="lie" *ngIf="oldTransDef">
+         <span>{{oldTransDef.transName}}</span>
+       </nz-breadcrumb-item>-->
+      <nz-breadcrumb-item class="lie" style="padding-left: 30px;">
+        <span>交易</span>
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item style="padding-left: 30px;">
+        <img src="./assets/newimage/content_header_right.png" alt="">
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item class="lie">
+        <span>{{currentTransactionDef.transName}}</span>
+        <i title="返回上一级" style="cursor: pointer;" *ngIf="oldTransDef" nz-icon type="enter" theme="outline"
+           (click)="sonRouteBack()"></i>
+      </nz-breadcrumb-item>
+    </nz-breadcrumb>
+  </div>
+</div>
+
+<div nz-row style="height: 35px;" *ngIf="isBack">
+  <div nz-col nzSpan="24" [nzPush]="22">
+    <button nz-button nzType="default" (click)="back()">返回</button>
+  </div>
+</div>
+<div nz-row [nzType]="'flex'"  [nzJustify]="'space-around'" [nzAlign]="'middle'" class="bobdy">
+  <div nz-col nzSpan="24">
+    <app-dynamic-transaction [componentName]="dynmicTrans"
+      [outputlisteners]="{submitEvent: {'handler' : submitEventHandler,'caller':caller},sonRouteEvent: {'handler' : sonRouteEventHandler,'caller':caller}}"
+      [inputs]="{'transactionContextChangeOb':transactionContextChangeOb,'params':subTransInputParams}">
+    </app-dynamic-transaction>
+
+    <div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,66 @@
+<div class="container">
+  <div nz-row>
+    <tms-query
+      #baseQuery
+      [headerDate]="queryModel.queryHeader"
+      (getQuery)="getQueryData($event)"
+      (resetButton)="reset($event)"></tms-query>
+  </div>
+  <div class="table">
+    <tms-list
+      [tableClass]="'bmtableClass'"
+      [listHeader]="queryModel.header"
+      [listData]="queryModel.data"
+      [pageSize]="queryModel.condition.pagesize"
+      [totalCount]="queryModel.totalCount"
+      [isLoading]="queryModel.isLoading"
+      (pageChangeHandler)="pageChange($event)"
+      (selectRowsHandler)="selectRowsHandler($event)"
+      [topActions]="queryModel.topActions"
+      (topActionsHandler)="topActionsHandler($event)"
+      [rowActions]="queryModel.rowActions"
+      (rowActionsHandler)="rowActionsHandler($event)">
+    </tms-list>
+  </div>
+</div>
+<nz-modal nzWidth='{{settingService.modal.large}}' [(nzVisible)]="insertOrUpdateModel.isVisible"
+          nzTitle="{{insertOrUpdateModel.isUpdate ? '修改机构' : '新增机构'}}"
+          (nzOnCancel)="handleCancel()"
+          (nzOnOk)="handleOk()"
+          [nzOkLoading]="insertOrUpdateModel.isOkLoading">
+  <tms-form #baseForm nz-row [nzGutter]="24">
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'org_code'" [filedName]="'机构代码'" [required]="insertOrUpdateModel.isUpdate ? 'false' : 'true'"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'org_name'" [filedName]="'机构名称'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'org_ename'" [filedName]="'网点英文名称'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'org_degree'" [filedName]="'机构级别'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_VALID_FLAG'" [formsName]="'valid_flag'" [filedName]="'有效标志'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_ORG_STATUS'" [formsName]="'org_status'" [filedName]="'机构状态'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'datetime'" [formsName]="'login_time'" [filedName]="'签到时间'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'datetime'" [formsName]="'logout_time'" [filedName]="'签退时间'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_ORG_WORK_STATUS'" [formsName]="'org_work_status'" [filedName]="'机构工作状态'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_PAR_ORG_CODE'" [formsName]="'par_org_code'" [filedName]="'父机构代码'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'org_seq'" [filedName]="'机构ID序列号'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'org_addr'" [filedName]="'机构地址'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'org_zipcode'" [FiledType]="'zipCode'" [filedName]="'机构邮编'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'org_email'" [FiledType]="'email'" [filedName]="'电子邮箱'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'org_linkman'" [filedName]="'机构联系人'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'org_linktel'" [filedName]="'机构联系电话'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'linkman'" [filedName]="'网点负责人'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'org_manager'" [filedName]="'机构主管人员'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'auth_user_list'" [filedName]="'授权员列表'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_OP_FLAG'" [formsName]="'op_flag'" [filedName]="'柜员制标志'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'datetime'" [formsName]="'start_date'" [filedName]="'开办日期'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'datetime'" [formsName]="'end_date'" [filedName]="'停营日期'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'open_time'" [filedName]="'营业开始时间'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'close_time'" [filedName]="'营业结束时间'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'datetime'" [formsName]="'pen_date'" [filedName]="'首次营业日'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'datetime'" [formsName]="'org_acct_date'" [filedName]="'网点账务日期'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_TD_FLAG'" [formsName]="'td_flag'" [filedName]="'允许支票通兑标志'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_FOR_TYPE'" [formsName]="'for_type'" [filedName]="'外汇网点类型'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'cash_user_cnt'" [filedName]="'现金内库柜员数量'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'mcctl_user_cnt'" [filedName]="'重空内库柜员数量'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_SIGN_OUT_FLAG'" [formsName]="'sign_out_flag'" [filedName]="'是否需扎帐'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [labelSpan]="3" [inputType]="'input'" [formsName]="'area'" [filedName]="'城市代码'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [labelSpan]="3" [inputType]="'input'" [formsName]="'mark'" [filedName]="'备注'" [required]="false"></tms-filed>
+  </tms-form>
+</nz-modal>

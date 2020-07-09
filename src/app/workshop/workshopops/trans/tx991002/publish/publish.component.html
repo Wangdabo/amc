@@ -1,0 +1,57 @@
+<div class="container">
+  <nz-divider nzText="填写基本信息" nzOrientation="left"></nz-divider>
+  <tms-form #baseForm nz-row nzType="flex" nzJustify="center" [nzGutter]="24" style="margin-top: 30px">
+    <tms-filed [required]="true" nz-col [nzSpan]="12"
+      [(fieldModel)]="transactionActionData['publish'].request.requestdata.bdy.versioninfo.version_no"
+      [inputType]="'input'" [formsName]="'version_no'" [filedName]="'版本号'"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12"
+      [(fieldModel)]="transactionActionData['publish'].request.requestdata.bdy.versioninfo.workstation_type"
+      [inputType]="'select'" [optionArray]="WORKSTATION_TYPE" [formsName]="'workstation_type'" [filedName]="'应用类型'">
+    </tms-filed>
+    <tms-filed nz-col [nzSpan]="12"
+      [(fieldModel)]="transactionActionData['publish'].request.requestdata.bdy.versioninfo.app_name"
+      [inputType]="'select'" [labelName]="'app_name'" [valueName]="'app_code'"
+      [optionArray]="transactionActionData['queryApp'].response.resultdata.bdy.data" [formsName]="'app_name'"
+      [filedName]="'应用名称'" (onChangeEvent)="appNameChange($event)"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12"
+      [(fieldModel)]="transactionActionData['publish'].request.requestdata.bdy.versioninfo.version_log_info"
+      [inputType]="'input'" [formsName]="'version_log_info'" [filedName]="'版本描述'"></tms-filed>
+  </tms-form>
+  <nz-divider nzText="模块信息" nzOrientation="left"></nz-divider>
+  <div nz-row nzType="flex" nzJustify="center" [nzGutter]="24">
+    <div nz-col [nzSpan]="24" style="margin-bottom: 8px;">
+      <button nz-button nzType="primary" (click)="addModule()">新增模块</button>
+    </div>
+    <tms-form nz-row nz-col [nzSpan]="24" nzType="flex" nzJustify="center" [nzGutter]="24" style="margin-top: 30px"
+      *ngFor="let item of transactionActionData['publish'].request.requestdata.bdy.moduleList,let i = index">
+      <tms-filed nz-col [nzSpan]="12" [(fieldModel)]="item.module_type" [inputType]="'select'"
+        [optionArray]="MODULE_TYPE" [formsName]="'module_type'" [filedName]="'模块类型'"></tms-filed>
+      <tms-filed nz-col [nzSpan]="12" [(fieldModel)]="item.module_code" [hidden]="item.module_type !== '0'"
+        [optionArray]="PLAT_CODE" [inputType]="'select'" [formsName]="'module_code'" [filedName]="'模块代码'"></tms-filed>
+      <tms-filed nz-col [nzSpan]="12" [(fieldModel)]="item.module_code" [hidden]="item.module_type !== '1'"
+        [labelName]="'name'" [valueName]="'code'" [inputType]="'select'"
+        [optionArray]="transactionActionData['queryPlugin'].response.resultdata.bdy.data" [formsName]="'module_code'"
+        [filedName]="'插件代码'"></tms-filed>
+      <tms-filed nz-col [nzSpan]="12" [(fieldModel)]="item.version_no" [inputType]="'input'" [formsName]="'version_no'"
+        [filedName]="'版本号'"></tms-filed>
+      <tms-filed nz-col [nzSpan]="12" [(fieldModel)]="item.module_file_path" [inputType]="'input'"
+        [formsName]="'module_file_path'" [filedName]="'文件路径'"></tms-filed>
+      <div nz-row nzType="flex" nzJustify="center" [nzGutter]="24" >
+        <nz-upload [nzAction]="global['ipserver']+'/content/file/uploadBatch'" [nzData]="fileData"
+          [nzShowUploadList]="showUploadList" [nzHeaders]="headers" nzName="fileList"
+          (nzChange)="fileChange($event, item)" [nzRemove]="moveFile.bind(undefined,item,i)" [(nzFileList)]="files[i]"
+          [nzAccept]="'application/zip'">
+          <button nz-button>
+            <i nz-icon type="upload"></i><span>文件上传</span>
+          </button>
+        </nz-upload>
+        <button nz-col [nzSpan]="12" style="margin-left: 24px;"  nz-button (click)="deleteItem(item)">删除</button>
+      </div>
+
+    </tms-form>
+  </div>
+  <div nz-row nzType="flex" nzJustify="center" [nzGutter]="24" style="position: relative;top: 100px;">
+    <button nz-col [nzSpan]="12" nz-button nzType="primary" (click)="publish()">发布</button>
+    <button nz-col [nzSpan]="12" style="margin-left: 10px;" nz-button (click)="cancel()">取消</button>
+  </div>
+</div>

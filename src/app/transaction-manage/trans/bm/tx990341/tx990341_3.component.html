@@ -1,0 +1,44 @@
+<div class="container">
+  <div nz-row>
+    <tms-query
+      #baseQuery
+      [headerDate]="queryModel.queryHeader"
+      (getQuery)="getQueryData($event)"
+      (resetButton)="reset($event)"></tms-query>
+  </div>
+  <div class="table">
+    <tms-list
+      [tableClass]="'bmtableClass'"
+      [listHeader]="queryModel.header"
+      [listData]="queryModel.data"
+      [pageSize]="queryModel.condition.pagesize"
+      [totalCount]="queryModel.totalCount"
+      [isLoading]="queryModel.isLoading"
+      (pageChangeHandler)="pageChange($event)"
+      (selectRowsHandler)="selectRowsHandler($event)"
+      [topActions]="queryModel.topActions"
+      (topActionsHandler)="topActionsHandler($event)"
+      [rowActions]="queryModel.rowActions"
+      (rowActionsHandler)="rowActionsHandler($event)"
+      [isclickPointer]="false"
+      [isEdit]="true"
+      [isrowActionsFlag]="true">
+    </tms-list>
+  </div>
+</div>
+<nz-modal nzWidth='{{settingService.modal.large}}' [(nzVisible)]="insertOrUpdateModel.isVisible"
+          nzTitle="{{insertOrUpdateModel.isUpdate ? '修改 ': '新增交易至菜单'}}"
+          (nzOnCancel)="handleCancel()"
+          (nzOnOk)="handleOk()"
+          [nzOkLoading]="insertOrUpdateModel.isOkLoading">
+  <tms-form #baseForm  nz-row nzType="flex"  nzJustify="start"  [nzGutter]="24">
+    <tms-filed nz-col [nzSpan]="24" [labelSpan]="3" [inputType]="'input'" [formsName]="'menu_code'" [filedName]="'菜单代码'" [required]="insertOrUpdateModel.isUpdate ? 'false' : 'true'"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" (monitorChangeEvent)="monitorChangeEvent($event)" [formsName]="'trans_code'" [filedName]="'交易代码'" [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'trans_name'" [filedName]="'交易名称'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'trans_seqno'" [filedName]="'位置顺序'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'trans_alais'" [filedName]="'显示别名'" [required]="false"></tms-filed>
+
+
+  </tms-form>
+</nz-modal>
+

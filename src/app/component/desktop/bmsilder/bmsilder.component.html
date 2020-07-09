@@ -1,0 +1,48 @@
+<div class="bmsilder">
+  <div class="dw-logo">
+    <img src="./assets/bmimage/leftbar/logo_first@2x.png" class="iconfont" *ngIf="!isCollapsed">
+    <img src="./assets/bmimage/leftbar/logo_second@2x.png"  *ngIf="isCollapsed">
+  </div>
+  <ul nz-menu   class="ulSilder"  [ngClass]="{'rootui':'uiroot'? styleSider === true: styleSider === false }"   [nzTheme]="styleSider?'dark':'light'" [nzMode]="'inline'" [nzInlineCollapsed]="isCollapsed">
+    <ng-container *ngFor="let menu of menus">
+      <li style="padding-top: 10px;padding-bottom: 10px;"  nz-submenu *ngIf="menu.children.length" class="menuroot">
+        <span title><i class="menuroot" nz-icon [nzType]="menu.icon" nzTheme="outline"></i>
+          <span class="menuroot nav-text fontContSize fontFamily">{{language[menu.code] }}</span>
+        </span>
+        <ul  [ngClass]="{'rootui':'uiroot'? styleSider === true: styleSider === false }">
+          <ng-container *ngFor="let children of menu.children">
+            <!-- 不存在，那么就是普通的二级-->
+            <ng-container *ngIf="!children.children">
+              <li style="margin-top: 12px;margin-bottom: 12px;" nz-menu-item  *ngIf="children.transCode" class="menuroot"  [routerLink]="[children.link, children.transCode]">
+                <span title><i class="menuroot"  nz-icon [nzType]="children.icon" nzTheme="outline"></i><span  class="nav-text fontContSize fontFamily">{{language[children.code]}}</span></span>
+              </li>
+            </ng-container>
+            <!--存在，那就是普通的三级-->
+            <ng-container *ngIf="children.children">
+              <li style="padding-top: 10px;padding-bottom: 10px;" nz-submenu  *ngIf="children.transCode" class="menuroot">
+                <span title><i class="menuroot" nz-icon [nzType]="children.icon" nzTheme="outline"></i><span class="nav-text menuroot fontContSize fontFamily">{{language[children.code]}}</span></span>
+                <ul [ngClass]="{'rootui':'uiroot'? styleSider === true: styleSider === false }">
+                  <ng-container *ngFor="let thirdMenu of children.children" >
+                    <li style="margin-top: 12px;margin-bottom: 12px;" class="menuchild" nz-menu-item  *ngIf="thirdMenu.transCode" [routerLink]="[thirdMenu.link, thirdMenu.transCode]" (click)="localTab(thirdMenu);" >
+                      <span title>
+                        <i nz-icon class="menuroot"  [nzType]="thirdMenu.icon" nzTheme="outline"></i>
+                        <span class="nav-text menuroot fontContSize fontFamily">{{language[thirdMenu.code]}}</span></span>
+                    </li>
+                  </ng-container>
+                </ul>
+              </li>
+            </ng-container>
+          </ng-container>
+        </ul>
+      </li>
+      <!--如果是父级，就只显示一级菜单-->
+      <li   nz-menu-item *ngIf="menu.children.length === 0" [routerLink]="[menu.link]"  class="menuroot">
+      <span title>
+        <i nz-icon class="menuroot"  [nzType]="menu.icon" nzTheme="outline"></i>
+        <span class="nav-text1 fontContSize fontFamily">{{language[menu.code]}} </span>
+      </span>
+      </li>
+    </ng-container>
+  </ul>
+</div>
+

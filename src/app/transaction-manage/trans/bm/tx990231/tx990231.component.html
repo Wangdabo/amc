@@ -1,0 +1,50 @@
+<div class="container">
+  <nz-card>
+    <tms-query #baseQuery [headerDate]="queryModel.queryHeader" (getQuery)="getQueryData($event)"
+               (resetButton)="reset($event)"></tms-query>
+  </nz-card>
+
+  <nz-card style="margin-top: 20px;">
+    <div class="table">
+      <tms-list
+        [tableClass]="'bmtableClass'"
+        [listHeader]="queryModel.header" [listData]="queryModel.data" [pageSize]="queryModel.condition.pagesize"
+                [totalCount]="queryModel.totalCount" [isLoading]="queryModel.isLoading" (pageChangeHandler)="pageChange($event)"
+                (selectRowsHandler)="selectRowsHandler($event)" [topActions]="queryModel.topActions"
+                (topActionsHandler)="topActionsHandler($event)" [rowActions]="queryModel.rowActions"
+                (rowActionsHandler)="rowActionsHandler($event)" (rowActiveHandler)="rowActiveHandler($event)" [isEdit]="true"
+                [isrowActionsFlag]="true">
+      </tms-list>
+    </div>
+  </nz-card>
+</div>
+<nz-modal nzWidth='{{settingService.modal.large}}' [(nzVisible)]="insertOrUpdateModel.isVisible"
+  nzTitle="{{insertOrUpdateModel.isUpdate ? '修改交易' : '新增交易'}}" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()"
+  [nzOkLoading]="insertOrUpdateModel.isOkLoading">
+  <tms-form #baseForm nz-row nzType="flex" nzJustify="start" [nzGutter]="24">
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'trans_code'" [filedName]="'交易代码'"
+      [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'trans_name'" [filedName]="'交易名称'"
+      [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'version_no'" [filedName]="'版本号'"
+      [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_VERSION_FLAG'" [formsName]="'version_flag'"
+      [filedName]="'版本标志'" [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_VALID_FLAG'" [formsName]="'valid_flag'"
+      [filedName]="'有效标志'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_BIZ_TYPE'" [formsName]="'biz_type'"
+      [filedName]="'应用类别'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'icon'" [filedName]="'交易图标'" [required]="false">
+    </tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'tp_service_code'" [filedName]="'原子服务代码'"
+      [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'USER_TP_SERVICE_TYPE'"
+      [formsName]="'tp_service_type'" [filedName]="'原子服务类型'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [labelSpan]="5" [controlSpan]="19" [inputType]="'textarea'"
+      [formsName]="'trans_desc'" [filedName]="'交易描述'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [labelSpan]="5" [controlSpan]="19" [inputType]="'input'" [formsName]="'href_url'"
+      [filedName]="'URL'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [labelSpan]="5" [controlSpan]="19" [inputType]="'multipleselect'"
+      [dictId]="'SYS_ALLOW_BIZ_RANGE'" [formsName]="'gn'" [filedName]="'操作功能'" [required]="false"></tms-filed>
+  </tms-form>
+</nz-modal>

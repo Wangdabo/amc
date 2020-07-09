@@ -1,0 +1,26 @@
+<nz-card>
+  <div class="divBody">
+    <tms-list
+      [tableClass]="'bmtableClass'"
+      [listHeader]="queryModel.header" [listData]="queryModel.data"
+              [pageSize]="queryModel.condition.pagesize" [totalCount]="queryModel.totalCount" [isLoading]="queryModel.isLoading"
+              (pageChangeHandler)="pageChange($event)" (selectRowsHandler)="selectRowsHandler($event)"
+              [topActions]="queryModel.topActions" (topActionsHandler)="topActionsHandler($event)"
+              [rowActions]="queryModel.rowActions" (rowActionsHandler)="rowActionsHandler($event)"
+              (rowActiveHandler)="rowActiveHandler($event)" [isEdit]="true" [isrowActionsFlag]="true">
+    </tms-list>
+
+  </div>
+</nz-card>
+<nz-modal nzWidth='{{settingService.modal.large}}' [(nzVisible)]="insertOrUpdateModel.isVisible"
+          nzTitle="{{insertOrUpdateModel.isUpdate ? '修改' : '新增'}}"
+          (nzOnCancel)="handleCancel()"
+          (nzOnOk)="handleOk()"
+          [nzOkLoading]="insertOrUpdateModel.isOkLoading">
+  <tms-form #baseForm  nz-row nzType="flex"  nzJustify="start"  [nzGutter]="24">
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'"  [formsName]="'bhv_code'" [filedName]="'操作行为代码'" [required]="'true'"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'"   [formsName]="'bhv_type'" [filedName]="'操作行为类型'" [required]="'true'"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'bhv_name'" [filedName]="'操作行为名称'" [required]="'true'"></tms-filed>
+
+  </tms-form>
+</nz-modal>

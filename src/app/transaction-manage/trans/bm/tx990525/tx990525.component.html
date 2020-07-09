@@ -1,0 +1,413 @@
+<div class="container redtimeRank workRunstyle">
+  <div class="cardTitle">
+    <h2>工作站信息</h2>
+  </div>
+  <nz-card [nzBordered]="'false'" style="min-height: 800px;">
+    <nz-card nzType="inner"  style="margin-bottom: 14px; border-color: #00fdfe;border-radius: 40px;">
+      <div nz-row nzGutter="24">
+        <div nz-col class="gutter-row leftStyle" nzSpan="4">
+          <img *ngIf="workDetails['channelCode'] === 'Pad' || workDetails['channelCode'] === 'Mobile'" src="./assets/newimage/workMagger/icon_pad_second.png" alt="">
+          <img *ngIf="workDetails['channelCode'] === 'Teller' || workDetails['channelCode'] === 'Itm'" src="./assets/newimage/workMagger/icon_phone_second.png" alt="">
+          <img *ngIf="workDetails['channelCode'] === 'SuperCounter'" src="./assets/newimage/workMagger/icon_computer_second.png" alt="">
+        </div>
+        <div nz-col class="gutter-row" nzSpan="20">
+          <div nz-col class="gutter-row  divbox" nzSpan="12">
+            <div nz-col nzSpan="11" class="divTextRight">
+              工作站名称：
+            </div>
+            <div nz-col nzSpan="13">
+              <span class="divText">{{workDetails['workstationName']}}</span>
+            </div>
+          </div>
+          <div nz-col class="gutter-row  divbox" nzSpan="12">
+
+          </div>
+          <div nz-col class="gutter-row divbox"  nzSpan="12">
+            <div nz-col nzSpan="11" class="divTextRight">
+              工作站代码：
+            </div>
+            <div nz-col nzSpan="12">
+              <span class="divText">{{workDetails['workstationCode']}}</span>
+            </div>
+          </div>
+          <div nz-col class="gutter-row  divbox" nzSpan="12">
+            <div nz-col nzSpan="11" class="divTextRight">
+              机构代码：
+            </div>
+            <div nz-col nzSpan="12">
+              <span class="divText">{{workDetails['orgCode']}}</span>
+            </div>
+          </div>
+          <div nz-col class="gutter-row  divbox" nzSpan="12">
+            <div nz-col nzSpan="11" class="divTextRight">
+              渠道代码：
+            </div>
+            <div nz-col nzSpan="12">
+              <span class="divText"> {{workDetails['channelCode']}}</span>
+            </div>
+          </div>
+          <div nz-col class="gutter-row  divbox" nzSpan="12">
+            <div nz-col nzSpan="11" class="divTextRight">
+              工作站类别：
+            </div>
+            <div nz-col nzSpan="13">
+              <span class="divText">{{workDetails['workstationKind']  == '0' && '柜员工作站' || workDetails['workstationKind']  == '1' && '移动柜员工作站' ||  workDetails['workstationKind']  == '2' && '超级柜台'}}</span>
+            </div>
+          </div>
+          <div nz-col class="gutter-row  divbox" nzSpan="12">
+            <div nz-col nzSpan="11" class="divTextRight">
+              工作站状态：
+            </div>
+            <div nz-col nzSpan="12">
+              <span class="divText"> {{workDetails['workstationStatus'] == '0' && '正常 ' || workDetails['workstationStatus'] == '1' && '停用'}}</span>
+            </div>
+          </div>
+          <div nz-col class="gutter-row  divbox" nzSpan="12">
+            <div nz-col nzSpan="11" class="divTextRight">
+              工作站开关：
+            </div>
+            <div nz-col nzSpan="12">
+              <span class="divText"> {{workDetails['workstationSwitch'] == '0' && '开 ' || workDetails['workstationSwitch'] == '1' && '关'}}</span>
+            </div>
+          </div>
+          <div nz-col class="gutter-row  divbox" nzSpan="12">
+            <div nz-col nzSpan="11" class="divTextRight">
+              工作站IP：
+            </div>
+            <div nz-col nzSpan="12">
+              <span class="divText"> {{workDetails['workstationIp']}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nz-card>
+    <!-- tab 区域界面-->
+    <div class="tabs">
+      <div nz-row nzType="flex" nzJustify="space-around">
+        <div nz-col nzSpan="6" *ngFor="let tab of topData" (click)="cardClick(tab)">
+          <img [src]="tab.src">
+          <span>{{tab.text}}</span>
+        </div>
+      </div>
+    </div>
+
+    <!--详情逻辑-->
+    <!--实时信息监控-->
+    <div [hidden]="showId !== 'peripheral'">
+      <div nz-row nzGutter="24" style="margin-top: 20px">
+        <ng-container>
+          <div *ngIf="!up">
+            <div style="font-size: 36px; text-align: center; color: #fff; margin-top: 10%; font-weight: 900">
+                当前设备离线
+            </div>
+            <!-- 新增离线数据操作界面 -->
+            <div nz-col class="gutter-row" nzSpan="24" style="margin-bottom: 20px; margin-top: 20px">
+              <nz-card class="workCards"  nzType="inner" >
+                <div class="workCardtitle">
+                  <h2>离线操作</h2>
+                </div>
+                <div nz-col class="gutter-row" nzSpan="24"  style="margin-bottom: 100px;">
+                  <ng-container>
+                    <div nz-row nzType="flex" style="padding-left: 6%" nzJustify="start">
+                      <div nz-col nzSpan="12" *ngFor="let i of offlineApp" style="cursor:pointer;" (click)="appOffline(i)">
+                        <div class="peripheral">
+                          <div class="box">
+                            <img style="width: 40px;" [src]="i.src" alt="">
+                            <div style="color:#fff; font-size: 12px; font-weight: 900">{{i.name}}</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-container>
+                </div>
+              </nz-card>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container>
+         <div [hidden]="!up">
+           <div *ngIf="realStauts" style="font-size: 36px; text-align: center; margin-top: 10%; font-weight: 900">
+             <div >
+               <nz-spin nzTip='Loading...'>
+                 <nz-alert
+                   nzType="info"
+                   nzMessage="等待外设连接"></nz-alert>
+               </nz-spin>
+             </div>
+           </div>
+           <!-- 在线并且有数据-->
+           <div [hidden]="realStauts">
+              <div nz-col class="gutter-row" nzSpan="24" style="margin-bottom: 20px">
+               <nz-card class="workCards"  nzType="inner" >
+                 <div class="workCardtitle">
+                   <h2>外设连接信息</h2>
+                 </div>
+                 <div nz-col class="gutter-row" nzSpan="24"  style="margin-bottom: 100px;">
+                   <ng-container>
+                       <div nz-row nzType="flex" style="padding-left: 6%" nzJustify="start">
+                         <div nz-col nzSpan="3" *ngFor="let i of peripheral">
+                           <div class="peripheral">
+                             <div class="box">
+                               <img [src]="i.src" alt="">
+                               <img class="status" [src]="i.status === '已连接'? './assets/newimage/workMagger/icon_yilianjie@2x.png': './assets/newimage/workMagger/icon_weilianjie@2x.png'" alt="">
+                                <div style="color:#fff; font-size: 12px; font-weight: 900">{{i.name}}</div>
+                             </div>
+                           </div>
+                         </div>
+                     </div>
+                   </ng-container>
+                 </div>
+               </nz-card>
+             </div>
+              <div nz-col class="gutter-row" nzSpan="18">
+                <nz-card class="workCard" style=" padding: 5% !important;"  nzType="inner">
+                  <div class="workCardtitle">
+                    <h2>工作站信息</h2>
+                  </div>
+                  <div id="map" style="height:550px; width:100%;"></div>
+                </nz-card>
+              </div>
+              <div nz-col class="gutter-row" nzSpan="6">
+                <nz-card  class="workCardnc"   nzType="inner" style="min-height: 718px; " >
+                  <div class="workCardtitle">
+                    <h2>内存使用信息</h2>
+                  </div>
+                  <div  echarts style="height: 300px; margin-top: 10%;" [options]="optionsBank" class="demo-chart"></div>
+                </nz-card>
+              </div>
+             <!--新增在线当前应用操作处理功能-->
+             <div nz-col class="gutter-row" nzSpan="24" style="margin-bottom: 20px; margin-top: 20px">
+               <nz-card class="workCards"  nzType="inner" >
+                 <div class="workCardtitle">
+                   <h2>应用操作</h2>
+                 </div>
+                 <div nz-col class="gutter-row" nzSpan="24"  style="margin-bottom: 100px;">
+                   <ng-container>
+                     <div nz-row nzType="flex" style="padding-left: 6%" nzJustify="start">
+                       <div nz-col nzSpan="6" *ngFor="let i of deviceController" style="cursor:pointer;" (click)="appsessting(i)">
+                         <div class="peripheral">
+                           <div class="box">
+                             <img style="width: 40px;" [src]="i.src" alt="">
+                             <div style="color:#fff; font-size: 12px; font-weight: 900">{{i.name}}</div>
+                           </div>
+                         </div>
+                       </div>
+                     </div>
+                   </ng-container>
+                 </div>
+               </nz-card>
+             </div>
+           </div>
+         </div>
+        </ng-container>
+      </div>
+    </div>
+    <!--交易逻辑-->
+    <div [hidden]="showId !== 'transaction'">
+      <div nz-row nzGutter="24" style="margin-top: 20px">
+        <div nz-col class="gutter-row" nzSpan="12" *ngIf="showId === 'transaction'" >
+          <h2 style="text-align: center; color: #fff">交易六个月变化趋势</h2>
+          <div echarts [options]="optionsAssets" class="demo-chart"></div>
+        </div>
+        <div nz-col class="gutter-row" nzSpan="12">
+          <app-tx990522 #tx990522
+                        (submitEvent)="submitTx990522EventHandler($event)"
+                        [transactionContextChangeOb]="transactionContextChangeOb"></app-tx990522>
+        </div>
+      </div>
+    </div>
+    <!-- 运行事件逻辑 -->
+    <div *ngIf="showId === 'runningLog'">
+      <div style="margin-top: 10px;">
+        <div   style="width: 100%; height: 700px; overflow-y: auto; background: #000; padding-top: 20px;">
+          <!--  数组倒叙方法  reverse --- 用于颠倒数组中元素的顺序，因为春海给我的就是有序的不过是正序，我们要用这个方法颠倒过来 -->
+          <div nz-col nzSpan="24" *ngFor="let i of runninglog"  style="color: #fff; text-indent:50px; font-size: 14px; margin: 5px 0px">
+            <ng-container *ngIf="i.type ==='REGISTERED'">
+              <span nz-col nzSpan="6">状态:<i nz-icon type="share-alt" theme="outline" style="font-size: 14px; color:greenyellow"></i>上线</span><span nz-col nzSpan="9" >时间:{{i.timestamp | date: 'yyyy-MM-dd HH:mm:ss'}}</span>
+            </ng-container>
+            <ng-container  *ngIf="i.type ==='STATUS_CHANGED'">
+              <span nz-col nzSpan="6" >状态:<i *ngIf="i['statusInfo'].status === 'OnLINE'" nz-icon type="bulb" theme="outline" style="font-size: 14px; color:greenyellow"></i><i *ngIf="i['statusInfo'].status === 'OFFLINE'" nz-icon type="disconnect" theme="outline" style="font-size: 14px; color:red"></i>{{i['statusInfo'].status === 'OFFLINE' && '离线' || i['statusInfo'].status === 'OnLINE' && '上线'}}</span><span nz-col nzSpan="9" >时间:{{i.timestamp | date: 'yyyy-MM-dd HH:mm:ss'}}</span>
+            </ng-container>
+            <ng-container  *ngIf="i.type ==='REGISTRATION_UPDATED'">
+              <span nz-col nzSpan="6" >状态:<i nz-icon type="branches" theme="outline" style="font-size: 14px; color:greenyellow"></i>上线</span><span nz-col nzSpan="9" >时间:{{i.timestamp |  date: 'yyyy-MM-dd HH:mm:ss'}}</span>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 设备日志逻辑 -->
+    <div *ngIf="showId === 'equipmentDay'">
+        <div nz-row nzGutter="24" style="margin-top: 20px">
+                <div nz-col class="gutter-row" nzSpan="20" [nzOffset]="2">
+                      <div class="runLog">
+                        <ng-container *ngIf="resultStatus" >
+                          <div nz-col  nzSpan="4" *ngFor="let i of resultdata" style="margin-top:15px">
+                            <div style="width: 100%; text-align: center; font-weight: 500;cursor: pointer; color: #fff" (click)="down(i)">
+                              <img style="width: 70px;" src="./assets/newimage/workMagger/btn_rizhi.png" alt="">
+                              <p>{{i['file_name']}}</p>
+                              <p>{{i['upload_time']}}</p>
+                              <p *ngIf="i['size']">{{i['size']}} </p>
+                              <p *ngIf="!i['size']"> 00K </p>
+                            </div>
+                          </div>
+                        </ng-container>
+                        <ng-container *ngIf="!resultStatus">
+                          <div  style="text-align: center; margin-top: 15%; font-size: 26px;font-weight: 900; color: #fff">目前暂无日志文件</div>
+                        </ng-container>
+                      </div>
+                </div>
+        </div>
+    </div>
+  </nz-card>
+</div>
+
+<!--应用日志弹框-->
+<nz-modal
+  class="modalStyle"
+  [(nzVisible)]="isVisible"
+  nzTitle="应用日志"
+  nzWidth="1000px"
+  (nzOnCancel)="isVisible = false" (nzOnOk)="isVisible = false;"
+  [nzFooter]="null">
+  <div nz-row nzGutter="24" style="margin-top: 20px">
+    <div nz-col class="gutter-row" nzSpan="20" [nzOffset]="2">
+      <div class="runLog">
+        <ng-container *ngIf="newroultdata.length > 0">
+          <div nz-col  nzSpan="6" *ngFor="let i of newroultdata" style="margin-top:15px">
+            <div style="width: 100%; text-align: center; font-weight: 500;cursor: pointer; color: #fff" (click)="logdetails(i)">
+              <img style="width: 70px;" src="./assets/newimage/workMagger/btn_rizhi.png" alt="">
+              <p>{{i}}</p>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</nz-modal>
+<!-- 日志详情弹框-->
+<nz-modal
+  class="modalStyle"
+  [(nzVisible)]="isVisibleDetail"
+  [nzTitle]="detailModal"
+  nzWidth="1400px"
+  (nzOnCancel)="isVisibleDetail = false; isVisible = true" (nzOnOk)="isVisibleDetail = false; isVisible = true"
+  [nzFooter]="null">
+  <div  class="scroole">
+    <div style="width: 100%;">
+      <p style="text-align: left; text-indent: 40px;" *ngFor="let i of loginDetail"> {{i}}  </p>
+     
+  
+  
+    </div>
+  </div>
+</nz-modal>
+
+
+
+<!--智能体检弹框-->
+<nz-modal
+  [(nzVisible)]="intelligentMedical"
+  nzTitle="智能体检"
+  nzWidth="1000px"
+  (nzOnCancel)="intelligentMedical = false" (nzOnOk)="intelligentMedical = false"
+  [nzFooter]="null">
+
+  <div nz-row class="divPhysical">
+    <img style="    position: absolute;
+            width: 50px;" src="./assets/pad/bg_iamge_four@2x.png" alt="">
+    <img class="imgThree" src="./assets/pad/bg_iamge_three@2x.png" alt="">
+    <div nz-col nzSpan="8" class="divNumparent">
+      <img style="width:150px" src="./assets/pad/icon_tijian_small@2x.png" alt="">
+      <img  class="xzImgSmall"
+           src="./assets/pad/icon_tijian_small_xuanzhuan@2x.png" alt="">
+      <div class="divNum">76</div>
+    </div>
+    <div nz-col nzSpan="16" class="divPro">
+      <h1 class="doTextH1">体检完成</h1>
+    </div>
+  </div>
+
+
+  <div style="padding: 24px 48px 24px 24px;">
+    <nz-collapse [nzBordered]="false">
+      <nz-collapse-panel class="panel" *ngFor="let panel of panels;let x = index" [nzHeader]="nzHeader"
+                         [nzActive]="panel.active" [ngStyle]="panel.customStyle" nzShowArrow="false">
+        <div style="padding-left: 8%;">
+          <ng-container [ngSwitch]="x">
+            <nz-list *ngSwitchCase="2" [nzDataSource]="panel.data" [nzRenderItem]="item"
+                     [nzBordered]="false">
+              <ng-template #item let-item>
+                <nz-list-item [nzContent]="nzContent"></nz-list-item>
+                <ng-template #nzContent>{{item.name}}&nbsp; <nz-tag
+                  [nzColor]="item.info.retCode!=='000000'?'red':'green'">{{item.info.retMsg}}
+                </nz-tag>
+                </ng-template>
+              </ng-template>
+            </nz-list>
+            <nz-list *ngSwitchCase="3" [nzDataSource]="panel.data" [nzRenderItem]="item"
+                     [nzBordered]="false">
+              <ng-template #item let-item>
+                <nz-list-item [nzContent]="nzContent"></nz-list-item>
+                <ng-template #nzContent>{{item.name}}&nbsp; <nz-tag *ngIf="item.info !== '0'"
+                                                                    [nzColor]="'#108ee9'"></nz-tag>
+                </ng-template>
+              </ng-template>
+            </nz-list>
+            <nz-list *ngSwitchCase="4" [nzDataSource]="panel.data" [nzItemLayout]="'vertical'"
+                     [nzRenderItem]="item" [nzBordered]="false">
+              <ng-template #item let-item>
+                <nz-list-item>
+                  <nz-list-item-meta [nzTitle]="nzTitle" [nzDescription]="description">
+                    <ng-template #nzTitle>{{item['module_name']?item['module_name']:item['module_code']}} &nbsp;&nbsp;<nz-tag>
+                      {{item.module_type === '1'?'插件':'平台'}}
+                    </nz-tag>
+                    </ng-template>
+                    <ng-template #description>
+                                            <span class="spanItem"> 最新版本 <nz-tag [nzColor]="'blue'">
+                                                    {{item.latest_version}}</nz-tag>
+                                            </span>
+                      <span class="spanItem" >
+
+                                                当前版本 <nz-tag [nzColor]="'volcano'">
+                                                    {{item['current_version']?item['current_version']:'未安装此插件'}}</nz-tag>
+                                            </span>
+                      <span class="spanItem">
+                                             <!--   <nz-tag *ngIf="item.isUpdate" [nzColor]="'#108ee9'"
+                                                        (click)="updPlugin(item)">安装
+                                                </nz-tag>-->
+                                                <span *ngIf="!item.isUpdate"> 暂无更新</span>
+                                            </span>
+
+                    </ng-template>
+                  </nz-list-item-meta>
+
+                </nz-list-item>
+              </ng-template>
+            </nz-list>
+            <nz-list *ngSwitchCase="5" [nzDataSource]="panel.data" [nzItemLayout]="'vertical'"
+                     [nzRenderItem]="item" [nzBordered]="false">
+              <ng-template #item let-item>
+                <nz-list-item>
+                  <!-- <nz-list-item-meta [nzTitle]="nzTitle" [nzDescription]="description">
+                    <ng-template #nzTitle>{{item.desc}}</ng-template>
+                  </nz-list-item-meta>
+                  <ng-template #description>{{item.date}}&nbsp;&nbsp;&nbsp;&nbsp;<nz-tag
+                    [nzColor]="'red'">{{item.level}}</nz-tag>
+                  </ng-template> -->
+                </nz-list-item>
+              </ng-template>
+            </nz-list>
+          </ng-container>
+        </div>
+        <ng-template #nzHeader>
+          <i class="fontWei"  nz-icon [nzType]="panel.icon" nzTheme="outline" ></i>
+          <span class="fontWei">
+                        {{panel.name}} <span style="font-size: 14px;"
+                                             [ngStyle]="{'color':panel.color}">{{panel.text}}</span>
+                      <i class="floatIcon"  nz-icon nzType="{{panel.data.length > 0 ?'up':'down'}}" nzTheme="outline" ></i>
+                    </span>
+        </ng-template>
+      </nz-collapse-panel>
+    </nz-collapse>
+  </div>
+</nz-modal>

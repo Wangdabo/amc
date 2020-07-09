@@ -1,0 +1,54 @@
+<div class="container">
+  <div nz-row>
+    <tms-query #baseQuery [headerDate]="queryModel.queryHeader" (getQuery)="getQueryData($event)" (resetButton)="reset($event)"></tms-query>
+  </div>
+  <div class="table">
+    <tms-list
+      [tableClass]="'bmtableClass'"
+      [listHeader]="queryModel.header" [listData]="queryModel.data" [pageSize]="queryModel.condition.pagesize"
+      [totalCount]="queryModel.totalCount" [isLoading]="queryModel.isLoading" (pageChangeHandler)="pageChange($event)"
+      (selectRowsHandler)="selectRowsHandler($event)" [topActions]="queryModel.topActions" (topActionsHandler)="topActionsHandler($event)"
+      [rowActions]="queryModel.rowActions" (rowActionsHandler)="rowActionsHandler($event)">
+    </tms-list>
+  </div>
+</div>
+<nz-modal nzWidth='{{settingService.modal.mid}}' [(nzVisible)]="insertOrUpdateModel.isVisible" nzTitle="{{insertOrUpdateModel.isUpdate ? '新增通道' : '修改通道'}}"
+  (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" [nzOkLoading]="insertOrUpdateModel.isOkLoading">
+  <tms-form #baseForm nz-row [nzGutter]="24">
+    <!-- <tms-filed nz-col [nzSpan]="24" [inputType]="'select'" [formsName]="'app_id'" [filedName]="'应用'" [dictId]="'SYS_APP_ID'"
+      [required]="true"></tms-filed> -->
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'name'" [filedName]="'ͨ通道名称'" [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'mspid'" [filedName]="'创建者mspid'"
+      [required]="true"></tms-filed>
+
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'tx_path'" [filedName]="'交易配置文件路径'"
+      [required]="true"></tms-filed>
+
+
+
+  </tms-form>
+</nz-modal>
+<nz-modal [(nzVisible)]="isVisible" nzWidth="1224" nzTitle="节点维护" [nzFooter]="modalFooter" (nzOnCancel)="isVisible = false">
+  <nz-card>
+    <tms-list [listHeader]="peerModal.header" [isrowEdit]="peerModal.isrowEdit" [listData]="peerModal.data" [pageSize]="peerModal.condition.pagesize"
+      [totalCount]="peerModal.totalCount" [isLoading]="peerModal.isLoading" (pageChangeHandler)="pageChange($event)"
+      (selectRowsHandler)="selectRowsHandler($event)" [topActions]="peerModal.topActions" (editActiveHandler)="editActiveHandler($event)"
+      (topActionsHandler)="topActionsHandlerPeer($event)" [rowActions]="peerModal.rowActions" (rowActionsHandler)="peerRowActionsHandler($event)">
+    </tms-list>
+  </nz-card>
+  <ng-template #modalFooter></ng-template>
+</nz-modal>
+<nz-modal nzWidth='1024' [(nzVisible)]="peerModal.isVisible" nzTitle="新增节点与通道配置" (nzOnCancel)="peerModal.isVisible = false"
+  (nzOnOk)="handleOkAddPeer()" [nzOkLoading]="peerModal.isOkLoading">
+  <tms-form #baseFormPeer nz-row [nzGutter]="24">
+    <!-- <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'channel_id'" [filedName]="'通道'"
+      [required]="true"></tms-filed> -->
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'select'" [formsName]="'peer_id'" [filedName]="'节点'" [dictId]="'SYS_PEER_ID'"
+      [required]="true"></tms-filed>
+
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'select'" [formsName]="'type'" [filedName]="'节点类型'" [dictId]="'SYS_TYPE'"
+      [required]="true"></tms-filed>
+
+
+  </tms-form>
+</nz-modal>

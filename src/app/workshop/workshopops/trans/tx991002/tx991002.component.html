@@ -1,0 +1,125 @@
+<div class="container" style="  height: 800px;overflow-y: scroll;">
+    <div nz-row style="height: 40px;margin-bottom: 15px;">
+        <div nz-col nzSpan="22">
+        <nz-breadcrumb style="margin-left:2%;">
+          <nz-breadcrumb-item>
+          <img style="vertical-align: baseline;margin-right: 10px;" src="./assets/bmimage/BM1/icon_flag@2x.png" alt="">
+          <a style="font-size: 18px;">首页</a>
+          </nz-breadcrumb-item>
+          <nz-breadcrumb-item style="font-size: 18px;">
+          版本中心
+          </nz-breadcrumb-item>
+          <nz-breadcrumb-item style="font-size: 18px;">
+          客户端发布
+          </nz-breadcrumb-item>
+        </nz-breadcrumb>
+        </div>
+    </div>
+  <nz-card>
+    <nz-divider nzText="最新版本" nzOrientation="left"></nz-divider>
+    <nz-tabset [nzTabPosition]="'bottom'">
+      <nz-tab *ngFor="let item of transactionActionData['queryApp'].response.resultdata.bdy.data" [nzTitle]="item.app_name" (nzSelect)="appChange(item.app_code)">
+        <nz-divider nzDashed [nzText]="text1">
+          <ng-template #text1><i nz-icon nzType="bank"></i> 平台</ng-template>
+        </nz-divider>
+          <nz-row [nzGutter]="24" style="margin-top: 20px">
+            <nz-col [nzSpan]="8" *ngFor="let item of dataList">
+              <nz-card *ngIf="item.module_type === '0'" style="border: 1px solid #91d5ff;">
+                <nz-statistic
+                  [nzValue]="item.version_no"
+                  [nzTitle]="item.module_code"
+                  [nzValueStyle]="{ color: '#CF1322' }"
+                >
+                </nz-statistic>
+                <ng-template #prefixTplTwo><i nz-icon nzType="arrow-down"></i></ng-template>
+              </nz-card>
+            </nz-col>
+            <nz-col [nzSpan]="8">
+              <nz-card style="border: 1px solid #91d5ff;">
+                <nz-statistic
+                  [nzValue]="'1.0'"
+                  [nzTitle]="'windows'"
+                  [nzValueStyle]="{ color: '#CF1322' }"
+                >
+                </nz-statistic>
+                <ng-template #prefixTplTwo><i nz-icon nzType="arrow-down"></i></ng-template>
+              </nz-card>
+            </nz-col>
+          </nz-row>
+
+        <nz-divider nzDashed [nzText]="text2">
+          <ng-template #text2><i nz-icon nzType="tool"></i> 插件</ng-template>
+        </nz-divider>
+          <nz-row [nzGutter]="24" style="margin-top: 20px">
+            <nz-col [nzSpan]="4" *ngFor="let item of dataList">
+              <nz-card *ngIf="item.module_type === '1'" style="border: 1px solid #91d5ff;">
+                <nz-statistic
+                  [nzValue]="item.version_no "
+                  [nzTitle]="item.module_name"
+                  [nzValueStyle]="{ color: '#CF1322' }"
+                >
+                </nz-statistic>
+                <ng-template #prefixTplTwo><i nz-icon nzType="arrow-down"></i></ng-template>
+              </nz-card>
+            </nz-col>
+          </nz-row>
+      </nz-tab>
+    </nz-tabset>
+  </nz-card> 
+
+ <!-- <nz-card>
+    <tms-query
+      #baseQuery
+      [headerDate]="queryHeader"
+      (getQuery)="getQueryData($event)"
+      (resetButton)="reset($event)"></tms-query>
+  </nz-card>-->
+
+  <nz-card style="margin-top: 20px;">
+    <nz-divider nzText="版本记录" nzOrientation="left"></nz-divider>
+    <div class="table">
+      <tms-list
+        [tableClass]="'bmtableClass'"
+        [listHeader]="header"
+        [listData]="transactionActionData['query'].response.resultdata.bdy.version_list"
+        [pageSize]="transactionActionData['query'].request.requestdata.bdy.itemsperpage"
+        [totalCount]="transactionActionData['query'].response.resultdata.bdy['total_count'] ? transactionActionData['query'].response.resultdata.bdy.total_count[0].count:0"
+        [isLoading]="transactionActionData['query'].actioning"
+        (pageChangeHandler)="pageChange($event)"
+        [topActions]="topActions"
+        (topActionsHandler)="topActionsHandler($event)"
+        [rowActions]="rowActions"
+        (rowActionsHandler)="rowActionsHandler($event)"
+        [isclickPointer]="false"
+        [isEdit]="true"
+        [isrowActionsFlag]="true">
+      </tms-list>
+    </div>
+  </nz-card>
+</div>
+
+<nz-modal nzWidth='{{settingService.modal.large}}' *ngIf="initFinish" [(nzVisible)]="isVisible"
+          nzTitle="版本详情"
+          (nzOnCancel)="handleCancel()"
+          (nzOnOk)="handleCancel()"
+          [nzOkLoading]="transactionActionData['detail'].actioning">
+  <nz-descriptions nzTitle="基本信息">
+    <nz-descriptions-item nzTitle="版本号">{{detailItem.version_no}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="发布应用">{{detailItem.app_name}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="发布时间">{{detailItem.version_effect_time}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="版本状态">已发布</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="描述">
+      {{detailItem.version_log_info}}
+    </nz-descriptions-item>
+  </nz-descriptions>
+  <nz-divider nzText="发布模块" nzOrientation="left"></nz-divider>
+  <div style="padding:30px;">
+    <nz-card style="width:300px;" [nzBordered]="true" [nzHoverable]="true" [nzTitle]="module.module_type === '0'? '平台': '插件'" [nzExtra]="extraTemplate" *ngFor="let module of transactionActionData['detail'].response.resultdata.bdy">
+      <p><b>模块版本号</b> {{module.version_no}}</p>
+      <p *ngIf="module.module_type === '1'"><b>插件名称</b> {{module.module_name}}</p>
+      <p *ngIf="module.module_type === '1'"><b>插件代码</b> {{module.module_code}}</p>
+      <p *ngIf="module.module_type === '0'"><b>平台类型</b> {{module.module_code}}</p>
+      <p><b>版本文件路径</b> {{module.module_file_path}}</p>
+    </nz-card>
+  </div>
+</nz-modal>

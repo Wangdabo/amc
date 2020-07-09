@@ -1,0 +1,99 @@
+<div class="container">
+  <nz-card>
+    <tms-query
+      #baseQuery
+      [headerDate]="queryHeader"
+      (getQuery)="getQueryData($event)"
+      (resetButton)="reset($event)"></tms-query>
+  </nz-card>
+  
+   <nz-card style="margin-top:20px;">
+      <p class="pds">网点管理</p>
+    <tms-list
+    [tableClass]="'bmtableClass'"
+    [listHeader]="listHeader"
+    [listData]= "listData"
+    [totalCount]="total"
+    (pageChangeHandler)="pageChange($event)"
+    [isrowActionsFlag]="true"
+    [rowActions]="rowActions"
+    (rowActionsHandler)="rowActionsHandler($event)"
+    [isclickPointer]="false"
+    [isEdit]="true">
+  </tms-list>
+      </nz-card>
+    </div>
+    <nz-modal [nzWidth]="showIndex?'800':'600'"[(nzVisible)]="isVisible"
+    [nzTitle]="showIndex?'设备列表':'设备关联'"
+    (nzOnCancel)="isVisible = false"
+    nzMaskClosable='false'
+    [nzFooter] = "null"
+    >
+     <div *ngIf="showIndex" style="margin-bottom: 36px;">
+        <tms-list
+        [tableClass]="'bmtableClass'"
+        [listHeader]="modal.listHeader"
+        [listData]= "modal.listData"
+        [pageSize]="modal.pageSize"
+        [totalCount]="modal.total"
+        (pageChangeHandler)="modalPageChange($event)"
+        [pageIndex]="modalindexPage"
+        [isrowActionsFlag]="false"
+        [topActions]="topActions"
+        [isclickPointer]="false"
+        [isEdit]="true">
+    </tms-list>
+     </div>
+     <div [hidden]="showIndex">
+           <!-- <tms-form #baseForm1 nz-row [nzGutter]="24">
+            <tms-filed nz-col [nzSpan]="22" [labelSpan]="10" [(fieldModel)]="form.rolecode" [inputType]="'select'"
+              [formsName]="'rolecode'" [filedName]="'机构选择'" (monitorChangeEvent)="queryUser($event)" [optionArray]="roleList" [required]="true" ></tms-filed>
+              <tms-filed nz-col [nzSpan]="22" [labelSpan]="10" [(fieldModel)]="form.empcode" [inputType]="'select'"
+              [formsName]="'empcode'" [filedName]="'人员选择'" [optionArray]="userList" [required]="true"></tms-filed>
+            <tms-filed nz-col [nzSpan]="22" [labelSpan]="10" [(fieldModel)]="form.wscode" [inputType]="'checkbox'"
+            [formsName]="'wscode'" [filedName]="'设备编号'" [optionArray]="deviceList"  [required]="true"></tms-filed>
+          </tms-form> -->
+
+          <nz-steps [nzCurrent]="current">
+            <nz-step nzTitle="选择岗位"></nz-step>
+            <nz-step nzTitle="选择角色"></nz-step>
+            <nz-step nzTitle="关联设备"></nz-step>
+          </nz-steps>
+      
+          <div class="steps-content">
+            <div *ngIf="current===2">
+                <div style="border-bottom: 1px solid rgb(233, 233, 233);" >
+                    <label
+                      nz-checkbox
+                      [(ngModel)]="allChecked"
+                      (ngModelChange)="updateAllChecked()"
+                      [nzIndeterminate]="indeterminate"
+                    >
+                      全选
+                    </label>
+                  </div>
+                  <br />
+                  <nz-checkbox-group [(ngModel)]="deviceList" (ngModelChange)="updateSingleChecked()"></nz-checkbox-group>
+              </div>
+            
+                <tms-form #baseForm1 nz-row [nzGutter]="24">
+            <tms-filed class="filed" nz-col [nzSpan]="22" [labelSpan]="7" [hidden]="current!==0" [(fieldModel)]="form.rolecode" [inputType]="'select'"
+              [formsName]="'rolecode'" [filedName]="'岗位选择'"  [optionArray]="roleList" [required]="true" ></tms-filed>
+              <tms-filed class="filed" nz-col [nzSpan]="22" [labelSpan]="7" [hidden]="current!==1" [(fieldModel)]="form.empcode" [inputType]="'select'"
+              [formsName]="'empcode'" [filedName]="'人员选择'" [optionArray]="userList" [required]="true"></tms-filed>
+          </tms-form>
+         
+          </div>
+          <div class="steps-action">
+            <button nz-button nzType="default" (click)="pre()" *ngIf="current > 0">
+              <span>上一步</span>
+            </button>
+            <button nz-button nzType="default" (click)="next()" *ngIf="current < 2">
+              <span>下一步</span>
+            </button>
+            <button nz-button nzType="primary" (click)="handleOk()" *ngIf="current === 2">
+              <span>完成</span>
+            </button>
+          </div>
+     </div>
+    </nz-modal>

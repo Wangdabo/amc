@@ -1,0 +1,36 @@
+<div class="container">
+  <nz-card>
+    <tms-query #baseQuery [headerDate]="queryModel.queryHeader" (getQuery)="getQueryData($event)"
+               (resetButton)="reset($event)"></tms-query>
+  </nz-card>
+
+  <nz-card style="margin-top:20px;">
+    <div class="table">
+      <tms-list
+        [tableClass]="'bmtableClass'"
+        [listHeader]="queryModel.header" [listData]="queryModel.data"
+                [pageSize]="queryModel.condition.pagesize" [totalCount]="queryModel.totalCount" [isLoading]="queryModel.isLoading"
+                (pageChangeHandler)="pageChange($event)" (selectRowsHandler)="selectRowsHandler($event)"
+                [topActions]="queryModel.topActions" (topActionsHandler)="topActionsHandler($event)"
+                [rowActions]="queryModel.rowActions" (rowActionsHandler)="rowActionsHandler($event)"
+                (rowActiveHandler)="rowActiveHandler($event)" [isEdit]="true" [isrowActionsFlag]="true">
+      </tms-list>
+    </div>
+  </nz-card>
+</div>
+
+
+<nz-modal nzWidth='{{settingService.modal.large}}' [(nzVisible)]="insertOrUpdateModel.isVisible"
+  nzTitle="{{insertOrUpdateModel.isUpdate ? '修改交易工厂部件' : '新增交易工厂部件'}}" (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()" [nzOkLoading]="insertOrUpdateModel.isOkLoading">
+  <tms-form #baseForm nz-row nzType="flex" nzJustify="start" [nzGutter]="24">
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'tran_config_part'" [filedName]="'部件代码'"
+      [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'part_name'" [filedName]="'部件名称'"
+      [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'part_desc'" [filedName]="'部件描述'"
+      [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'USER_COUNTER_ISAVA'"
+      [formsName]="'is_availability'" [filedName]="'应用类别'" [required]="true"></tms-filed>
+  </tms-form>
+</nz-modal>

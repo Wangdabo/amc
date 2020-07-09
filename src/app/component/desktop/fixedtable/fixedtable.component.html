@@ -1,0 +1,40 @@
+<!--先用着，后期修改在组件lib中-->
+<nz-list class="gradientHeader"
+         [nzDataSource]="dataSet"
+         nzBordered
+         style="border-color: rgba(214, 240, 255, 0.4)"
+         [nzRenderItem]="item"
+         [nzPagination]="pagination"
+         nzSize="large">
+  <ng-template #item let-item>
+    <nz-list-item [nzContent]="content" style="cursor: pointer; border-color: rgba(214, 240, 255, 0.4);"
+                  [ngClass]="clickType == item.id? 'bg': 'nonebg'"
+                  (click)="event(item)"
+                  [nzActions]="[moreAction]" >
+      <ng-template #moreAction><span style="color: #ccc">{{item['alert_time']}}</span></ng-template>
+      <ng-template #content>
+              <div style="float: left">
+                <nz-badge [nzDot]="item['alert_status'] == '0'? true: false">
+                  <img *ngIf="item['channel_code'] === 'Pad'" style="width: 40px" src="./assets/map/ipad.svg" alt="">
+                  <img *ngIf="item['channel_code'] === 'Teller'" style="width: 40px" src="./assets/map/atm.svg" alt="">
+                  <img *ngIf="item['channel_code'] === 'SuperCounter'" style="width: 40px" src="./assets/map/cp.svg" alt="">
+                </nz-badge>
+              </div>
+              <div style="float: left; padding-top: 2px">
+                <div style="font-size: 16px;font-weight: 900;color:#fff">
+                  <span style="margin:0 10px;"> {{item['workstation_name']}}</span>
+                  <span> {{item['channel_code'] == 'Teller' && '柜员工作站 ' || item['channel_code'] == 'Pad' && '移动柜员工作站' || item['SuperCounter'] == '2' && '超级柜台'}}</span>
+                </div>
+                <div style="color: #ccc">
+                  <span style="margin: 0 10px;">{{item['alert_message']}}</span>
+                </div>
+              </div>
+      </ng-template>
+    </nz-list-item>
+  </ng-template>
+  <ng-template #pagination>
+    <nz-pagination [nzPageIndex]="pageIndex" [nzTotal]="totalCount" (nzPageIndexChange)="changePage($event)"></nz-pagination>
+  </ng-template>
+</nz-list>
+
+

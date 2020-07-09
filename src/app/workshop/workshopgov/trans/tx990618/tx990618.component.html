@@ -1,0 +1,28 @@
+<div class="container">
+    <nz-card>
+      <tms-query
+        #baseQuery
+        [headerDate]="queryHeader"
+        (getQuery)="getQueryData($event)"
+        (resetButton)="reset($event)"></tms-query>
+    </nz-card>
+      <nz-card style="margin-top:20px;">
+      <p class="pds">智慧柜员机异常吞卡预警</p>
+          <tms-list
+            [tableClass]="'bmtableClass'"
+            [listHeader]="listHeader"
+            [listData]= "list"
+            [pageSize]="pageTotalNumber"
+            [totalCount]="total"
+            [pageIndex]="pageIndex"
+            (pageChangeHandler)="pageChange($event)"
+            [isrowActionsFlag]="true"
+            [isclickPointer]="false"
+            [isShowCheckbox] = "false"
+            [isrowActionsFlag] = 'false'
+            [showAlert]="false"
+            [isEdit]="false">
+          </tms-list>
+      </nz-card>
+    </div>
+  

@@ -1,0 +1,20 @@
+<div class="container">
+	<nz-card>
+    <nz-tabset  [nzSelectedIndex]="sindex" [nzType]="'card'" >
+      <nz-tab *ngFor="let tab of tabs"  [nzTitle]="titleTemplate" (nzSelect)="tabSelect(tab.id)" >
+        <ng-template #titleTemplate>
+          <i nz-icon [nzType]="tab.icon" nzTheme="outline"></i>
+          <span [title]="tab.text">{{ tab.text }}</span>
+        </ng-template>
+        <div *ngIf="tab.id === 'transa'">
+          <app-tx990301_1 #tx990301_1 (submitEvent)="submitTx990301_1EventHandler($event)" [transactionContextChangeOb]="transactionContextChangeOb"></app-tx990301_1>
+        </div>
+        <div *ngIf="tab.id === 'rolea'">
+          <app-tx990301_2 #tx990301_2 (submitEvent)="submitTx990301_2EventHandler($event)" [transactionContextChangeOb]="transactionContextChangeOb"></app-tx990301_2>
+        </div>
+      </nz-tab>
+    </nz-tabset>
+  </nz-card>
+</div>
+
+

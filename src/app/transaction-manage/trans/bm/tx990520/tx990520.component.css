@@ -1,0 +1,219 @@
+.container {
+  padding-top: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+
+.topDiv {
+  padding: 10px 0 10px 10px;
+}
+
+.chartDiv{
+  padding: 24px 0;
+}
+
+
+.errsvg  {
+  font-size: 26px;
+  margin-top:2px
+}
+
+
+:host ::ng-deep .demo-infinite-container {
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+  overflow: auto;
+  padding: 8px 24px;
+  height: 300px;
+}
+:host ::ng-deep .demo-loading {
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+}
+
+.ant-card-meta-detail {
+  font-size: 26px !important;
+}
+
+
+
+.divTextRight {
+  text-align: right;
+  padding-right: 5px;
+}
+
+.textColor {
+  color: #1890ff;
+  cursor: pointer;
+
+}
+
+p {
+  margin: 0 !important;
+}
+
+.divEmpty {
+  text-align: center;
+  padding: 5% 0;
+}
+
+h1 {
+  margin: 0 !important;
+}
+
+.divTitle {
+  color:#ff1038;
+  font-size: 18px;
+  text-align: left;
+}
+
+.h1Span {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #000000;
+  margin: 0 !important;
+}
+
+.divDis {
+  display: flex
+}
+
+.divDis>span {
+  line-height: 3rem;
+  margin-left: 5px;
+}
+
+.textSize {
+  font-weight: bold;
+}
+
+.firstDivTop {
+  text-align: center;
+  min-height: 70px;
+  margin-bottom: 10px;
+}
+
+span {
+  margin: 0 16px;
+}
+
+.divBlock {
+  /* margin: 16px 0; */
+  margin-bottom: 16px;
+}
+
+nz-progress {
+  display: inline-block;
+  margin-left: 16px;
+}
+
+
+.lineHeight {
+  line-height: 28px;
+  font-size: 18px;
+
+}
+
+.lineHeight span {
+  color:#fff;
+}
+
+
+
+
+/* 新样式 */
+.redtimeRank {
+  background: url("../../../../../assets/newimage/home/content_bg_shishijiaoyi.png");
+  background-size:100% 100%;
+  padding: 5%;
+  position: relative;
+}
+
+
+.buttom {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.buttom button {
+  width: 300px;
+  font-size: 20px;
+  background: linear-gradient(to right, #2a65be, #00fdfe); /* 标准语法 */
+}
+
+
+.mapStyle {
+  background: url("../../../../../assets/newimage/workMagger/logbg.png");
+  background-size:100% 100%;
+  padding: 5%;
+}
+
+
+.total  {
+  text-align: center;
+}
+
+
+.workNumber {
+  margin-top: 40px;
+}
+
+
+.number {
+  font-size: 20px;
+  margin-top: 15px;
+  color:#fff;
+}
+
+.number span {
+  font-size: 16px;
+  margin:0;
+}
+
+
+.caveat{
+  display: inline-block;
+  position: absolute;
+  right: 0.5%;
+  top: 11%;
+  cursor: pointer;
+}
+
+
+.caveat  span {
+  font-size: 20px;
+  position: absolute;
+  top: 19px;
+  right: 18px;
+}
+
+.caveatImg {
+  color:#00fdfe;
+}
+
+.caveatalertImg {
+  color:#fff
+}
+
+
+.errorInfo {
+  background: transparent;
+  height: 867px;
+  overflow: auto;
+}
+
+-webkit-scrollbar {
+  display:none
+}
+
+
+.content {
+  position: relative;
+  color:#fff;
+}
+
+
+
+

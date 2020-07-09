@@ -1,0 +1,153 @@
+<div class="container redtimeRank">
+  <div nz-row class="topDiv">
+      <div nz-row nzGutter="24">
+        <div nz-col nzSpan="5" [nzOffset]="1">
+          <input nz-input style="width: 100%;" placeholder="请输入组织机构代码" [(ngModel)]="selectedValue.orgCode">
+        </div>
+        <div nz-col nzSpan="5">
+          <input nz-input style="width: 100%;" placeholder="请输入工作站代码" [(ngModel)]="selectedValue.workstationCode">
+        </div>
+        <div nz-col nzSpan="5">
+          <input nz-input style="width: 100%;" placeholder="请输入工作站名称" [(ngModel)]="selectedValue.workstationName">
+        </div>
+        <div nz-col nzSpan="5">
+          <nz-select style="width: 100%;" nzShowSearch nzAllowClear [nzPlaceHolder]="'请选择渠道'"
+                     [(ngModel)]="selectedValue.channel_code">
+            <nz-option *ngFor="let i of workstationArray" [nzLabel]="i.value" [nzValue]="i.key"></nz-option>
+          </nz-select>
+        </div>
+      </div>
+
+      <div class="buttom">
+        <button nz-button nzType="primary" (click)="query(selectedValue)"><i nz-icon type="search"></i>查询</button>
+      </div>
+  </div>
+  <!-- 警告内容框 -->
+  <div class="caveat">
+    <div  style="position:relative;">
+      <img (click)="errorClick()" [src]="workInfo['alert'] > 0? caveatalertImg :caveatImg" alt="">
+      <span [class]="workInfo['alert'] > 0? 'caveatalertImg' : 'caveatImg'">{{workInfo['alert']}}</span>
+    </div>
+  </div>
+  <div nz-row class="chartDiv">
+    <!--先对接口，样式后期在调, 左侧改成list， 整体改成弹框-->
+    <div nz-col nzSpan="24" *ngIf="errorinfo">
+      <div nz-col nzSpan="9">
+        <app-fixedtable [dataSet]="dataSet"
+                        [pageSize]="10"
+                        [pageIndex]="fixedPageSize"
+                        [listHeader]="listHeader"
+                        [totalCount]="totalCount"
+                        (pageChangeHandler)="pageHandler($event)"
+                        (rowActiveHandler)="rowActiveHandler($event)"></app-fixedtable>
+      </div>
+      <div nz-col nzSpan="15" class="errorInfo" *ngIf="errordetails">
+        <nz-card style="position:relative;" class="errorInfo" [nzLoading]="'false'" [nzHoverable]="'true'">
+          <nz-card-meta   [nzDescription]="liabilityDescription"></nz-card-meta>
+        </nz-card>
+          <ng-template #liabilityDescription>
+              <div class="content">
+                <div style="text-align: center;font-size: 20px;color: #00fdfe;">错误详情</div>
+                <img (click)="errorinfo = false"  style="position: absolute; top: 10px; right: 10px;" src="./assets/newimage/workMagger/btn_back.png" alt="">
+                <p class="lineHeight"><span>工作站名称:</span> {{errorJson['workstation_name']}}</p>
+                <p class="lineHeight"><span>工作站状态:</span> {{errorJson['channel_code'] == '柜员工作站' && '移动柜员工作站' || errorJson['channel_code'] == '1' && '移动柜员工作站'}}</p>
+                <p class="lineHeight"><span>组织机构代码:</span> {{errorJson.org_code}}</p>
+                <p class="lineHeight"><span>告警代码:</span> {{errorJson['workstation_code']}}</p>
+                <p class="lineHeight"><span>告警状态:</span> {{errorJson['alert_status']}}</p>
+                <p class="lineHeight"><span>告警信息:</span> {{errorJson['alert_message']}}</p>
+                <p class="lineHeight"><span>告警时间:</span> {{errorJson['alert_time']}}	</p>
+                <p class="lineHeight"><span>告警堆栈:</span> {{errorJson['alert_stack']}}</p>
+              </div>
+          </ng-template>
+      </div>
+    </div>
+    <div  nz-col nzSpan="24" [hidden]="errorinfo" style="margin-top:40px;">
+        <div nz-col nzSpan="18" class="mapStyle" [hidden]="errorinfo">
+          <h1 style="margin: 0 auto; text-align: center; color: #00fdfe">工作站监控</h1>
+          <div id="map" class="container" style="width: 100%; min-height: 800px;"></div>
+        </div>
+        <div nz-col nzSpan="5" class="mapStyle" style="padding: 3%" [nzOffset]="1">
+           <!--   <nz-card nzType="inner" nzTitle="在线设备统计" style="margin-top:55px">
+                <div nz-col  nzSpan="24">
+                  <div class="gutter-box">
+                    <div>
+                      <span class="divTitle">在线设备统计</span>
+                      <span style="text-align: right; color: #1890ff">总计: <span class="h1Span">{{workInfo['total']}}</span></span>
+                    </div>
+                    <div nz-row>
+                      <div nz-col nzSpan="24" style="padding-top: 5%;
+                        padding-left: 5%;">
+                        <div class="divDis" *ngIf="workInfo['Atm']">
+                          <nz-badge style="line-height: 3rem" nzStatus="success"></nz-badge><span> <img style="width: 40px" src="./assets/map/atm.svg" alt=""> </span> <span
+                          class="h1Span"> {{workInfo['Atm']}} </span><span style="padding-top: 5%;margin-right: 0">个</span>
+                        </div>
+                        <div class="divDis"  *ngIf="workInfo['Teller']">
+                          <nz-badge style="line-height: 3rem" nzStatus="success"></nz-badge><span> <img style="width: 40px" src="./assets/map/cp.svg" alt="">  </span> <span
+                          class="h1Span"> {{workInfo['Teller']}}</span><span style="padding-top: 5%;margin-right: 0">个</span>
+                        </div>
+
+                        <div class="divDis" *ngIf="workInfo['Pad']">
+                          <nz-badge style="line-height: 3rem" nzStatus="success"></nz-badge><span> <img style="width: 40px" src="./assets/map/ipad2.svg" alt=""></span> <span
+                          class="h1Span"> {{workInfo['Pad']}}</span><span style="padding-top: 5%;margin-right: 0">个</span>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </nz-card>-->
+            <div class="total">
+              <img src="./assets/newimage/workMagger/icon_zaixianshebei.png" alt="">
+              <div style="color: #00fdfe; margin-top:30px; font-size: 20px;">在线设备数统计</div>
+              <div  style="color: #00fdfe; margin-top:20px; font-size: 20px; font-weight: 900">总计: &nbsp;&nbsp;&nbsp; {{workInfo['total']}}</div>
+              <div class="workNumber">
+                <div nz-row>
+                  <div nz-col nzSpan="12" *ngIf="workInfo['Itm']">
+                    <div class="img"><img src="./assets/newimage/workMagger/icon_phone.png" alt=""></div>
+                    <div class="number">{{workInfo['Itm']}} <span>个</span></div>
+                  </div>
+                  <div nz-col nzSpan="12" *ngIf="workInfo['Teller']">
+                    <div class="img"><img src="./assets/newimage/workMagger/icon_computer.png" alt=""></div>
+                    <div class="number">{{workInfo['Teller']}}<span>个</span></div>
+                  </div>
+                  <div nz-col nzSpan="12" *ngIf="workInfo['Pad']">
+                    <div class="img"><img src="./assets/newimage/workMagger/icon_pad.png" alt=""></div>
+                    <div class="number">{{workInfo['Pad']}}<span>个</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+
+
+  </div>
+</div>
+
+
+
+<!--工作站详情-->
+<nz-modal
+    class="modalStyle"
+  [(nzVisible)]="isVisible"
+          nzWidth="1000px"
+          [nzTitle]="modelTitle"
+          (nzOnCancel)="isVisible = false" (nzOnOk)="isVisible = false"
+          [nzFooter]="null">
+  <tms-list
+               [tableClass]="'gradientHeader'"
+               [listHeader]="listHead"
+               [listData]="dataList"
+               [pageSize]="page"
+               [totalCount]="total"
+               [isLoading]="isLoading"
+               (pageChangeHandler)="pageChange($event)"
+               [topActions]="[]"
+               [rowActions]="rowActions"
+               (rowActionsHandler)="rowActionsHandler($event)"
+               [isShowCheckbox]="false"
+               [showAlert]="false"
+               [isrowActionsFlag]="true"
+               [isEdit]="true">>
+  </tms-list>
+</nz-modal>

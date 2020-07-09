@@ -1,0 +1,80 @@
+<div nz-row class="divTop">
+  <div nz-col nzSpan="24">
+    <span class="textSize colortext">监控方案</span>
+    <nz-select style="width:300px" [(ngModel)]="monitorid" (ngModelChange)="ngModelChange($event)">
+      <nz-option *ngFor="let i of topSelects" [nzLabel]="i.config_name" [nzValue]="i.id"></nz-option>
+    </nz-select>
+    <button nz-button nzType="primary" style="margin-left: 5px;" (click)="add()"><i nz-icon type="plus"></i></button>
+    <span class="textColor" (click)="goConfig()">监控台</span>
+
+  </div>
+  <div nz-col nzSpan="12">
+    <nz-divider nzDashed [nzText]="text" nzOrientation="right">
+      <ng-template #text><i nz-icon type="edit" (click)="changeEdit()" theme="outline"></i></ng-template>
+    </nz-divider>
+  </div>
+  <div nz-col nzSpan="14" class="configDiv">
+    <div nz-row class="divButtom">
+      <div nz-col nzSpan="4" class="divTextRight">
+        配置方案名：
+      </div>
+      <div nz-col nzSpan="16">
+        <span *ngIf="!isEdit">{{objArr.config_name}}</span>
+        <input *ngIf="isEdit" nz-input placeholder="请输入配置方案名" [(ngModel)]="objArr.config_name">
+      </div>
+    </div>
+    <div nz-row class="divButtom">
+      <div nz-col nzSpan="4" class="divTextRight">
+        配置描述：
+      </div>
+      <div nz-col nzSpan="16">
+        <span *ngIf="!isEdit">{{objArr.config_desc}}</span>
+        <textarea *ngIf="isEdit" nz-input placeholder="请输入配置描述" [(ngModel)]="objArr.config_desc"
+          [nzAutosize]="{ minRows: 2, maxRows: 6 }"></textarea>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="divbody">
+
+</div>
+<div nz-col nzSpan="16" class="divF">
+  <div nz-row class="divBlock divButtom">
+    <h2 class='colortext'>监控参数</h2>
+    <div nz-col nzSpan="12">
+      <p class="colortext">告警时间端（开始-结束）</p>
+      <!-- <nz-range-picker [nzShowTime]="{ nzFormat: 'HH:mm:ss' }" nzFormat="HH:mm:ss" [nzPlaceHolder]="[ '开始时间', '结束时间' ]"
+        (ngModelChange)="onChange($event)" (nzOnOk)="onOk($event)">
+      </nz-range-picker> -->
+      <!-- <nz-time-picker [(ngModel)]="objArr.alarmTimeB" (ngModelChange)="log($event)"></nz-time-picker> -->
+      <nz-time-picker [(ngModel)]="objArr.alarmTimeB" nzFormat="HH:mm:ss"></nz-time-picker>--
+      <nz-time-picker [(ngModel)]="objArr.alarmTimeE" nzFormat="HH:mm:ss"></nz-time-picker>
+    </div>
+  </div>
+  <div nz-row class="divBlock" nzGutter="32">
+    <div nz-col nzSpan="12" *ngFor="let i of objArr.data" class="divButtom">
+      <p>{{i.label}}</p>
+      <nz-input-number style="width: 100%" [(ngModel)]="i.value" [nzMin]="1" [nzStep]="1">
+      </nz-input-number>
+    </div>
+  </div>
+  <div nz-row class="divBlock">
+    <h2 class="colortext">监控交易</h2>
+    <div nz-col nzSpan="24">
+      <!-- <nz-tree [nzData]="nodes" nzCheckable="true" nzMultiple="true" [nzCheckedKeys]="defaultCheckedKeys"
+        [nzExpandedKeys]="defaultExpandedKeys" [nzSelectedKeys]="defaultSelectedKeys" (nzClick)="nzEvent($event)"
+        (nzExpandChange)="nzEvent($event)" (nzCheckBoxChange)="nzEvent($event)">
+      </nz-tree> -->
+      <tms-tree [treeTitle]="'交易菜单信息'" [defaultCheckedKeys]="defaultCheckedKeys" [menuList]="menuList"
+        [treeFlatData]="treeData" (treeEventHandler)="treeEvent($event)"
+        (checkedEventHandler)="checkedEventHandler($event)" [nzCheckable]="'true'"
+        (clickEventHandler)="clickEventHandler($event)"></tms-tree>
+    </div>
+
+  </div>
+  <div nz-row class="divBlock">
+    <button nz-button (click)="saveObj()" nzType="primary">提交</button>
+    <button nz-button (click)="cancel()" nzType="default">取消</button>
+  </div>
+</div>

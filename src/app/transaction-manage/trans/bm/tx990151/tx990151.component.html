@@ -1,0 +1,43 @@
+<div class="container">
+  <nz-card>
+    <tms-query
+      #baseQuery
+      [headerDate]="queryModel.queryHeader"
+      (getQuery)="getQueryData($event)"
+      (resetButton)="reset($event)"></tms-query>
+  </nz-card>
+
+  <nz-card style="margin-top: 20px;">
+    <div class="table">
+      <tms-list
+        [tableClass]="'bmtableClass'"
+        [listHeader]="queryModel.header"
+        [listData]="queryModel.data"
+        [pageSize]="queryModel.condition.pagesize"
+        [totalCount]="queryModel.totalCount"
+        [isLoading]="queryModel.isLoading"
+        (pageChangeHandler)="pageChange($event)"
+        (selectRowsHandler)="selectRowsHandler($event)"
+        [topActions]="queryModel.topActions"
+        (topActionsHandler)="topActionsHandler($event)"
+        [rowActions]="queryModel.rowActions"
+        (rowActionsHandler)="rowActionsHandler($event)"
+        [isEdit]="true"
+        [isrowActionsFlag]="true">
+      </tms-list>
+    </div>
+  </nz-card>
+</div>
+<nz-modal nzWidth='{{settingService.modal.large}}' [(nzVisible)]="insertOrUpdateModel.isVisible"
+          nzTitle="{{insertOrUpdateModel.isUpdate ? '修改服务' : '新增服务'}}"
+          (nzOnCancel)="handleCancel()"
+          (nzOnOk)="handleOk()"
+          [nzOkLoading]="insertOrUpdateModel.isOkLoading">
+  <tms-form #baseForm  nz-row nzType="flex"  nzJustify="start"  [nzGutter]="24">
+    <tms-filed nz-col [nzSpan]="12" [labelSpan]="6" [controlSpan]="18" [inputType]="'input'"  [formsName]="'server_code'" [filedName]="'服务代码'" [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [labelSpan]="6" [controlSpan]="18" [inputType]="'input'" [formsName]="'server_name'" [filedName]="'服务名称'" [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [labelSpan]="6" [controlSpan]="18" [inputType]="'select'" [dictId]="'SYS_SWITCH_FLAG'"  [formsName]="'switch_flag'" [filedName]="'服务开关'" [required]="true"></tms-filed>
+  </tms-form>
+</nz-modal>
+
+

@@ -1,0 +1,7 @@
+.nonebg {
+    background: transparent;
+}
+
+.bg {
+  background: rgba(121, 164, 189, 0.4);
+}

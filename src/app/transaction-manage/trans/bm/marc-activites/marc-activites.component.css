@@ -1,0 +1,448 @@
+.background {
+  width: 340px;
+  height: 649px;
+  background: url(../../../../../assets/image/phoneS.png) no-repeat 0 0;
+  margin-right: 50px;
+  margin-left: 35px;
+  position: relative;
+}
+
+.phoneInner {
+  width: 320px;
+  height: 569px;
+  overflow: hidden;
+  position: absolute;
+  left: 10px;
+  top: 35px;
+
+}
+
+
+.temUrl {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+
+.templatePage {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+.currentPage {
+  animation: pageEnter 250ms ease-in-out;
+  animation-fill-mode: forwards;
+  height: 100%;
+  position: absolute;
+  -webkit-overflow-scrolling: touch;
+  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: calc(100% + 19px);
+}
+
+
+.scrollDivInner {
+  width: 320px;
+  overflow: hidden;
+  min-height: 100%;
+  height: 641px;
+  position: relative;
+}
+
+.scrollDivInner img {
+  width: 100%;
+  display: block;
+  height: auto;
+}
+
+
+.banner {
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  cursor: pointer;
+  top: 0;
+  border: 1px dashed #555;
+}
+
+
+.banner img {
+  display: block;
+  width: 85%;
+  margin: 0 auto;
+  margin-top: -.1rem;
+}
+
+
+.buyBtn {
+  height: 1.5rem;
+  border: none;
+  position: absolute;
+  width: 100%;
+  top: 7.0rem;
+  outline: none;
+  text-align: center;
+}
+
+.buyBtn img {
+  height: 100%;
+  width: auto;
+  margin: 0 auto;
+}
+
+
+.buyBtn::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  bottom: 0;
+  right: 0;
+  border: 1px dashed #555
+}
+
+.buyBtn::after {
+  content: "编辑";
+  font-size: 12px;
+  color: #fff;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: inline-block;
+  padding: 3px 5px;
+  background-color: #3A8EE4;
+}
+
+
+#scrollerDiv {
+  padding: 0 1rem;
+  font-size: 0;
+  line-height: 0;
+  position: absolute;
+  z-index: 10;
+  top: 150px;
+  margin-top: 0.2rem;
+  height: 10px;
+}
+
+
+#scrollerDiv .marquee {
+  margin-left: 33px;
+  padding: 0 0.5rem;
+  height: 20px;
+  background: url(../../../../../assets/image/lb.png) no-repeat left center;
+  background-size: contain;
+}
+
+#scrollerDiv .marquee marquee {
+  display: block;
+  margin-left:30px;
+  padding-top:5px;
+  height: 20px;
+}
+
+#scrollerDiv ul {
+  white-space: nowrap;
+  font-size: 0.25rem;
+  margin: 0;
+}
+
+#scrollerDiv ul li {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 10px;
+  line-height: 0.5rem;
+  color: #8f0100;
+}
+
+
+/*奖品信息*/
+.receive {
+  position: absolute;
+  right: 0.55rem;
+  bottom: 28rem;
+  width: 3.8rem;
+  z-index: 12;
+}
+.receive img {
+  width: 100%;
+  height: auto;
+}
+.canEdit {
+  cursor: pointer;
+}
+
+
+.canEdit::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  bottom: 0;
+  right: 0;
+  border: 1px dashed #555;
+}
+
+.canEdit::after {
+  content: "编辑";
+  font-size: 12px;
+  color: #fff;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: inline-block;
+  padding: 3px 5px;
+  background-color: #3A8EE4;
+}
+
+
+/*底部文字区域*/
+.wrapCon {
+  padding: 0 0.6rem 0.4rem 0.6rem;
+  position: relative;
+  z-index: 10;
+  bottom: 28.5rem;
+}
+
+
+.divBox {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-top: 0.4rem;
+  border: 2px solid #8a490a;
+  background-color: #ffe9b2;
+  border-radius: 15px
+}
+
+
+.tit {
+  display: block;
+  text-align: center;
+  position: absolute;
+  width: 7.5rem;
+  top: calc(-0.7rem - 1px);
+  left: 50%;
+  margin-left: -4.25rem;
+  background-color: #542f0b;
+  color: #fff;
+  box-shadow: 0 2px 0px #542f0b;
+  border-radius: 5px;
+  font-size: 0.6rem;
+  height: 01.2rem;
+  line-height: 1.2rem;
+}
+
+.content {
+  /*background: url(../../../../../assets/image/flag.png) no-repeat left top;*/
+  background-size: 17%;
+  padding: 0.8rem;
+  overflow: hidden;
+  text-align: left;
+  color: #553725;
+  font-size: 0.25rem;
+  border-radius: 15px;
+}
+
+
+
+/* 宣传页样式 */
+.modal_tem {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.6);
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+}
+
+
+.modal_phone {
+  width: 95%;
+  margin: 100px auto;
+}
+
+
+
+
+  .modal_phone .modal-content {
+    box-sizing: border-box;
+    background-color: #fff;
+    border: 2px solid #d35400;
+    border-radius: 10px;
+    padding: 5px;
+    position: relative;
+  }
+
+  .modal_phone .modal-inner {
+    background-color: #fac953;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: 1px 1px 0px #a6a5a1;
+    background-image: url(../../../../../assets/image/shine.png);
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-size: cover;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+.modal_phone .modal-inner-box {
+  box-sizing: border-box;
+  border: 5px solid #fdaa3e;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+
+.modal_phone .modal-core {
+  background-color: #fffcf3;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px #fbbf4c;
+  padding: 20px 10px;
+}
+
+.modal_phone .modal-header {
+  position: static;
+  padding: 0;
+  height: auto;
+  width: 60%;
+  position: absolute;
+  top: 0;
+  left: 20%;
+  -wekbit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.modal_phone .modal-header img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+
+.modal_phone .modal-header .star {
+  width: 30%;
+  position: absolute;
+  left: 105%;
+  top: 0;
+}
+
+
+.modal_phone .modal-core .modal-body {
+  padding: 0;
+}
+
+
+.modal_phone .formPanel.flex {
+  display: flex;
+  overflow: hidden;
+}
+
+.formPanel {
+  margin-bottom: 10px;
+  line-height: 30px;
+  position: relative;
+}
+
+.modal_phone .formPanel.flex span.tit {
+  display: block;
+}
+
+
+
+.modal_phone span.tit {
+  width: 60px;
+  -webkit-flex: 0;
+  flex: 0;
+  min-width: 60px;
+  color: #7e5920;
+  font-weight: bold;
+}
+
+.formPanel span.tit {
+  vertical-align: middle;
+  padding: 0;
+  background: none;
+  border: none;
+}
+
+.modal_phone .formPanel.flex .inpBox {
+  display: block;
+  flex: 1;
+  -webkit-flex: 1;
+  position: relative;
+}
+
+.formPanel .inpBox {
+  vertical-align: middle;
+  max-width: 500px;
+}
+
+
+
+.modal_phone .formPanel.flex .inpBox input[type=text] {
+  padding: 0 0 0 10px;
+  border: none;
+  background: url(../../../../../assets/image/inputbg.png) repeat-x 0 0;
+  background-size: auto 100%;
+  border-radius: 40px;
+  box-shadow: 1px 1px 3px #fef7e2;
+  overflow: hidden;
+  height: 32px;
+}
+
+
+.modal_phone .formPanel .inpBox input[type=text] {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/*奖品页*/
+.awradList {
+  padding: 0 25px;
+}
+.awradList ul {
+  width: 100%;
+  text-align: center;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.awradList .thead li {
+  background-color: #fffd82;
+  height: 40px;
+  float: left;
+  width: 50%;
+  line-height: 40px
+}
+
+.awradList .tbody {
+  margin-top: 5px;
+}
+
+.awradList .tbody li {
+  background-color: #fffeb1;
+  height: 35px;
+  float: left;
+  width: 50%;
+  line-height: 35px;
+}
+
+
+

@@ -1,0 +1,19 @@
+<nz-card nzBordered="false">
+  <nz-tabset [nzTabPosition]="'left'" [nzType]="'line'">
+    <nz-tab *ngFor="let tab of tabs" [nzTitle]="tab.title" (nzSelect)="tabSelect(tab.index)">
+      <div [ngSwitch]="tab.index">
+        <app-tx990405 *ngSwitchCase="0" #tx990405 (submitEvent)="submitTx990405EventHandler($event)">
+        </app-tx990405>
+        <app-tx990413 *ngSwitchCase="1" #tx990413 (submitEvent)="submitTx990413EventHandler($event)">
+        </app-tx990413>
+        <app-tx990437 *ngSwitchCase="2" #tx990437 (submitEvent)="submitTx990437EventHandler($event)">
+        </app-tx990437>
+        <app-tx990417 *ngSwitchCase="3" #tx990417 (submitEvent)="submitTx990417EventHandler($event)">
+        </app-tx990417>
+        <app-tx990425 *ngSwitchCase="4" #tx990425 (submitEvent)="submitTx990425EventHandler($event)">
+        </app-tx990425>
+      </div>
+
+    </nz-tab>
+  </nz-tabset>
+</nz-card>

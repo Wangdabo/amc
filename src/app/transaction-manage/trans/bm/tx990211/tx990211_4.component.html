@@ -1,0 +1,61 @@
+<div class="container">
+  <div nz-row>
+    <tms-query
+      #baseQuery
+      [headerDate]="queryModel.queryHeader"
+      (getQuery)="getQueryData($event)"
+      (resetButton)="reset($event)"></tms-query>
+  </div>
+  <div class="table">
+    <tms-list
+      [tableClass]="'bmtableClass'"
+      [listHeader]="queryModel.header"
+      [listData]="queryModel.data"
+      [pageSize]="queryModel.condition.pagesize"
+      [totalCount]="queryModel.totalCount"
+      [isLoading]="queryModel.isLoading"
+      (pageChangeHandler)="pageChange($event)"
+      (selectRowsHandler)="selectRowsHandler($event)"
+      [topActions]="queryModel.topActions"
+      (topActionsHandler)="topActionsHandler($event)"
+      [rowActions]="queryModel.rowActions"
+      (rowActionsHandler)="rowActionsHandler($event)">
+    </tms-list>
+  </div>
+</div>
+<nz-modal nzWidth='{{settingService.modal.large}}' [(nzVisible)]="insertOrUpdateModel.isVisible"
+          nzTitle="{{insertOrUpdateModel.isUpdate ? '修改用户' : '新增用户'}}"
+          (nzOnCancel)="handleCancel()"
+          (nzOnOk)="handleOk()"
+          [nzOkLoading]="insertOrUpdateModel.isOkLoading">
+  <tms-form #baseForm nz-row   [nzGutter]="24">
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'"  [formsName]="'user_code'" [filedName]="'用户代码'" [required]="insertOrUpdateModel.isUpdate ? 'false' : 'true'"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'"  [formsName]="'user_name'" [filedName]="'用户名称'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'"  [formsName]="'emp_code'" [filedName]="'员工编号'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_USER_LEVEL'"  [formsName]="'user_level'" [filedName]="'用户级别'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" (monitorChangeEvent)="monitorChangeEvent($event)" [dictId]="'SYS_USER_TYPE'"  [formsName]="'user_type'" [filedName]="'用户类型'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_SUB_TYPE'"  [formsName]="'sub_type'" [filedName]="'用户类型子类型'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_LOGIN_TYPE'"  [formsName]="'login_type'" [filedName]="'登录类型'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'"  [formsName]="'org_code'" [filedName]="'工作机构代码'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_CORE_USER_FLAG'"  [formsName]="'core_user_flag'" [filedName]="'核心用户标志'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'"  [formsName]="'login_ip'" [FiledType]="'ip'" [filedName]="'登录IP地址'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_WORK_STATUS'"  [formsName]="'work_status'" [filedName]="'工作状态'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_USER_STATUS'"  [formsName]="'user_status'" [filedName]="'用户状态'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_PW_STATUS'"  [formsName]="'pw_status'" [filedName]="'密码状态'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'"  [formsName]="'pw_cnt'" [filedName]="'密码次数'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'datetime'"  [formsName]="'login_time'" [filedName]="'最近登录时间'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'datetime'"  [formsName]="'logout_time'" [filedName]="'最近签退时间'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'datetime'"  [formsName]="'lock_time'" [filedName]="'锁定时间'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'datetime'"  [formsName]="'unlock_time'" [filedName]="'解锁时间'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'"  [formsName]="'auth_mode'" [filedName]="'认证方式'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'"  [formsName]="'chg_interval'" [filedName]="'改密周期'" [required]="false" [RegularVerification]="rechginterval"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'date'"  [formsName]="'chg_date'" [filedName]="'改密日期'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'date'"  [formsName]="'inval_date'" [filedName]="'密码到期日'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'date'"  [formsName]="'eff_date'" [filedName]="'生效日期'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'date'"  [formsName]="'lose_date'" [filedName]="'失效日期'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'"  [formsName]="'eff_time_range'" [filedName]="'生效时间范围'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'"  [formsName]="'auth_level'" [filedName]="'柜员授权级别'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_CASH_FLAG'"  [formsName]="'cash_flag'" [filedName]="'现金柜员标志'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_MC_FLAG'"  [formsName]="'mc_flag'" [filedName]="'重空柜员标志'" [required]="false"></tms-filed>
+  </tms-form>
+</nz-modal>

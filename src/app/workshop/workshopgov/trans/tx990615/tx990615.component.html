@@ -1,0 +1,66 @@
+<app-titleback [titleName]="'客户需求建议'"></app-titleback>  
+<div class="container" style="margin-top: 24px;padding:20px;background-color: #fff;height: 500px;">
+<div class="header" style="text-align: center;margin-top: 48px;">
+  <nz-radio-group [(ngModel)]="radioValue" [nzButtonStyle]="'solid'">
+    <label nz-radio-button nzValue="A" (click)="select('test1')" style="font-size: 18px">需求及建议</label>
+    <label nz-radio-button nzValue="B" (click)="select('test2')" style="font-size: 18px">待处理建议</label>
+  </nz-radio-group>
+</div>
+<div class="content1" *ngIf="sugesst" style="margin-top: 40px">
+    <div nz-col nzSpan="25">
+        <div nz-row style="padding-top: 30px">
+          <div nz-col nzSpan="12">
+            <div class="divForm">
+              <tms-form #baseForm1 nz-row [nzGutter]="24">
+                <tms-filed nz-col [nzSpan]="22" [labelSpan]="10" [(fieldModel)]="customer_name" [inputType]="'input'"
+                  [formsName]="'customer_name'" [filedName]="'客户姓名'" [required]="false">
+                </tms-filed>
+    
+                <tms-filed nz-col [nzSpan]="22" [labelSpan]="10" [(fieldModel)]="summary" [inputType]="'input'"
+                  [formsName]="'summary'" [filedName]="'建议摘要'" [required]="false"></tms-filed>
+                
+                <tms-filed nz-col [nzSpan]="22" [labelSpan]="10" [(fieldModel)]="summary_desc" [inputType]="'input'"
+                [formsName]="'summary_desc'" [filedName]="'摘要详情'" [required]="false"></tms-filed>
+              </tms-form>
+            </div>
+          </div>
+          <div nz-col nzSpan="12">
+            <div class="divForm">
+    
+              <tms-form #baseForm2 nz-row [nzGutter]="24">
+                <tms-filed nz-col [nzSpan]="22" [labelSpan]="10" [(fieldModel)]="contact_number" [inputType]="'input'"
+                  [formsName]="'contact_number'" [filedName]="'联系电话'" [required]="false">
+                </tms-filed>
+    
+                <tms-filed nz-col [nzSpan]="22" [labelSpan]="10" [(fieldModel)]="create_date" [inputType]="'date'"
+                  [formsName]="'create_date'"  [filedName]="'建议日期'" [required]="false"></tms-filed>
+              </tms-form>
+            </div>
+          </div>
+        </div>
+    
+    
+    
+        <div nz-col nzSpan="24" class="buttonDiv" style="padding-top: 12px;padding-bottom: 12px;margin-left: 2%;margin-top: 40px;">
+          <div nz-col nzSpan="8" style="margin-left: 120px">
+            <button nz-button nzSize='large' nzBlock nzType="primary" (click)="commit()">提交</button>
+          </div>
+          <div nz-col nzSpan="8" style="margin-left: 120px">
+            <button nz-button nzSize='large' nzBlock nzType="primary" (click)="result()">重置</button>
+          </div>
+        </div>
+    
+      </div>
+    
+</div>
+<div class="contetn2" *ngIf="!sugesst" style="margin-top: 40px">
+  <tms-list [listHeader]="listHeader"
+    [listData]="listData"
+    [isShowPagination]="false"
+    (selectRowsHandler)="selectList($event)"
+    [showAlert]="false"
+    [isrowActionsFlag] = "true"
+    [isShowCheckbox]="false">
+  </tms-list>
+</div>
+</div>

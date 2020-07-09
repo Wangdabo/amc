@@ -1,0 +1,43 @@
+<div class="container">
+  <nz-card>
+    <tms-query
+      #baseQuery
+      [headerDate]="queryHeader"
+      (getQuery)="getQueryData($event)"
+      (resetButton)="reset($event)">
+    </tms-query>
+  </nz-card>
+  <nz-card style="margin-top:20px;">
+    <div class="table">
+      <tms-list
+        [tableClass]="'bmtableClass'"
+        [listHeader]="listHeader"
+        [listData]="transactionActionData[CommonActionCodeContants.QUERY].response.resultdata.bdy.data"
+        [pageSize]="transactionActionData[CommonActionCodeContants.QUERY].request.requestdata.bdy.pagesize"
+        [totalCount]="transactionActionData[CommonActionCodeContants.QUERY].response.resultdata.bdy.count"
+        [isLoading]="transactionActionData[CommonActionCodeContants.QUERY].actioning"
+        (pageChangeHandler)="pageChange($event)"
+        [isrowActionsFlag]="true"
+        [topActions]="topActions"
+        (topActionsHandler)="topActionsHandler($event)"
+        [rowActions]="rowActions"
+        (rowActionsHandler)="rowActionsHandler($event)"
+        [isclickPointer]="false"
+        [isEdit]="true">
+      </tms-list>
+    </div>
+  </nz-card>
+</div>
+
+<nz-modal nzWidth="1200"  [(nzVisible)]="isVisible"
+          nzTitle="{{isUpdate ? '修改信息' : '新增信息'}}"
+          (nzOnCancel)="handleCancel()"
+          (nzOnOk)="handleOk()"
+          [nzOkLoading]="transactionActionData[CommonActionCodeContants.INSERT_OR_UPDATE].actioning">
+      <tms-form #baseForm  nz-row nzType="flex"  nzJustify="start"  [nzGutter]="24">
+          <tms-filed nz-col [nzSpan]="12" [labelSpan]="6" [controlSpan]="18" [inputType]="'select'" [(fieldModel)] = "transactionActionData[CommonActionCodeContants.INSERT_OR_UPDATE].request.requestdata.bdy.data.tags" [formsName]="'tags'" [filedName]="'标签'" [required]="true"  [optionArray]="optionArray"></tms-filed>
+          <tms-filed nz-col [nzSpan]="12" [labelSpan]="6" [controlSpan]="18" [inputType]="'input'"  [(fieldModel)] = "transactionActionData[CommonActionCodeContants.INSERT_OR_UPDATE].request.requestdata.bdy.data.author" [formsName]="'author'" [filedName]="'作者'" [required]="true"></tms-filed>
+          <tms-filed nz-col [nzSpan]="12" [labelSpan]="6" [controlSpan]="18" [inputType]="'input'"  [(fieldModel)] = "transactionActionData[CommonActionCodeContants.INSERT_OR_UPDATE].request.requestdata.bdy.data.title" [formsName]="'title'" [filedName]="'标题'" [required]="true"></tms-filed>
+      </tms-form>
+      <ckeditor [editor]="Editor" [disabled]="isDisabled" (ready)="onReady($event)" [config]="config" [(ngModel)]="model.editorData"></ckeditor>
+</nz-modal>

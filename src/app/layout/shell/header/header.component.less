@@ -1,0 +1,107 @@
+@import '../../../styles/icons.less';
+@import '../../../styles/index.less';
+:host ::ng-deep .ant-layout-header {
+    padding: 0;
+    color: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+    background: #ffffff !important;
+    .dw-flexItems(center);
+}
+
+.dw-logo {
+    height: 100%;
+    margin-right: 18px;
+    .dw-flexIC(center, center);
+}
+
+.dw-inter {
+    flex-grow: 2;
+    .dw-flexItems(center);
+    justify-content: space-between;
+    i {
+        font-size: 20px;
+    }
+    a {
+        outline: none;
+        color: #ffffff;
+    }
+    .dw-inter-left {
+        .dw-flexItems(center);
+    }
+    .dw-inter-right {
+        .dw-flexItems(center);
+        margin-right: 50px;
+    }
+    .dw-inter-item {
+        padding: 0 20px;
+        height: 40px;
+        .dw-flexItems(center);
+        &:hover {
+            height: 40px;
+            .dw-flexItems(center);
+            padding: 0 20px;
+        }
+    }
+    .dw-inter-search {
+        margin: 0 5px;
+    }
+}
+
+.dw-inter-change {
+    height: 40px;
+    i {
+        font-size: 20px;
+    }
+    &:hover {
+        height: 40px;
+        .dw-flexItems(center);
+        padding: 0 10px;
+    }
+    padding: 0 10px;
+    .dw-flexItems(center);
+}
+
+.ant-switch-checked {
+  background-color: #000c17;
+}
+
+.ant-radio-button-wrapper {
+  background-color: #3773aa;
+  color: white;
+  border: none !important;
+  position: static !important;
+}
+
+.ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+  background-color: #1890ff;
+  color: #000000;
+  border-color: #1890ff;
+}
+
+.iconfont {
+  height: 60px;
+}
+
+
+.nocenter {
+  position: relative;
+  color: #fff;
+  font-size: 18px;
+  font-style: oblique
+}
+
+
+nz-header {
+  position: absolute;
+  left: 291px;
+  //width: 86.26%;
+  width: 84.7%;
+}
+
+
+.ceshi {
+  position: absolute;
+  left: 79px;
+  width: 95.87%;
+}

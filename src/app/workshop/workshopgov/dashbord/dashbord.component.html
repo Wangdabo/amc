@@ -1,0 +1,74 @@
+<!-- <div style="width:100%;text-align: center">
+  <h1 style="margin-top:5%">{{text}}</h1>
+</div> -->
+<div class="container">
+  <!-- <div nz-row nzType="flex" nzJustify="space-around" class="topDiv"> -->
+  <nz-card [nzBordered]="'false'">
+    <div nz-card-grid [ngStyle]="gridStyle" *ngFor="let i of topData" (click)="cardClick(i)">
+      <p>
+        <i nz-icon  style="font-size: 2.5rem;" [nzType]="i.icon" nzTheme="outline"></i>
+      </p>
+      <p>{{i.text}}</p>
+    </div>
+  </nz-card>
+  <!-- <div nz-col nzSpan="3" *ngFor="let i of topData">
+      <nz-card [nzLoading]="'false'" [nzHoverable]="'true'" [nzBodyStyle]="styleDiv" [nzBordered]="'false'">
+        <p><i nz-icon type="pie-chart" theme="outline"></i></p>
+        <p>{{i}}</p>
+      </nz-card>
+    </div> -->
+  <!-- </div> -->
+  <div class="table">
+
+
+    <div nz-row class="iconDiv">
+      <div nz-col nzSpan="8">
+        <i nz-icon type="team" theme="outline" class="icon"></i> 数据概览
+      </div>
+    </div>
+
+    <div nz-row nzType="flex" nzJustify="space-around" class="centerDiv">
+      <div nz-col nzSpan="4" *ngFor="let i of centerData">
+        <div class="sm-st clearfix">
+          <span class="sm-st-icon" [ngStyle]="i.color">
+            <i nz-icon [nzType]="i.icon" nzTheme="outline"></i>
+          </span>
+          <div class="sm-st-info">
+            <span style="display: block; font-size: 2rem; font-weight: bold;">{{i.value}}</span>
+            {{i.text}} </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div nz-col nzSpan="24">
+      <!-- <div nz-col nzSpan="12" class="cardDiv">
+        <nz-card [nzLoading]="'false'" [nzBodyStyle]="styleDivChart" [nzBordered]="'false'">
+          <div *ngIf="temp" echarts style="height: 400px;" [options]="optionsLine" class="demo-chart"></div>
+        </nz-card>
+      </div>
+      <div nz-col nzSpan="12" class="cardDiv">
+        <nz-card [nzLoading]="'false'" [nzBodyStyle]="styleDivChart" [nzBordered]="'false'">
+          <div *ngIf="temp" echarts style="height: 400px;" [options]="optionsIT" class="demo-chart"></div>
+        </nz-card>
+      </div> -->
+
+      
+    </div>
+    <div nz-row style="min-height: 200px;">
+      <div nz-col class='divQudao1' nzSpan="4" *ngFor="let i of channel">
+        <!-- <img src="../../../../assets/icons/G.png" alt=""> -->
+        <h2 class="textH2">移动柜面管理平台</h2>
+        <h4>Governor</h4>
+      </div>
+      <div nz-col class='divQudao1' nzSpan="4">
+        <!-- <img src="../../../../assets/icons/T.png" alt=""> -->
+        <h2 class="textH2">TMS柜面</h2>
+        <h4>Teller</h4>
+      
+      </div>
+
+    </div>
+
+  </div>
+</div>

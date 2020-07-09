@@ -1,0 +1,52 @@
+<div class="container">
+  <nz-card>
+    <tms-query
+      #baseQuery
+      [headerDate]="queryModel.queryHeader"
+      (getQuery)="getQueryData($event)"
+      (resetButton)="reset($event)"></tms-query>
+  </nz-card>
+  <nz-card style="margin-top:20px;">
+    <div class="table">
+      <tms-list
+        [tableClass]="'bmtableClass'"
+        [listHeader]="queryModel.header"
+        [listData]="queryModel.data"
+        [pageSize]="queryModel.condition.pagesize"
+        [totalCount]="queryModel.totalCount"
+        [isLoading]="queryModel.isLoading"
+        (pageChangeHandler)="pageChange($event)"
+        (selectRowsHandler)="selectRowsHandler($event)"
+        [topActions]="queryModel.topActions"
+        (topActionsHandler)="topActionsHandler($event)"
+        [rowActions]="queryModel.rowActions"
+        (rowActionsHandler)="rowActionsHandler($event)"
+        (rowActiveHandler)="rowActiveHandler($event)"
+        [isEdit]="true"
+        [isrowActionsFlag]="true">
+      </tms-list>
+    </div>
+  </nz-card>
+</div>
+<nz-modal nzWidth='{{settingService.modal.large}}'
+          [(nzVisible)]="insertOrUpdateModel.isVisible"
+          nzTitle="{{insertOrUpdateModel.isUpdate ? '修改字典' : '新增字典'}}"
+          (nzOnCancel)="handleCancel()"
+          (nzOnOk)="handleOk()"
+          [nzOkLoading]="insertOrUpdateModel.isOkLoading">
+  <tms-form #baseForm  nz-row nzType="flex"  nzJustify="start"  [nzGutter]="24">
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'"  [formsName]="'dict_key'" [filedName]="'字典1'" [required]="insertOrUpdateModel.isUpdate ? 'false' : 'true'"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_DICT_TYPE'"  [formsName]="'dict_type'" [filedName]="'字典类型'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'dict_name'" [filedName]="'字典名称'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'separate_flag'" [filedName]="'分隔符'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_MULTI_SELECTED'"  [formsName]="'multi_selected'" [filedName]="'可多选'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'table_name'" [filedName]="'表名'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'column_name'" [filedName]="'字段名'" [required]="false"></tms-filed>
+  </tms-form>
+ <!-- <div *nzModalFooter>
+    <button nz-button nzType="default" (click)="handleCancel()">取消</button>
+    <button nz-button nzType="primary" (click)="handleOk()">完成</button>
+  </div>-->
+</nz-modal>
+
+

@@ -1,0 +1,19 @@
+<!--tws workshop界面布局首页-->
+<btf-header></btf-header>
+<ng-container>
+  <nz-layout>
+    <nz-sider [class]="isCollapsed? 'hidesilder': 'silder'">
+      <app-bmsilder #appSider
+      [styleSider]="true"
+      [showSearch]="isSearch"
+      [menuTyoe]="'gov'"
+      (clickActiveHandler)="clickActiveHandler($event)"></app-bmsilder>
+    </nz-sider>
+    <nz-layout style="padding:24px 24px 24px;min-height: calc(100vh - 64px); margin-top: 65px; background: #EDEFF2">
+      <nz-content class="card-container">
+            <router-outlet></router-outlet>
+      </nz-content>
+    </nz-layout>
+  </nz-layout>
+</ng-container>
+<!--<btf-footer></btf-footer>-->

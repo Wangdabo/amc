@@ -1,0 +1,238 @@
+<nz-card>
+  <div>
+    <!-- <nz-divider nzText="部件信息" nzOrientation="left"></nz-divider> -->
+    <div class="divTop">
+      <div nz-row class="labelDiv">
+        <div nz-col nzSpan="9">
+          <div nz-col nzSpan="6" class="labelText">
+            部件代码：
+          </div>
+          <div nz-col nzSpan="18">
+            {{params.item.tran_config_part}}
+          </div>
+        </div>
+        <div nz-col nzSpan="9">
+          <div nz-col nzSpan="6" class="labelText">
+            部件名称：
+          </div>
+          <div nz-col nzSpan="18">
+            {{params.item.part_name}}
+
+          </div>
+        </div>
+
+        <div nz-col nzSpan="2" class="divButton">
+          <button nz-button nzType="primary" (click)="save()" nzBlock>保存</button>
+        </div>
+        <div nz-col nzSpan="2" class="divButton">
+          <button nz-button nzType="default" (click)="reset()" nzBlock>重置</button>
+        </div>
+      </div>
+      <div nz-row class="labelDiv">
+        <div nz-col nzSpan="9">
+          <div nz-col nzSpan="6" class="labelText">
+            应用类别：
+          </div>
+          <div nz-col nzSpan="18">
+            <span *ngIf="params.item.is_availability==='0'">有效</span>
+            <span *ngIf="params.item.is_availability==='1'">无效</span>
+          </div>
+        </div>
+        <div nz-col nzSpan="9">
+          <div nz-col nzSpan="6" class="labelText">
+            部件描述：
+          </div>
+          <div nz-col nzSpan="18">
+            {{params.item.part_desc}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="divMargin">
+      <nz-divider [ngClass]="'aspan'" [nzText]="text" nzOrientation="left">
+        <ng-template #text>
+          <span (click)="newTab()">新增元件&nbsp;<i nz-icon type="plus" theme="outline"></i></span>
+        </ng-template>
+      </nz-divider>
+    </div>
+    <nz-tabset [nzTabPosition]="'top'" [nzType]="'card'" [nzTabBarStyle]="nzTabBarStyle"
+               (nzSelectedIndexChange)="nzSelectedIndexChange($event)" [nzSelectedIndex]="SelectedIndex">
+      <nz-tab *ngFor="let tab of tabs;let x = index" [nzTitle]="titleTemplate">
+        <ng-template #titleTemplate>
+          <div>
+            {{ tab.tran_ctl_desc }}
+            <i nz-icon type="close" (click)="closeTab(x)" class="ant-tabs-close-x"></i>
+          </div>
+        </ng-template>
+        <div style="padding: 0 16px">
+          <div nz-row class="divBody divMargin">
+            <div nz-col nzSpan="8">
+              <nz-input-group nzAddOnBefore="元件代码">
+                <input type="text" nz-input [(ngModel)]="tab.attr_key">
+              </nz-input-group>
+            </div>
+            <div nz-col nzSpan="8" nzOffset="2">
+              <nz-input-group nzAddOnBefore="元件名称">
+                <input type="text" nz-input [(ngModel)]="tab.tran_ctl_desc">
+              </nz-input-group>
+            </div>
+          </div>
+          <div nz-row class="divBody divMargin">
+            <div nz-col nzSpan="8">
+              <nz-input-group nzAddOnBefore="选项值类型">
+                <nz-select [(ngModel)]="tab.mark">
+                  <nz-option [nzLabel]="'0-单选'" [nzValue]="'0'"></nz-option>
+                  <nz-option [nzLabel]="'1-多选'" [nzValue]="'1'"></nz-option>
+                </nz-select>
+              </nz-input-group>
+            </div>
+          </div>
+          <div style="padding-right: 12%;" class="divMargin">
+            <nz-divider [ngClass]="'aspan'" nzDashed [nzText]="text" nzOrientation="right">
+              <ng-template #text>
+                <span (click)="addPushitem(tab,0)">新增选项值&nbsp;<i nz-icon type="plus" theme="outline"></i></span>
+              </ng-template>
+            </nz-divider>
+          </div>
+
+          <div nz-col nzSpan="18" class="divCollapse">
+            <nz-collapse nzAccordion>
+              <nz-collapse-panel *ngFor="let j of tab.item;let x = index" [nzHeader]="body">
+                <ng-template #body>
+                  <div nz-row>
+                    <div nz-col nzSpan="8">
+                      <div nz-col nzSpan="8" class="labelText">
+                        显示名称：
+                      </div>
+                      <div nz-col nzSpan="16">
+                        {{j.attr_desc}}
+                      </div>
+                    </div>
+                    <div nz-col nzSpan="8">
+                      <div nz-col nzSpan="8" class="labelText">
+                        值：
+                      </div>
+                      <div nz-col nzSpan="16">
+                        {{j.attr_value}}
+                      </div>
+                    </div>
+                    <div nz-col nzSpan="2" class="divIcon" nzOffset="6">
+                      <span (click)="del(tab.item,x)">删除</span>
+                      <!-- <i nz-icon *ngIf="isShow" type="minus-circle" theme="outline" (click)="del(tab.item,x)"></i>
+                      <i nz-icon (click)="addPushitem(tab)" style="color:#1890ff"
+                        *ngIf="isShow && x === tab.item.length-1" type="plus-circle" theme="outline"></i> -->
+                    </div>
+                  </div>
+                </ng-template>
+                <div>
+                  <div nz-row class="divBody">
+                    <div nz-col nzSpan="12">
+                      <nz-input-group nzAddOnBefore="选项值">
+                        <input type="text" nz-input [(ngModel)]="j.attr_value">
+                      </nz-input-group>
+                    </div>
+                    <div nz-col nzSpan="12">
+                      <nz-input-group nzAddOnBefore="显示名称">
+                        <input type="text" nz-input [(ngModel)]="j.attr_desc">
+                      </nz-input-group>
+                    </div>
+
+
+                  </div>
+                  <div nz-row class="divBody">
+                    <div nz-col nzSpan="12">
+                      <nz-input-group nzAddOnBefore="是否有扩展值">
+                        <nz-select [(ngModel)]="j.is_ext">
+                          <nz-option [nzLabel]="'0-无'" [nzValue]="'0'"></nz-option>
+                          <nz-option [nzLabel]="'1-有'" [nzValue]="'1'"></nz-option>
+                        </nz-select>
+                      </nz-input-group>
+                    </div>
+
+                    <div nz-col nzSpan="12">
+                      <nz-input-group nzAddOnBefore="扩展值是否多选">
+                        <nz-select [(ngModel)]="j.ext_is_multi">
+                          <nz-option [nzLabel]="'0-是'" [nzValue]="'0'"></nz-option>
+                          <nz-option [nzLabel]="'1-否'" [nzValue]="'1'"></nz-option>
+                        </nz-select>
+                      </nz-input-group>
+                    </div>
+                  </div>
+                  <div nz-row class="divBody">
+                    <div nz-col nzSpan="12">
+                      <nz-input-group nzAddOnBefore="扩展值来源">
+                        <nz-select [(ngModel)]="j.ext_source_type">
+                          <nz-option *ngFor="let i of type" [nzLabel]="i.label" [nzValue]="i.value"></nz-option>
+                        </nz-select>
+                      </nz-input-group>
+                    </div>
+                  </div>
+                  <div [ngSwitch]="j.ext_source_type">
+                    <div *ngSwitchCase="'0'">
+                      <div nz-row *ngFor="let q of j.ext.constant;let no = index" class="divBody">
+                        <div nz-col nzSpan="12" class="divBodyfirstL">
+                          <nz-input-group nzAddOnBefore="名称">
+                            <input type="text" nz-input [(ngModel)]="q.attr_desc">
+                          </nz-input-group>
+                        </div>
+                        <div nz-col nzSpan="10" class="divBodyfirstR">
+                          <nz-input-group nzAddOnBefore="对应值">
+                            <input type="text" nz-input [(ngModel)]="q.attr_value">
+                          </nz-input-group>
+                        </div>
+                        <div nz-col nzSpan="2" class="divBodyfirstR">
+                          <i nz-icon type="minus-circle" theme="outline" style="color:red"
+                             (click)="del(j.ext.constant,no)"></i>
+                          <i nz-icon (click)="addPushitem(j.ext.constant,1)" style="color:#1890ff;margin-left: 15px"
+                             *ngIf="no ===j.ext.constant.length-1" type="plus-circle" theme="outline"></i>
+                        </div>
+                      </div>
+
+                    </div>
+                    <div nz-row class="divBody" *ngSwitchCase="'1'">
+                      <div nz-col nzSpan="8">
+                        <nz-input-group nzAddOnBefore="表名">
+                          <input type="text" nz-input [(ngModel)]="j.ext.tablename">
+                        </nz-input-group>
+                      </div>
+                      <div nz-col nzSpan="8">
+                        <nz-input-group nzAddOnBefore="字段名">
+                          <input type="text" nz-input [(ngModel)]="j.ext.filedname">
+                        </nz-input-group>
+                      </div>
+                      <div nz-col nzSpan="8">
+                        <nz-input-group nzAddOnBefore="字段值">
+                          <input type="text" nz-input [(ngModel)]="j.ext.filed">
+                        </nz-input-group>
+                      </div>
+                      <div nz-col nzSpan="24" style="margin-top: 16px;">
+                        <nz-input-group nzAddOnBefore="过滤SQL">
+                          <input type="text" nz-input [(ngModel)]="j.ext.sql">
+                        </nz-input-group>
+                      </div>
+                    </div>
+                    <div nz-row class="divBody" *ngSwitchCase="'2'">
+                      <div nz-col nzSpan="24">
+                        <span style="color: crimson">*&nbsp;自由输入值，但必须是有效字符</span>
+                      </div>
+                    </div>
+                    <div nz-row class="divBody" *ngSwitchCase="'3'">
+                      <div nz-col nzSpan="24">
+                        <nz-input-group nzAddOnBefore="业务字典">
+                          <input type="text" nz-input [(ngModel)]="j.ext.dict">
+                          <!-- <nz-select [ngModel]="j.ext.dict" (ngModelChange)="ngModelChange($event)">
+                            <nz-option *ngFor="let i of type" [nzLabel]="i.label" [nzValue]="i.value"></nz-option>
+                          </nz-select> -->
+                        </nz-input-group>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </nz-collapse-panel>
+            </nz-collapse>
+          </div>
+        </div>
+      </nz-tab>
+    </nz-tabset>
+  </div>
+</nz-card>

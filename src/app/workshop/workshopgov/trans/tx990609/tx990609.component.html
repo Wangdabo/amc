@@ -1,0 +1,30 @@
+<div class="body">
+    <!-- <app-ui-mobile-title [title]="'排队预警设置'"></app-ui-mobile-title> -->
+    <nz-card class="gutter-example" [nzBordered]= "false">
+      <p class="pds">排队预警设置</p>
+            <tms-form #baseForm_1>
+              <tms-filed nz-col  [nzSpan]="24"   [inputType]="'select'"  [formsName]="'type'" 
+                   [filedName]="'参数类别'"   [required]="true"
+                  [(fieldModel)]="typeDefault"
+                  [dictId]="'BRANCH_QUEUE_ALERT_CONFIG'"
+                  (onChangeEvent) = "messageChange($event)"
+                  >
+              </tms-filed>
+              <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'valueDefault'" 
+                      [(fieldModel)]="valueDefault"
+                      (onChangeEvent) = "getfen()"
+                      (fieldModelChange) = "getfen()"
+                      [filedName]="'参数值'"  [required]="true" >
+            </tms-filed>
+          </tms-form>
+          <p class="ptip">备注：当参数类别为排队人数时，参数值为正整数，单位人
+        </p>
+           <p class="ptip1"> 当参数类别为办理时间时，参数值为正整数，单位分钟</p>
+          <div class="buttonDiv">
+              <button nz-button nzSize='large' nzBlock nzType="primary" (click)="submit()"   [hidden]="isVIsiable">提交</button>
+              <button nz-button nzSize='large' nzBlock nzType="primary"  disabled [hidden]="!isVIsiable">提交</button>
+           </div>
+    </nz-card>
+</div>
+
+   

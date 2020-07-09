@@ -1,0 +1,95 @@
+
+<div nz-row>
+  <div nz-col nzSpan="24" class="themeHeader">
+      <h3 class="themeTitle">主题色</h3>
+      <span *ngFor="let c of colors" nz-tooltip
+            [ngStyle]="{ 'background-color': c.color }"
+            (click)="changeColor(c.color)"
+            nz-tooltip
+            [nzTitle]="c.key"
+            class="checkboxColor">
+      <i *ngIf="color === c.color" class="anticon anticon-check"></i></span>
+  </div>
+  <div nz-col nzSpan="24" class="themeTab">
+    <h3 class="themeTitle">设置</h3>
+    <nz-tabset>
+      <nz-tab nzTitle="顶部">
+        <div nz-col nzSpan="24" style="padding: 12px 0px">
+          <div style="float: left">高</div>
+          <div style="float: right; text-align: center">
+            <nz-input-number [nzMin]="24" [nzMax]="300" name="inputnumber-success" style="width:40%"></nz-input-number>
+          </div>
+        </div>
+        <div nz-col nzSpan="24" style="padding: 12px 0px">
+          <div style="float: left">背景色</div>
+          <div style="float: right; text-align: center">
+            <nz-input-number  name="inputnumber-success" style="width:40%"></nz-input-number>
+          </div>
+        </div>
+        <div nz-col nzSpan="24" style="padding: 12px 0px">
+          <div style="float: left">顶部左右内边距</div>
+          <div style="float: right; text-align: center">
+            <nz-input-number  name="inputnumber-success" style="width:40%"></nz-input-number>
+          </div>
+        </div>
+      </nz-tab>
+      <nz-tab nzTitle="侧边栏">
+        <div nz-col nzSpan="24" style="padding: 12px 0px">
+          <div style="float: left">宽度</div>
+          <div style="float: right; text-align: center">
+            <nz-input-number  name="inputnumber-success" style="width:40%"></nz-input-number>
+          </div>
+        </div>
+        <div nz-col nzSpan="24" style="padding: 12px 0px">
+          <div style="float: left">背景</div>
+          <div style="float: right; text-align: center">
+            <nz-input-number  name="inputnumber-success" style="width:40%"></nz-input-number>
+          </div>
+        </div>
+        <div nz-col nzSpan="24" style="padding: 12px 0px">
+          <div style="float: left">收缩宽度</div>
+          <div style="float: right; text-align: center">
+            <nz-input-number  name="inputnumber-success" style="width:40%"></nz-input-number>
+          </div>
+        </div>
+        <div nz-col nzSpan="24" style="padding: 12px 0px">
+          <div style="float: left">项上下内边距</div>
+          <div style="float: right; text-align: center">
+            <nz-input-number  name="inputnumber-success" style="width:40%"></nz-input-number>
+          </div>
+        </div>
+      </nz-tab>
+      <nz-tab nzTitle="内容">
+        <div nz-col nzSpan="24" style="padding: 12px 0px">
+          <div style="float: left">背景色</div>
+          <div style="float: right; text-align: center">
+            <nz-input-number  name="inputnumber-success" style="width:40%"></nz-input-number>
+          </div>
+        </div>
+        <div nz-col nzSpan="24" style="padding: 12px 0px">
+          <div style="float: left">标题背景色</div>
+          <div style="float: right; text-align: center">
+            <nz-input-number  name="inputnumber-success" style="width:40%"></nz-input-number>
+          </div>
+        </div>
+        <div nz-col nzSpan="24" style="padding: 12px 0px">
+          <div style="float: left">标题底部边框色</div>
+          <div style="float: right; text-align: center">
+            <nz-input-number  name="inputnumber-success" style="width:40%"></nz-input-number>
+          </div>
+        </div>
+        <div nz-col nzSpan="24" style="padding: 12px 0px">
+          <div style="float: left">项上下内边距</div>
+          <div style="float: right; text-align: center">
+            <nz-input-number  name="inputnumber-success" style="width:40%"></nz-input-number>
+          </div>
+        </div>
+      </nz-tab>
+    </nz-tabset>
+  </div>
+  <div nz-col nzSpan="24" class="themeFooter">
+    <button (click)="apply()" type="button" nz-button nzType="primary">确定</button>
+    <button (click)="reset()" type="button" nz-button>重置</button>
+    <nz-alert class="mt-md" nzType="warning" nzMessage="配置栏只在开发环境用于预览，生产环境不会展现"></nz-alert>
+  </div>
+</div>

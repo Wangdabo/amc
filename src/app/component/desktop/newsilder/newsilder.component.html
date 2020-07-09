@@ -1,0 +1,38 @@
+<div class="silder"  [class]="!isCollapsed? 'silder': 'nosilder'">
+  <ul
+      class="menuUl"
+      nz-menu
+      [ngClass]="{'rootui':'uiroot'? styleSider === true: styleSider === false }"
+      [nzTheme]="styleSider?'dark':'light'"
+      [nzMode]="'inline'"
+      [nzInlineCollapsed]="isCollapsed">
+    <ng-container *ngFor="let menu of menus">
+      <li  class="menuLi" nz-submenu *ngIf="menu.children.length">
+        <span title>
+           <img  class="imgIcon"  [src]="menu.src">
+           <span class="nav-text  childSpan fontContSize fontFamily"  [class]="isCollapsed? 'textNone': 'notextNone'">{{language[menu.code] }}</span>
+        </span>
+        <ul  [ngClass]="{'rootui':'uiroot'? styleSider === true: styleSider === false }">
+          <ng-container *ngFor="let children of menu.children" >
+            <!-- 不存在，那么就是普通的二级-->
+            <ng-container *ngIf="!children.children">
+              <li nz-menu-item  class="childLi"  *ngIf="children.transCode"  [routerLink]="[children.link, children.transCode]">
+                <span title><span class="nav-text fontContSize fontFamily" [class]="isCollapsed? 'textNone': 'notextNone'">
+                  {{language[children.code]}}
+                </span></span>
+              </li>
+            </ng-container>
+          </ng-container>
+        </ul>
+      </li>
+      <!--如果是父级，就只显示一级菜单-->
+      <li  class="menuLi"  nz-menu-item *ngIf="menu.children.length === 0" [routerLink]="[menu.link]">
+        <span title>
+          <img class="imgIcon" [src]="menu.src">
+          <span class="nav-text childSpan  fontContSize fontFamily" [class]="isCollapsed? 'textNone': 'notextNone'">{{language[menu.code]}} </span></span>
+      </li>
+    </ng-container>
+  </ul>
+  <!--侧边栏收缩先干掉，后期重构-->
+  <!--<img class="isCollapsed" (click)="toggleSilder()" [src]="silderToggle" alt="">-->
+</div>

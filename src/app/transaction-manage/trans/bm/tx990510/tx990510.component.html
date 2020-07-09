@@ -1,0 +1,62 @@
+<div class="container redtimeRank">
+  <div nz-row class="topDiv">
+    <div nz-col nzSpan="18">
+      <div nz-row nzGutter="16">
+        <div nz-col nzSpan="6">
+          <nz-select style="width: 100%;" nzShowSearch nzAllowClear [nzPlaceHolder]="'请选择地区'"
+            [(ngModel)]="selectedValue.area" (ngModelChange)="getFirstChart()">
+            <nz-option *ngFor="let i of area" [nzLabel]="i.pname" [nzValue]="i.pid"></nz-option>
+          </nz-select>
+        </div>
+        <div nz-col nzSpan="6">
+          <input nz-input style="width: 100%;" placeholder="交易码" [(ngModel)]="selectedValue.txCode" (ngModelChange)="changeSelect()">
+
+        </div>
+        <div nz-col nzSpan="6">
+          <nz-select style="width: 100%;" nzShowSearch nzAllowClear [nzPlaceHolder]="'请选择渠道'"
+            [(ngModel)]="selectedValue.channel" (ngModelChange)="changeSelect()">
+            <nz-option *ngFor="let i of channel" [nzLabel]="i.channel_name" [nzValue]="i.channel_code"></nz-option>
+          </nz-select>
+        </div>
+        <div nz-col nzSpan="6">
+          <nz-range-picker [(ngModel)]="someTime" [nzFormat]="'yyyy-MM-dd'" (ngModelChange)="changeSelect()">
+          </nz-range-picker>
+        </div>
+      </div>
+    </div>
+    <div nz-col nzSpan="6">
+      <div style="display: flex;margin-left: 1rem;">
+        <div *ngFor="let i of timeData;let d = index" class="fontSpan" (click)="timeClick(i)">
+          {{i.label}}
+          <nz-divider *ngIf="d !== (timeData.length-1)" nzType="vertical"></nz-divider>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div nz-row class="chartDiv">
+    <div nz-col nzSpan="18">
+      <div *ngIf="temp" echarts style="height: 600px;"
+           [(options)]="optionsMap"  (chartInit)="onMapInit($event)" [loading]="isLoading"  (chartClick)="chartClick($event)"
+        class="demo-chart">
+
+      </div>
+    </div>
+    <div nz-col nzSpan="4" [nzOffset]="1">
+      <div class="divSpan">
+        <div class="cardTitle">
+          <h2>城市列表&nbsp;</h2>
+        </div>
+        <div class="divSpanChild" (scroll)="imgScroll($event)">
+          <ul style="list-style:none">
+            <li style="list-style:none" class="divLi" *ngFor="let i of mapData;let x = index"><span
+              [ngStyle]="{'font-size':x > 4?'20px':'20px','color':x > 4?'#fff':'#fff'}">{{i.name}}&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#00fdfe">{{i.value[2]}}</span></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

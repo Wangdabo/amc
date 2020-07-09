@@ -1,0 +1,111 @@
+<div class="container redtimeRank">
+    <div nz-row style="padding: 10px;">
+      <tms-form #baseForm nz-row [nzGutter]="24" style="float: left">
+        <tms-filed nz-col [nzSpan]="24" class="formfiled" [inputType]="'input'" [formsName]="'customer_name'" [filedName]="'姓名'"
+                   [required]="true"></tms-filed>
+        <tms-filed nz-col [nzSpan]="24" class="formfiled" [inputType]="'input'" [formsName]="'customer_tel'" [filedName]="'电话'"
+                   [required]="true"></tms-filed>
+      </tms-form>
+      <button nz-button (click)="queryButton('reset')" [nzSize]="'large'" nzType="default" style="position: relative;
+    top: 5rem;
+    float: right;
+    right: 5rem;">&nbsp;&nbsp;重置&nbsp;&nbsp;</button>
+      <button nz-button nzType="primary" [nzSize]="'large'" style="position: relative;
+    top: 5rem;
+    float: right;
+    right: 6rem;" (click)="queryButton('query')">&nbsp;&nbsp;查询&nbsp;&nbsp;</button>
+    </div>
+
+  <div class="table">
+    <nz-tabset [nzTabPosition]="'top'" [nzSelectedIndex]="tabIndex" [nzType]="'card'"
+      (nzSelectedIndexChange)="changTab($event)">
+      <nz-tab *ngFor="let i of tabData" [nzTitle]="i.name">
+        <div class="divImg" *ngIf="isQuery">
+          <img class="centerImg" [src]="img+'assets/image/center.png'" alt="">
+          <img class="allLineImg" [src]="img+'assets/image/allLine.png'" alt="">
+          <img class="yun1Img" [src]="img+'assets/image/yun1.jpg'" alt="">
+          <img class="yun2Img" [src]="img+'assets/image/yun1.jpg'" alt="">
+          <img class="yun3Img" [src]="img+'assets/image/yun1.jpg'" alt="">
+          <img class="yun4Img" [src]="img+'assets/image/yun1.jpg'" alt="">
+          <div class="violetDiv" *ngIf="violetDiv.isShow">
+            <h3></h3>
+            <div class="divColor">
+              <p class="pTitle violetTile">{{violetDiv.title}}</p>
+              <ul *ngIf="violetDiv.isUi">
+                <li *ngFor="let i of violetDiv.data">
+                  <p class="liLeft colorViolet">{{i.label}}</p>
+                  <p class="liRight colorViolet" [title]="i.value">{{i.value}}</p>
+                </li>
+
+              </ul>
+              <div *ngIf="!violetDiv.isUi" class="divNumber">
+                <span class="ng-binding">
+                  770
+                </span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="blueDiv" *ngIf="blueDiv.isShow" [ngStyle]="{'width':blueDiv.isUi === false ? 'auto' : '' }">
+            <h3></h3>
+            <div class="divColor" [ngStyle]="{'width':blueDiv.isUi === false ? '400px' : '' }">
+              <p class="pTitle blueTitle">{{blueDiv.title}}</p>
+              <ul *ngIf="blueDiv.isUi">
+                <li *ngFor="let i of blueDiv.data">
+                  <p class="liLeft colorBlue">{{i.label}}</p>
+                  <p class="liRight colorBlue" [title]="i.value">{{i.value}}</p>
+                </li>
+
+              </ul>
+              <div *ngIf="!blueDiv.isUi" width="400px" echarts [options]="blueDiv.optionsDiv" class="demo-chart"></div>
+            </div>
+          </div>
+
+          <div class="pinkDiv" *ngIf="pinkDiv.isShow">
+            <h3></h3>
+            <div class="divColor">
+              <p class="pTitle pinkTitle">{{pinkDiv.title}}</p>
+              <ul>
+                <li *ngFor="let i of pinkDiv.data">
+                  <p class="liLeft colorPink">{{i.label}}</p>
+                  <p class="liRight colorPink" [title]="i.value">{{i.value}}</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="orangeDiv" *ngIf="orangeDiv.isShow">
+            <h3></h3>
+            <div class="divColor">
+              <p class="pTitle orangeTitle">{{orangeDiv.title}}</p>
+              <ul>
+                <li *ngFor="let i of orangeDiv.data">
+                  <p class="liLeft colorOrange">{{i.label}}</p>
+                  <p class="liRight colorOrange" [title]="i.value">{{i.value}}</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="greenDiv" *ngIf="greenDiv.isShow" [ngStyle]="{'width':greenDiv.isUi === false ? 'auto' : '' }">
+            <h3></h3>
+            <div class="divColor" [ngStyle]="{'width':greenDiv.isUi === false ? '400px' : '' }">
+              <p class="pTitle greenTitle">{{greenDiv.title}}</p>
+              <ul *ngIf="greenDiv.isUi">
+                <li *ngFor="let i of greenDiv.data">
+                  <p class="liLeft colorGreen">{{i.label}}</p>
+                  <p class="liRight colorGreen" [title]="i.value">{{i.value}}</p>
+                </li>
+              </ul>
+              <div *ngIf="!greenDiv.isUi" width="400px" echarts [options]="blueDiv.optionsDiv" class="demo-chart"></div>
+
+            </div>
+          </div>
+        </div>
+
+      </nz-tab>
+
+    </nz-tabset>
+  </div>
+</div>

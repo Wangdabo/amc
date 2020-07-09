@@ -1,0 +1,92 @@
+<div class="container">
+  <nz-card>
+    <tms-form #baseForm nz-row>
+      <tms-filed nz-col [nzSpan]="24" [labelSpan]="3" [controlSpan]="21" [inputType]="'checkbox'"
+                 [dictId]="'USER_TRAN_UNIT'" [formsName]="'checkboxName'" (checkSelectChangeEvent)="checkSelectChangeEvent($event)"
+                 [filedName]="'交易控制部件'" [required]="false" (monitorChangeEvent)="monitorChangeEvent($event)"></tms-filed>
+    </tms-form>
+    <div nz-col nzSpan="2" class="divButton" nzOffset="20">
+      <button nz-button nzType="primary" (click)="save()" nzBlock>保存</button>
+    </div>
+    <div nz-col nzSpan="24">
+      <nz-tabset [nzType]="'card'" [nzSelectedIndex]="index" (nzSelectedIndexChange)="changeTab($event)">
+        <ng-container *ngFor="let tab of tabs">
+          <nz-tab *ngIf="tab.isshow" [nzTitle]="titleTemplate">
+            <ng-template #titleTemplate>
+              {{ tab.label }}
+            </ng-template>
+            <div nz-row>
+              <div nz-col nzSpan="24">
+                <div nz-row class="divRadio" *ngFor="let i of tab.arr">
+                  <div nz-col nzSpan="4" class="labelCss">{{i.tran_ctl_desc}} :</div>
+                  <div nz-col nzSpan="18">
+                    <nz-radio-group style="width: 100%;display: flex;" *ngIf="i.mark === '0'" [(ngModel)]="i.radioValue"
+                                    (ngModelChange)="radioChange($event,i)">
+                      <div *ngFor="let j of i.item" style="display: flex">
+                        <label nz-radio [nzValue]="j.attr_value">{{j.attr_desc}}</label>
+
+                        <div *ngIf="j.is_ext==='1' && j.checked" class="checkDiv">
+                          <div *ngIf="j.ext_source_type==='0' || j.ext_source_type==='1' ">
+                            <nz-select style="width:300px" [(ngModel)]="i.ext_attr1"
+                                       [nzMode]="j.ext_is_multi==='0'?'multiple':'default'">
+                              <nz-option *ngFor="let x of j.selects" [nzLabel]="x.name" [nzValue]="x.value">
+                              </nz-option>
+                            </nz-select>
+                          </div>
+                          <div class="checkDiv" *ngIf="j.ext_source_type==='3' ">
+                            <tms-form nz-row style="width: 300px">
+                              <tms-filed [inputType]="'select'" [width]="150"
+                                         (monitorChangeEvent)="selectmonitorChangeEvent($event)" [dictId]="j.ext_source_config"
+                                         [formsName]="'card_type'" [filedName]="''" [required]="false">
+                              </tms-filed>
+                            </tms-form>
+                          </div>
+                          <div *ngIf="j.ext_source_type==='2'" class="checkDiv">
+                            <input type="text" nz-input [(ngModel)]="i.ext_attr1">
+
+                          </div>
+
+                        </div>
+
+                      </div>
+                    </nz-radio-group>
+                    <!-- (nzOnChange)="log($event)" -->
+                    <nz-checkbox-wrapper *ngIf="i.mark === '1'" style="width: 100%;" (nzOnChange)="chrcklog($event,i)">
+                      <div nz-row style="display: -webkit-inline-box;">
+                        <div *ngFor="let j of i.item" style="display: flex;margin-right: 5px">
+                          <label nz-checkbox [nzValue]="j.attr_value" (click)="log(j)"
+                                 [(ngModel)]="j.checked">{{j.attr_desc}}</label>
+                          <div *ngIf="j.is_ext==='1' && j.checked">
+                            <div class="checkDiv" *ngIf="j.ext_source_type==='0'||j.ext_source_type==='1'">
+                              <nz-select style="width:300px" [(ngModel)]="i.ext_attr1"
+                                         [nzMode]="j.ext_is_multi==='0'?'multiple':'default'">
+                                <nz-option *ngFor="let x of j.selects" [nzLabel]="x.name" [nzValue]="x.value">
+                                </nz-option>
+                              </nz-select>
+                            </div>
+                            <div class="checkDiv" *ngIf="j.ext_source_type==='3' ">
+                              <tms-form nz-row style="width: 300px">
+                                <tms-filed [inputType]="'select'" [width]="180"
+                                           (monitorChangeEvent)="selectmonitorChangeEvent($event)" [dictId]="j.ext_source_config"
+                                           [formsName]="'card_type'" [filedName]="''" [required]="false">
+                                </tms-filed>
+                              </tms-form>
+                            </div>
+                            <div class="checkDiv" *ngIf="j.ext_source_type==='2'">
+                              <input type="text" nz-input [(ngModel)]="i.ext_attr1">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </nz-checkbox-wrapper>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </nz-tab>
+        </ng-container>
+      </nz-tabset>
+    </div>
+  </nz-card>
+</div>

@@ -1,0 +1,46 @@
+<div class="container">
+  <nz-card>
+    <tms-query
+      #baseQuery
+      [headerDate]="queryModel.queryHeader"
+      (getQuery)="getQueryData($event)"
+      (resetButton)="reset($event)"></tms-query>
+  </nz-card>
+  <nz-card style="margin-top: 20px;">
+    <div class="table">
+      <tms-list
+        [tableClass]="'bmtableClass'"
+        [listHeader]="queryModel.header"
+        [listData]="queryModel.data"
+        [pageSize]="queryModel.condition.pagesize"
+        [totalCount]="queryModel.totalCount"
+        [isLoading]="queryModel.isLoading"
+        (pageChangeHandler)="pageChange($event)"
+        (selectRowsHandler)="selectRowsHandler($event)"
+        [topActions]="queryModel.topActions"
+        (topActionsHandler)="topActionsHandler($event)"
+        [rowActions]="queryModel.rowActions"
+        (rowActionsHandler)="rowActionsHandler($event)"
+        [isEdit]="true"
+        [isrowActionsFlag]="true">
+      </tms-list>
+    </div>
+  </nz-card>
+</div>
+<nz-modal nzWidth='{{settingService.modal.large}}' [(nzVisible)]="insertOrUpdateModel.isVisible"
+          nzTitle="{{insertOrUpdateModel.isUpdate ? '修改外设' : '新增外设'}}"
+          (nzOnCancel)="handleCancel()"
+          (nzOnOk)="handleOk()"
+          [nzOkLoading]="insertOrUpdateModel.isOkLoading">
+  <tms-form #baseForm  nz-row nzType="flex"  nzJustify="start"  [nzGutter]="24">
+    <tms-filed nz-col [nzSpan]="24" [labelSpan]="3" [inputType]="'input'"  [formsName]="'suit_code'" [filedName]="'套装代码'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_DEVICE_NAME'" [formsName]="'device_code'" [filedName]="'外设'" [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_LINK_TYPE'" [formsName]="'link_type'" [filedName]="'连接方式 '" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'conn_port'" [filedName]="'连接端口'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'ext_port'" [filedName]="'扩展端口'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'w_timeout'" [filedName]="'写超时'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'r_timeout'" [filedName]="'读超时'" [required]="false"></tms-filed>
+  </tms-form>
+</nz-modal>
+
+

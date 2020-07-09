@@ -1,0 +1,70 @@
+<div class="container">
+  <nz-card>
+    <tms-query
+      #baseQuery
+      [headerDate]="queryModel.queryHeader"
+      (getQuery)="getQueryData($event)"
+      (resetButton)="reset($event)"></tms-query>
+  </nz-card>
+
+
+  <nz-card style="margin-top: 20px;">
+    <div class="table">
+      <tms-list
+        [tableClass]="'bmtableClass'"
+        [listHeader]="queryModel.header"
+        [listData]="queryModel.data"
+        [pageSize]="queryModel.condition.pagesize"
+        [totalCount]="queryModel.totalCount"
+        [isLoading]="queryModel.isLoading"
+        (pageChangeHandler)="pageChange($event)"
+        (selectRowsHandler)="selectRowsHandler($event)"
+        [topActions]="queryModel.topActions"
+        (topActionsHandler)="topActionsHandler($event)"
+        [rowActions]="queryModel.rowActions"
+        (rowActionsHandler)="rowActionsHandler($event)"
+        [isEdit]="true"
+        [isrowActionsFlag]="true"
+      >
+      </tms-list>
+    </div>
+  </nz-card>
+</div>
+<nz-modal nzWidth='{{settingService.modal.large}}' [(nzVisible)]="insertOrUpdateModel.isVisible"
+          nzTitle="{{insertOrUpdateModel.isUpdate ? '修改员工' : '新增员工'}}"
+          (nzOnCancel)="handleCancel()"
+          (nzOnOk)="handleOk()"
+          [nzOkLoading]="insertOrUpdateModel.isOkLoading">
+  <tms-form #baseForm  nz-row nzType="flex"  nzJustify="start"  [nzGutter]="24">
+    <tms-filed nz-col  [nzSpan]="12" [inputType]="'input'"  [formsName]="'emp_code'" [filedName]="'员工代码'" [required]="insertOrUpdateModel.isUpdate ? 'false' : 'true'"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_PAR_ORG_CODE'" [formsName]="'org_code'" [filedName]="'隶属机构'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_EMP_TYPE'" [formsName]="'emp_type'" [filedName]="'员工类型'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_EMP_STATUS'" [formsName]="'emp_status'" [filedName]="'员工状态'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'emp_name'" [filedName]="'员工姓名'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'emp_ename'" [filedName]="'英文全名'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'party'" [filedName]="'政治面貌'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_GENDER'" [formsName]="'gender'" [filedName]="'性别'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'date'" [formsName]="'birthdate'" [filedName]="'生日'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'position'" [filedName]="'职位'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" (monitorChangeEvent)="monitorChangeEvent($event)" [dictId]="'SYS_CARD_TYPE'" [formsName]="'card_type'" [filedName]="'证件类型'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'card_no'" [filedName]="'证件号码'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'datetime'" [formsName]="'in_date'" [filedName]="'进行时间'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'datetime'" [formsName]="'out_date'" [filedName]="'离行时间'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'o_tel'" [filedName]="'工作电话'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'o_address'" [filedName]="'工作地址'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'o_zipcode'" [FiledType]="'zipCode'" [filedName]="'工作邮编'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'o_email'" [FiledType]="'email'" [filedName]="'工作邮箱'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'o_fzxno'" [filedName]="'工作传真'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'h_tel'" [filedName]="'家庭电话'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'h_address'" [filedName]="'家庭住址'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'h_zipcode'" [FiledType]="'zipCode'" [filedName]="'住址邮编'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'phone'" [FiledType]="'phone'" [filedName]="'手机'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'qq_no'" [filedName]="'QQ'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'msn'" [filedName]="'MSN'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [labelSpan]="5" [controlSpan]="19" [inputType]="'textarea'" [formsName]="'emp_desc'" [filedName]="'员工描述'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [labelSpan]="5" [controlSpan]="19"  [inputType]="'textarea'" [formsName]="'work_exp'" [filedName]="'工作描述'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [labelSpan]="5" [controlSpan]="19" [inputType]="'textarea'" [formsName]="'remark'" [filedName]="'备注'" [required]="false"></tms-filed>
+  </tms-form>
+</nz-modal>
+
+

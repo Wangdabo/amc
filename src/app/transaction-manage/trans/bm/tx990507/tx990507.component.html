@@ -1,0 +1,105 @@
+<div nz-row style="padding: 10px;">
+  <tms-biztabquery [QueryClass]="'queryClass'" [labelId]="1078" (flagHandler)="flagHandler($event)" isInit="true"></tms-biztabquery>
+</div>
+
+<div class="redtimeRank">
+  <div class="cardTitle">
+    <h2> <span>{{isChart?'数据概览':'详细数据'}}</span>   <span (click)="changeDiv()"> {{!isChart?'返回网点画像':'查询详细信息'}}</span></h2>
+  </div>
+  <ng-container *ngIf="!isChart">
+    <tms-list  [tableClass]="'gradientHeader'"
+               [listHeader]="queryModel.header"
+               [listData]="queryModel.data"
+               [pageSize]="queryModel.condition.pagesize"
+               [totalCount]="queryModel.totalCount"
+               [isLoading]="queryModel.isLoading" (pageChangeHandler)="pageChange($event)"
+               (selectRowsHandler)="selectRowsHandler($event)"
+               [topActions]="queryModel.topActions"
+               (topActionsHandler)="topActionsHandler($event)"
+               [rowActions]="queryModel.rowActions" (rowActionsHandler)="rowActionsHandler($event)" (rowActiveHandler)="rowActiveHandler($event)"
+               [showAlert]="false"
+               [isrowEdit]="false"
+               [isrowActionsFlag]="true"
+               [isEdit]="false">
+    </tms-list>
+  </ng-container>
+  <ng-container *ngIf="isChart">
+    <div nz-row>
+      <div nz-col nzSpan="6" class="cardDiv">
+        <div nz-col nzSpan="24">
+          <nz-card class="liabilities" [nzLoading]="'false'" [nzHoverable]="'true'">
+            <nz-card-meta [nzAvatar]="liabilityTemplate" [nzTitle]="liabilityTitle" [nzDescription]="liabilityDescription"></nz-card-meta>
+          </nz-card>
+          <ng-template #liabilityTitle>
+            <span class="liabilitiesTitle">资产负债</span>
+          </ng-template>
+          <ng-template #liabilityTemplate>
+            <!--<i nz-icon type="bank" theme="outline"></i>-->
+            <img src="./assets/newimage/bigData/icon_zichanfuzhai.png" alt="">
+          </ng-template>
+          <ng-template #liabilityDescription>
+            <p>资产总额 20.93万亿元</p>
+            <p>负债总额 19.24万亿元</p>
+            <p> 股东权益 1.69万亿元</p>
+          </ng-template>
+        </div>
+        <div nz-col nzSpan="24">
+          <nz-card class="liabilities" [nzLoading]="'false'" [nzHoverable]="'false'">
+            <nz-card-meta [nzAvatar]="financialTemplate" style="color: #fff;" [nzTitle]="financialTitle" [nzDescription]="financialDescription"></nz-card-meta>
+          </nz-card>
+          <ng-template #financialTitle>
+            <span class="liabilitiesTitle">财务指标</span>
+          </ng-template>
+          <ng-template #financialTemplate>
+            <!--<i nz-icon type="line-chart" theme="outline"></i>-->
+            <img src="./assets/newimage/bigData/icon_caiwu.png" alt="">
+          </ng-template>
+          <ng-template #financialDescription>
+            <p>平均总资产回报率（ROA）1.16%</p>
+            <p> 非利息收入占比29.74%</p>
+            <p> 成本收入比25.78%</p>
+          </ng-template>
+        </div>
+
+        <div nz-col nzSpan="24">
+          <nz-card class="liabilities" [nzLoading]="'false'" [nzHoverable]="'true'" [nzBodyStyle]="styleDiv">
+            <div *ngIf="temp" echarts style="height: 200px;" [options]="optionsAssets" class="demo-chart"></div>
+          </nz-card>
+        </div>
+        <div nz-col nzSpan="24">
+          <nz-card class="liabilities" [nzLoading]="'false'" [nzHoverable]="'true'" [nzBodyStyle]="styleDiv">
+            <div *ngIf="temp" echarts style="height: 280px;" [options]="optionsFinancial" class="demo-chart"></div>
+          </nz-card>
+        </div>
+      </div>
+      <div nz-col nzSpan="12" class="cardDiv" style="padding-top:10%">
+        <div  *ngIf="temp" style="width: 100%;" echarts [options]="optionsMap" (chartClick)="onChartClick($event)" class="demo-chart"></div>
+      </div>
+      <div nz-col nzSpan="6" class="cardDiv">
+        <div nz-col nzSpan="24">
+          <nz-card class="liabilitiess" [nzLoading]="'false'" [nzHoverable]="'true'" [nzBodyStyle]="styleDiv">
+            <div *ngIf="temp" echarts style="height: 400px;" [options]="optionsBankasset" class="demo-chart"></div>
+          </nz-card>
+        </div>
+        <div nz-col nzSpan="24">
+          <nz-card class="liabilitiess" [nzLoading]="'false'" [nzHoverable]="'true'" [nzBodyStyle]="styleDiv">
+            <div *ngIf="temp" echarts style="height: 400px;" [options]="optionsBankassetAdd" class="demo-chart"></div>
+          </nz-card>
+        </div>
+      </div>
+      <div nz-col nzSpan="24">
+        <div nz-col nzSpan="12" class="cardDiv">
+          <nz-card class="liabilitiese" [nzLoading]="'false'" [nzHoverable]="'true'" [nzBodyStyle]="styleDiv">
+            <div *ngIf="temp" echarts style="height: 400px;" [options]="optionsIT" class="demo-chart"></div>
+          </nz-card>
+        </div>
+        <div nz-col nzSpan="12" class="cardDiv">
+          <nz-card class="liabilitiese" [nzLoading]="'false'" [nzHoverable]="'true'" [nzBodyStyle]="styleDiv">
+            <div *ngIf="temp" echarts style="height: 400px;" [options]="optionsIT1" class="demo-chart"></div>
+          </nz-card>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+

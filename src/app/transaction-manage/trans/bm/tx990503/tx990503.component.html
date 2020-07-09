@@ -1,0 +1,83 @@
+<div class="container">
+  <div nz-row style="padding: 10px;">
+    <tms-biztabquery [QueryClass]="'queryClass'" [labelId]="1" (flagHandler)="flagHandler($event)" isInit="true"></tms-biztabquery>
+  </div>
+  <div class="table redtimeRank">
+    <div class="cardTitle">
+      <h2> <span>{{isChart?'客群画像':'详细数据'}}</span>   <span (click)="changeDiv()"> {{isChart?'查看详细数据':'返回客群画像'}}</span></h2>
+    </div>
+    <ng-container *ngIf="!isChart">
+      <div>
+        <tms-list [tableClass]="'gradientHeader'"  [listHeader]="queryModel.header" [listData]="queryModel.data" [pageSize]="queryModel.condition.pagesize"
+                  [totalCount]="queryModel.totalCount" [isLoading]="queryModel.isLoading" (pageChangeHandler)="pageChange($event)"
+                  (selectRowsHandler)="selectRowsHandler($event)" [topActions]="queryModel.topActions" (topActionsHandler)="topActionsHandler($event)"
+                  [rowActions]="queryModel.rowActions" (rowActionsHandler)="rowActionsHandler($event)" (rowActiveHandler)="rowActiveHandler($event)"
+                  [isEdit]="true" [isrowActionsFlag]="true"  [showAlert]="false">
+        </tms-list>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="isChart">
+      <div nz-row class="divBody">
+
+        <div nz-col [nzSpan]="12" class="divContent">
+          <h2 class="title">性别比例</h2>
+          <div style="width:100%;float:left;" class="achieve">
+            <div class="ng-binding imgMan">
+              {{gd.MANBL*100| number:0}}%
+            </div>
+            <div class="ng-binding imgWomen">
+              {{gd.WOMENBL*100| number:0}}%
+            </div>
+          </div>
+          <div style="width:100%;float:left;">
+            <div style="float:left;width:50%;text-align: center; color:#fff"> {{gd.MAN}}人</div>
+            <div style="float:left;width:50%;text-align: center; color:#fff">{{gd.WOMEN}}人</div>
+          </div>
+        </div>
+        <div nz-col [nzSpan]="12" class="divContent">
+          <h2 class="title">地域分布</h2>
+          <div *ngIf="temp" echarts [options]="optionsMap" class="demo-chart"></div>
+        </div>
+      </div>
+      <div nz-row class="divBody">
+        <div nz-col [nzSpan]="12" class="divContent">
+          <h2 class="title">年龄分布</h2>
+          <div *ngIf="temp" echarts [options]="optionsAge" class="demo-chart"></div>
+        </div>
+        <div nz-col [nzSpan]="12" class="divContent">
+          <div *ngIf="temp" echarts [options]="optionsAgeBin" class="demo-chart"></div>
+        </div>
+      </div>
+      <div nz-row class="divBody">
+        <div nz-col [nzSpan]="12" class="divContent">
+          <h2 class="title">风险偏好</h2>
+          <div *ngIf="temp" echarts [options]="optionsRisk" class="demo-chart"></div>
+        </div>
+        <div nz-col [nzSpan]="12" class="divContent">
+
+          <div *ngIf="temp" echarts [options]="optionsRiskBin" class="demo-chart"></div>
+        </div>
+      </div>
+
+      <div nz-row class="divBody">
+        <div nz-col [nzSpan]="24" class="divContent">
+          <h2 class="title">本行资产分布</h2>
+          <div *ngIf="temp" echarts [options]="optionsAssets" class="demo-chart"></div>
+        </div>
+
+      </div>
+
+      <div nz-row class="divBody">
+        <div nz-col [nzSpan]="24" class="divContent">
+          <h2 class="title">客户等级</h2>
+          <div *ngIf="temp" echarts [options]="optionsGrade" class="demo-chart"></div>
+        </div>
+
+      </div>
+    </ng-container>
+  </div>
+
+
+
+
+</div>

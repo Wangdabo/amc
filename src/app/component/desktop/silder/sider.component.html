@@ -1,0 +1,52 @@
+<!--<form *ngIf="showSearch" nz-form [nzLayout]="'inline'" style="margin-top:20px;margin-left: 5%; margin-bottom: 10px;">
+  <nz-form-item style="width: 80%">
+    <nz-form-control nzOffset="2" [nzSpan]="24">
+      <input nz-input [(ngModel)]="searchName"
+             [placeholder]="'搜索'"
+             (change)="valueChange(searchName)"
+             name="errorValid">
+    </nz-form-control>
+  </nz-form-item>
+</form>-->
+<ul nz-menu   [ngClass]="{'rootui':'uiroot'? styleSider === true: styleSider === false }"   [nzTheme]="styleSider?'dark':'light'" [nzMode]="'inline'" [nzInlineCollapsed]="isCollapsed">
+
+  <ng-container *ngFor="let menu of menus">
+    <li  nz-submenu *ngIf="menu.children.length">
+      <span title><i nz-icon [nzType]="menu.icon" nzTheme="outline"></i><span class="nav-text fontContSize fontFamily">{{language[menu.code] }}</span></span>
+      <ul  [ngClass]="{'rootui':'uiroot'? styleSider === true: styleSider === false }">
+        <ng-container *ngFor="let children of menu.children">
+          <!-- 不存在，那么就是普通的二级-->
+          <ng-container *ngIf="!children.children">
+            <li nz-menu-item  *ngIf="children.transCode"  [routerLink]="[children.link, children.transCode]">
+              <span title>
+                <i nz-icon [nzType]="children.icon" nzTheme="outline"></i>
+                <span class="nav-text fontContSize fontFamily">{{language[children.code]}}</span></span>
+            </li>
+          </ng-container>
+          <!--存在，那就是普通的三级-->
+          <ng-container *ngIf="children.children">
+            <li nz-submenu  *ngIf="children.transCode">
+              <span title><i nz-icon [nzType]="children.icon" nzTheme="outline"></i><span class="nav-text fontContSize fontFamily">{{language[children.code]}}</span></span>
+              <ul [ngClass]="{'rootui':'uiroot'? styleSider === true: styleSider === false }">
+                <ng-container *ngFor="let thirdMenu of children.children" >
+                  <li nz-menu-item  *ngIf="thirdMenu.transCode" [routerLink]="[thirdMenu.link, thirdMenu.transCode]" (click)="localTab(thirdMenu);" >
+                    <span title><i nz-icon [nzType]="thirdMenu.icon" nzTheme="outline"></i><span class="nav-text fontContSize fontFamily">{{language[thirdMenu.code]}}</span></span>
+                  </li>
+                </ng-container>
+              </ul>
+            </li>
+          </ng-container>
+        </ng-container>
+      </ul>
+    </li>
+    <!--如果是父级，就只显示一级菜单-->
+    <li   nz-menu-item *ngIf="menu.children.length === 0" [routerLink]="[menu.link]">
+      <span title>
+       <i nz-icon [class]="menu.icon"></i>
+        <span class="nav-text fontContSize fontFamily">{{language[menu.code]}} </span>
+      </span>
+    </li>
+  </ng-container>
+</ul>
+
+

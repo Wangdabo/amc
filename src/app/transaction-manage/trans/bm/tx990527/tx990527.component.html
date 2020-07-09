@@ -1,0 +1,165 @@
+<div class="card-container redtimeRank">
+
+  <div nz-row nzType="flex" style="margin-bottom: 32px;">
+    <div nz-col nzSpan="6" nzOffset="3">
+
+      <div class="gutter-box" class="divBorder">
+        <div nz-col nzSpan="8" style="text-align: center">
+          <i class="iconS" nz-icon nzType="mobile" nzTheme="outline"></i>
+        </div>
+        <div nz-col nzSpan="16">
+          <p class="p1">启动次数</p>
+          <p class="p2">{{global_count.app_startup.today}}</p>
+        </div>
+        <div nz-col nzSpan="24" style="text-align: center;">
+          <div nz-col nzSpan="12" class="div2">
+            昨日：{{global_count.app_startup.yesterday}}
+          </div>
+          <div nz-col nzSpan="12" class="div2">
+            日环比：{{global_count.app_startup.yesterday==='0'?'--':global_count.app_startup.change}}%&nbsp;
+            <i nz-icon nzType="{{global_count.app_startup.change > '0' ? 'arrow-up':'arrow-down'}}"
+              nzTheme="outline"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="gutter-box" class="divBorder">
+        <div nz-col nzSpan="6" style="text-align: center">
+          <i class="iconS" nz-icon nzType="user" nzTheme="outline"></i>
+        </div>
+        <div nz-col nzSpan="16">
+          <p class="p1">活跃用户</p>
+          <p class="p2">{{global_count.user_active.today}}</p>
+        </div>
+        <div nz-col nzSpan="24" style="text-align: center;">
+          <div nz-col nzSpan="12" class="div2">
+            昨日：{{global_count.user_active.yesterday}}
+          </div>
+          <div nz-col nzSpan="12" class="div2">
+            日环比：{{global_count.user_active.yesterday==='0'?'--':global_count.user_active.change}}% &nbsp;<i nz-icon
+              nzType="{{global_count.user_active.change > '0' ? 'arrow-up':'arrow-down'}}" nzTheme="outline"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div nz-col nzSpan="6" nzOffset="3">
+      <div echarts style="height: 400px;"  [options]="optionsstart" class="demo-chart">
+      </div>
+    </div>
+
+  </div>
+
+  <div class="tabs">
+    <div nz-row nzType="flex" [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32, xl: 32, xxl: 32 }">
+      <div nz-col nzSpan="6" *ngFor="let tab of tabs;let x = index" (click)="clickTab(tab,x)">
+        <img
+          src="{{x===clickTabIndex?'./assets/newimage/Insight/btn_selected.png':'./assets/newimage/Insight/btn_normal.png'}}">
+        <span>{{tab.title}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div nz-row class="topDiv" nzGutter="16">
+      <!-- <div nz-col [nzSpan]="6" *ngIf="SelectedIndex === 0">
+        <nz-input-number style="width: 100%;" [(ngModel)]="selectedValue.rank" (ngModelChange)="radioChange()"
+          [nzMin]="1" [nzMax]="50" [nzStep]="1"></nz-input-number>
+      </div> -->
+      <div nz-col [nzSpan]="'6'">
+        <!-- <input nz-input style="width: 100%;" *ngIf="SelectedIndex === 0" placeholder="交易码"
+          [(ngModel)]="selectedValue.txcode" (ngModelChange)="radioChange()"> -->
+        <nz-select style="width: 100%;" *ngIf="SelectedIndex === 1" nzShowSearch nzAllowClear nzPlaceHolder="交易码"
+          [(ngModel)]="selectedValue.txcode" (ngModelChange)="transChange()">
+          <nz-option *ngFor="let i of transList" [nzLabel]="i.trans_name" [nzValue]="i.trans_code">
+          </nz-option>
+        </nz-select>
+      </div>
+      <div nz-col [nzSpan]="'6'" *ngIf="SelectedIndex === 3">
+        <nz-select style="width: 100%;" nzShowSearch nzAllowClear nzPlaceHolder="选择页面" [(ngModel)]="selectedValue.view"
+          (ngModelChange)="viewChange()">
+          <nz-option *ngFor="let i of viewLists" [nzLabel]="i.value" [nzValue]="i.code"></nz-option>
+        </nz-select>
+      </div>
+ 
+      <!-- <div nz-col [nzSpan]="'6'" *ngIf="SelectedIndex === 0">
+        <nz-select style="width: 100%;" nzShowSearch nzAllowClear nzPlaceHolder="渠道" [(ngModel)]="selectedValue.channel"
+          (ngModelChange)="radioChange()">
+          <nz-option *ngFor="let i of channel" [nzLabel]="i.channel_name" [nzValue]="i.channel_code"></nz-option>
+        </nz-select>
+      </div>
+      <div nz-col [nzSpan]="'6'" *ngIf="SelectedIndex === 0">
+        <nz-range-picker [nzFormat]="'yyyy-MM-dd'" [(ngModel)]="someTime" (ngModelChange)="radioChange()">
+        </nz-range-picker>
+      </div> -->
+    </div>
+
+
+    <!-- <div style="text-align: center;margin:16px 0;">
+      <nz-radio-group [(ngModel)]="selectedValue.type" [nzButtonStyle]="'solid'" (ngModelChange)="radioChange()">
+        <label *ngFor="let i of typeTime" nz-radio-button [nzValue]="i.value">{{i.label}}</label>
+      </nz-radio-group>
+    </div> -->
+    <div nz-row class="chartDiv" *ngIf="SelectedIndex === 0">
+      <div nz-col nzSpan='12'>
+        <div echarts style="height: 400px;" (chartClick)="chartClick($event)" [loading]="isLoading"
+          [(options)]="optionsTransaction" (chartInit)="onMapInit($event)" class="demo-chart">
+        </div>
+      </div>
+      <div nz-col nzSpan='12'>
+        <div echarts style="height: 400px;" (chartClick)="chartClick($event)" [loading]="isLoading" [(options)]="option"
+          class="demo-chart">
+        </div>
+      </div>
+    </div>
+
+
+    <div nz-row class="chartDiv" *ngIf="SelectedIndex === 1">
+      <div nz-col nzSpan="12" *ngIf="isChart">
+        <div echarts style="height: 800px;" [loading]="isLoading" [(options)]="optionsFunnel" class="demo-chart">
+        </div>
+      </div>
+      <div *ngIf="!isChart" nz-col nzSpan="12" style="padding: 24px;color: #fff;">
+        <nz-steps nzDirection="vertical" class="steps">
+          <nz-step *ngFor="let i of drawerdata;let x = index" style="height: 100px" [nzTitle]="i.bhv_name"
+            nzStatus="process" [nzDescription]="'操作时长：'+i.spend_time+'s'"></nz-step>
+        </nz-steps>
+      </div>
+      <div nz-col nzSpan="12">
+        <tms-list [tableClass]="'gradientHeader'" [listHeader]="queryModel.header" [listData]="queryModel.data"
+          [pageSize]="queryModel.condition.pagesize" [totalCount]="queryModel.totalCount" [isclickPointer]="true"
+          (clickActiveHandler)="clickActiveHandler($event)" [isLoading]="queryModel.isLoading"
+          (pageChangeHandler)="pageChange($event)" (selectRowsHandler)="selectRowsHandler($event)"
+          [topActions]="queryModel.topActions" (topActionsHandler)="topActionsHandler($event)"
+          [rowActions]="queryModel.rowActions" [isShowCheckbox]="false" [showAlert]="false"
+          (rowActionsHandler)="rowActionsHandler($event)" (rowActiveHandler)="rowActiveHandler($event)"
+          [isShowCheckbox]="false" [showAlert]="false" [isrowEdit]="false" [isrowActionsFlag]="true">
+        </tms-list>
+      </div>
+    </div>
+
+    <div nz-row class="chartDiv" *ngIf="SelectedIndex === 2">
+      <!-- <div  echarts  style="height: 400px;"  [(options)]="optionsMap"  class="demo-chart"></div> -->
+      <!-- <div  *ngIf="temp" style="width: 100%;height: 400px;" echarts [(options)]="optionsMap" (chartClick)="onChartClick($event)" class="demo-chart"></div> -->
+   
+
+        <div echarts [options]="optionsMap" class="demo-chart"></div>
+
+
+    </div>
+
+    <div nz-row class="chartDiv" *ngIf="SelectedIndex === 3">
+      <div>
+
+       
+        <div style="height: 400px;" echarts [(options)]="optionssankeyCome" (chartInit)="onMapInit($event)"
+          class="demo-chart"></div>
+
+
+      </div>
+
+
+    </div>
+
+  </div>
+</div>

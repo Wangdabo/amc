@@ -1,0 +1,25 @@
+<div class="container">
+  <div *ngFor="let i of data" class="cardDiv">
+    <nz-card>
+      <nz-card-meta [nzTitle]="i.title" [nzDescription]="descriptionTemplate" [nzAvatar]="avatarTemplate">
+      </nz-card-meta>
+    </nz-card>
+    <ng-template #descriptionTemplate>
+      基准：{{i.benchmark}}
+      <br>
+      业务类型：{{i.type}}
+      <br>
+      地区：{{i.address}}
+      <br>
+      交易状态：{{i.status}}
+    </ng-template>
+    <ng-template #avatarTemplate>
+      <i nz-icon (click)="imgIcon()" type="play-circle" theme="outline" class="icon"></i>
+    </ng-template>
+  </div>
+  <div class="addDiv">
+    <!-- <i nz-icon type="plus-circle" theme="outline"></i> -->
+    <img (click)="imgAdd()" class="img" [src]="img+'assets/icons/jia.png'" alt="">
+    <h2>新增一组趋势检测</h2>
+  </div>
+</div>

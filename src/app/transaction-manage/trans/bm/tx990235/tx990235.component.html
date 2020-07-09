@@ -1,0 +1,24 @@
+<div class="container" >
+	<div nz-row>
+        <tms-form #baseForm nz-row >
+            <tms-filed nz-col [nzSpan]="24" [labelSpan]="6" [controlSpan]="18" [inputType]="'checkbox'" [dictId]="'USER_TRAN_UNIT'" [required]="false" [formsName]="'checkboxName'" [filedName]="'交易控制部件'" (monitorChangeEvent)="monitorChangeEvent($event)"></tms-filed>
+        </tms-form>
+        <div nz-col nzSpan="24" style="margin-left: 10px;">
+            <nz-tabset *ngIf="isshowTab" [nzSelectedIndex]="sindex" [nzType]="'card'" >
+              <nz-tab *ngFor="let tab of tabs"  [nzTitle]="titleTemplate" (nzSelect)="tabSelect(tab.id)" >
+                <ng-template #titleTemplate>
+                  <i nz-icon [nzType]="tab.icon" nzTheme="outline"></i>
+                  <span [title]="tab.text">{{ tab.text }}</span>
+                </ng-template>
+                <div *ngIf="tab.id != ''">
+                  <tms-form #baseTransForm  nz-row  [nzGutter]="24"  (formDataHandler)="changesValue($event)">
+                    <tms-filed  nz-col [nzSpan]="24" [inputType]="'dynamicArra'" [controlArray]="controlArray"></tms-filed>
+                  </tms-form>
+                </div>
+
+              </nz-tab>
+            </nz-tabset>
+        </div>
+    </div>
+</div>
+

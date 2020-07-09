@@ -1,0 +1,47 @@
+.container {
+  padding-top: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.chartDiv{
+  /* padding: 24px 0; */
+}
+.action {
+  height: 40px;
+}
+
+.topDiv {
+  padding: 10px 0 10px 10px;
+}
+
+.fontSpan {
+  line-height: 30px;
+  /* text-align: center; */
+  cursor: pointer;
+  color: #1890ff;
+  /* display: flex */
+
+}
+
+.divSpan {
+  padding: 0 16px;
+
+}
+
+.divLi {
+  list-style-type: circle;
+  padding-left: 4px;
+  line-height: 2;
+  cursor: pointer;
+}
+.divLi:hover{
+  background-color: aliceblue;
+}
+
+
+/*  10.9 新樣式  */
+.redtimeRank {
+  background: url("../../../../../assets/newimage/home/content_bg_shishijiaoyi.png");
+  background-size:100% 100%;
+  padding: 5%
+}

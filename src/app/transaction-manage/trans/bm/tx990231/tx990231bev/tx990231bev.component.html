@@ -1,0 +1,9 @@
+<div class="divBody">
+  <tms-list [listHeader]="queryModel.header" [listData]="queryModel.data" [pageSize]="queryModel.condition.pagesize"
+    [totalCount]="queryModel.totalCount" [isLoading]="queryModel.isLoading" (pageChangeHandler)="pageChange($event)"
+    (selectRowsHandler)="selectRowsHandler($event)" [topActions]="queryModel.topActions"
+    (topActionsHandler)="topActionsHandler($event)" [rowActions]="queryModel.rowActions" [isShowCheckbox]="false" [showAlert]="false"  
+    (rowActionsHandler)="rowActionsHandler($event)" (rowActiveHandler)="rowActiveHandler($event)" [isEdit]="true">
+  </tms-list>
+</div>
+

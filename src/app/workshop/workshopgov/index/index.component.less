@@ -1,0 +1,89 @@
+.silder {
+  width: 291px !important;
+  min-width: 291px !important;
+  background-image:-webkit-linear-gradient(top,#3c6cee,#232795);
+}
+
+
+.hidesilder {
+  width: 79px !important;
+  min-width: 79px !important;
+  max-width: 79px !important;
+  background-image:-webkit-linear-gradient(top,#3c6cee,#232795)!important;
+}
+
+
+.ant-menu-item-selected {
+  background: blue !important;
+}
+
+
+:host {
+  overflow: hidden;
+  display: block;
+}
+.card-container{
+    height: 800px;
+    overflow-y: auto;
+}
+
+.card-container ::ng-deep .ant-tabs-card .ant-tabs-content .ant-tabs-tabpane {
+  background: #fff;
+  padding: 16px;
+}
+
+.card-container ::ng-deep .ant-tabs-card .ant-tabs-bar {
+  border-color: #fff;
+
+  
+}
+
+.card-container::-webkit-scrollbar {
+    /*滚动条整体样式*/
+    width : 5px;  /*高宽分别对应横竖滚动条的尺寸*/
+    height: 1px;
+    }
+    .card-container::-webkit-scrollbar-thumb {
+    /*滚动条里面小方块*/
+    border-radius   : 10px;
+    background-color: #73859f57;
+    background-image: -webkit-linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.2) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0.2) 75%,
+        transparent 75%,
+        transparent
+    );
+    }
+    .card-container::-webkit-scrollbar-track {
+    /*滚动条里面轨道*/
+    box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    }
+/* tab 内容样式 */
+.card-container ::ng-deep .ant-tabs-card .ant-tabs-bar .ant-tabs-tab-active {
+  background: #4c8bfd !important;
+  color: #fff;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.ant-tabs.ant-tabs-card .ant-tabs-card-bar .ant-tabs-tab {
+  background: rgba(76,139,253,0.1);
+  span {
+    font-size: 16px;
+    color: #545e6e
+  }
+}
+.card-container ::ng-deep .ant-tabs.ant-tabs-card>.ant-tabs-bar .ant-tabs-tab{
+  margin-right: 5px !important;
+}
+.card-container ::ng-deep .ant-tabs-bar{
+  margin-bottom: 0 !important;
+}
+
+
+

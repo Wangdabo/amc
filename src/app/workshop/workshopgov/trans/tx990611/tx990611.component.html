@@ -1,0 +1,76 @@
+<app-titleback [titleName]="'客户投诉'"></app-titleback>  
+<div class="container" style="margin-top: 24px;padding:20px;background-color: #fff;height: 600px;">
+<div class="header" style="text-align: center;margin-top: 48px;">
+  <nz-radio-group [(ngModel)]="radioValue" [nzButtonStyle]="'solid'">
+    <label nz-radio-button nzValue="A" (click)="select('test1')" style="font-size: 18px">投诉信息</label>
+    <label nz-radio-button nzValue="B" (click)="select('test2')" style="font-size: 18px">投诉处理</label>
+  </nz-radio-group>
+</div>
+<div class="content1" *ngIf="sugesst" style="margin-top: 40px">
+    <div nz-col nzSpan="24">
+        <div nz-row style="padding-top: 30px">
+          <div nz-col nzSpan="10">
+            <div class="divForm">
+              <tms-form #baseForm1 nz-row [nzGutter]="24">
+                <tms-filed nz-col [nzSpan]="22" [labelSpan]="10" [(fieldModel)]="customer_name" [inputType]="'input'"
+                  [formsName]="'customer_name'" [filedName]="'客户姓名'" [required]="false">
+                </tms-filed>
+    
+                <tms-filed nz-col [nzSpan]="22" [labelSpan]="10" [(fieldModel)]="contact_number" [inputType]="'input'"
+                  [formsName]="'contact_number'" [filedName]="'联系电话'" [required]="false"></tms-filed>
+
+                <tms-filed nz-col [nzSpan]="22" [labelSpan]="10" [(fieldModel)]="complaint_time" [inputType]="'date'"
+                [formsName]="'complaint_time'" [filedName]="'投诉日期'" [required]="false"></tms-filed>
+              
+                <tms-filed nz-col [nzSpan]="22" [labelSpan]="10" [(fieldModel)]="complaint_reason" [inputType]="'input'"
+                [formsName]="'complaint_reason'" [filedName]="'投诉事由'" [required]="false"></tms-filed>
+              </tms-form>
+            </div>
+          </div>
+          <div nz-col nzSpan="12">
+            <div class="divForm">
+    
+              <tms-form #baseForm2 nz-row [nzGutter]="24">
+                <tms-filed nz-col [nzSpan]="22" [labelSpan]="10" [(fieldModel)]="complained_employee" [inputType]="'input'"
+                  [formsName]="'complained_employee'" [filedName]="'被投诉员工'" [required]="false">
+                </tms-filed>
+    
+                <tms-filed nz-col [nzSpan]="22" [labelSpan]="10" [(fieldModel)]="employee_post" [inputType]="'input'"
+                  [formsName]="'employee_post'"  [filedName]="'员工岗位'" [required]="false"></tms-filed>
+
+                <tms-filed nz-col [nzSpan]="22" [labelSpan]="10" [(fieldModel)]="processing_state" [inputType]="'input'"
+                [formsName]="'processing_state'"  [filedName]="'处理状态'" [required]="false"></tms-filed>
+
+                <tms-filed nz-col [nzSpan]="22" [labelSpan]="10" [(fieldModel)]="acceptance_channels" [inputType]="'input'"
+                [formsName]="'acceptance_channels'"  [filedName]="'受理渠道'" [required]="false"></tms-filed>
+              </tms-form>
+            </div>
+          </div>
+        </div>
+    
+    
+    
+        <div nz-col nzSpan="24" class="buttonDiv" style="padding-top: 12px;padding-bottom: 12px;margin-left: 2%;margin-top: 40px;">
+          <div nz-col nzSpan="8" style="margin-left: 80px">
+            <button nz-button nzSize='large' nzBlock nzType="primary" (click)="commit()">提交</button>
+          </div>
+          <div nz-col nzSpan="8" style="margin-left: 100px">
+            <button nz-button nzSize='large' nzBlock nzType="primary" (click)="result()">重置</button>
+          </div>
+        </div>
+    
+    </div>
+    
+</div>
+<div class="contetn2" *ngIf="!sugesst" style="margin-top: 40px">
+  <tms-list [listHeader]="listHeader"
+    [listData]="listData"
+    [isShowPagination]="false"
+    (selectRowsHandler)="selectList($event)"
+    [showAlert]="false"
+    [isrowActionsFlag] = "true"
+    [isShowCheckbox]="false">
+  </tms-list>
+</div>
+</div>
+

@@ -1,0 +1,39 @@
+<nz-header [ngClass]="!isCollapsed? '': 'ceshi'">
+  <div class="dw-inter">
+    <div class="dw-inter-left">
+      <div class="dw-inter-item nocenter" *ngIf="resize>900">
+          <div class="dw-inter-change" (click)="changeIcon()">
+            <i class="anticon trigger" style="color: #B9BDC7" [class.anticon-menu-fold]="!isCollapsed" [class.anticon-menu-unfold]="isCollapsed"></i>
+          </div>
+      </div>
+    </div>
+    <!--    <div style="font-size: 18px;color:white;margin-left: -10%;">
+          {{language.desktopTitle}}
+        </div>-->
+    <div class="dw-inter-right" *ngIf="resize>500">
+      <!--个人中心-->
+      <div class="dw-inter-item">
+        <img src="./assets/bmimage/nav/btn_wode@2x.png" alt="">
+      </div>
+      <div class="dw-inter-item">
+        <nz-dropdown [nzPlacement]="'bottomCenter'">
+          <a nz-dropdown>
+            <img style="width: 26px;" src="./assets/bmimage/nav/btn_shezhi_gray.png" alt="">
+          </a>
+          <ul nz-menu nzSelectable>
+            <li nz-menu-item>
+              <a (click) = tollgeWork()>切换工作空间</a>
+            </li>
+          </ul>
+        </nz-dropdown>
+      </div>
+      <div class="dw-inter-item" (click)="changeLanguage()">
+        <img style="width: 26px;" src="./assets/bmimage/nav/btn_zhongyingqiehuan_gray.png" alt="">
+      </div>
+      <div class="dw-inter-item" (click)="logout()">
+        <img  src="./assets/bmimage/nav/btn_tuichu@2x.png" alt="">
+      </div>
+    </div>
+
+  </div>
+</nz-header>

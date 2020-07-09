@@ -1,0 +1,72 @@
+<div class="container">
+  <div nz-row>
+    <tms-query #baseQuery [headerDate]="queryModel.queryHeader" (getQuery)="getQueryData($event)" (resetButton)="reset($event)"></tms-query>
+  </div>
+  <div class="table">
+    <tms-list
+      [tableClass]="'bmtableClass'"
+      [listHeader]="queryModel.header" [listData]="queryModel.data" [pageSize]="queryModel.condition.pagesize"
+      [totalCount]="queryModel.totalCount" [isLoading]="queryModel.isLoading" (pageChangeHandler)="pageChange($event)"
+      (selectRowsHandler)="selectRowsHandler($event)" [topActions]="queryModel.topActions" (topActionsHandler)="topActionsHandler($event)"
+      [rowActions]="queryModel.rowActions" (rowActionsHandler)="rowActionsHandler($event)">
+    </tms-list>
+  </div>
+</div>
+<nz-modal nzWidth='{{settingService.modal.mid}}' [(nzVisible)]="insertOrUpdateModel.isVisible" nzTitle="{{insertOrUpdateModel.isUpdate ? '新增智能合约' : '修改智能合约'}}"
+  (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" [nzOkLoading]="insertOrUpdateModel.isOkLoading">
+  <tms-form #baseForm nz-row [nzGutter]="24" (formDataHandler)="changeValue($event)">
+    <!-- <tms-filed nz-col [nzSpan]="24" [inputType]="'select'" [formsName]="'app_id'" [filedName]="'应用'" [dictId]="'SYS_APP_ID'"
+      [required]="true"></tms-filed> -->
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'name'" [filedName]="'ͨ名称'" [required]="true"></tms-filed>
+
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'select'" [formsName]="'language'" [filedName]="'ͨ语言'"
+      [dictId]="'SYS_LANGUAGE'" [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'version'" [filedName]="'ͨ版本'"
+      [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'code_path'" [filedName]="'资源路径'"
+      [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'chaincode_path'" [filedName]="'链码路径'"
+      [required]="ischaincode_path"></tms-filed>
+
+
+
+
+
+  </tms-form>
+</nz-modal>
+<nz-modal [(nzVisible)]="isVisible" nzWidth="1224" nzTitle="节点维护" [nzFooter]="modalFooter" (nzOnCancel)="isVisible = false">
+  <nz-card>
+
+
+    <tms-list [listHeader]="peerModal.header" [isrowEdit]="peerModal.isrowEdit" [listData]="peerModal.data" [pageSize]="peerModal.condition.pagesize"
+      [totalCount]="peerModal.totalCount" [isLoading]="peerModal.isLoading" (pageChangeHandler)="pageChange($event)"
+      (selectRowsHandler)="selectRowsHandlerPeer($event)" [topActions]="peerModal.topActions" (editActiveHandler)="editActiveHandler($event)"
+      (topActionsHandler)="topActionsHandlerPeer($event)" [rowActions]="peerModal.rowActions" (rowActionsHandler)="peerRowActionsHandler($event)">
+    </tms-list>
+  </nz-card>
+  <ng-template #modalFooter></ng-template>
+</nz-modal>
+<nz-modal nzWidth='1024' [(nzVisible)]="peerModal.isVisible" nzTitle="新增节点与智能合约配置" (nzOnCancel)="peerModal.isVisible = false"
+  (nzOnOk)="handleOkAddPeer()" [nzOkLoading]="peerModal.isOkLoading">
+  <tms-form #baseFormPeer nz-row [nzGutter]="24">
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'select'" [formsName]="'peer_id'" [filedName]="'节点'" [dictId]="'SYS_PEER_ID'"
+      [required]="true"></tms-filed>
+    <!-- <tms-filed nz-col [nzSpan]="24" [inputType]="'select'" [formsName]="'chaincode_id'" [filedName]="'智能合约'" -->
+    <!-- [dictId]="'SYS_CHAINCODE_ID'" [required]="true"></tms-filed> -->
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'select'" [formsName]="'channel_id'" [filedName]="'通道'"
+      [dictId]="'SYS_CHANNEL_ID'" [required]="true"></tms-filed>
+
+
+  </tms-form>
+</nz-modal>
+
+
+
+<nz-modal [(nzVisible)]="isVisibleChannel" (nzOnOk)="getOk()" nzTitle="请选择通道" (nzOnCancel)="isVisibleChannel = false">
+  <nz-card>
+    <div nz-card-grid *ngFor="let i of data" (click)="checkedChennel(i)" [ngStyle]="gridStyle"><label nz-checkbox class="checkbox"
+        [(ngModel)]="i.checked"></label>{{i.name}}</div>
+    <textarea style="margin-top: 10px" *ngIf="!isInstall" nz-input [(ngModel)]="args" placeholder="请填写实例化参数，不填写则为空！"
+      [nzAutosize]="{ minRows: 2, maxRows: 6 }"></textarea>
+  </nz-card>
+</nz-modal>

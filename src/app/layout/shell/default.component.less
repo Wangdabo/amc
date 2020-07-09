@@ -1,0 +1,42 @@
+:host ::ng-deep .ant-layout-sider {
+    background: none;
+    color: black
+}
+
+:host ::ng-deep .ant-menu-dark,
+.ant-menu-dark .ant-menu-sub {
+   /* background: #fff;
+    color: black*/
+}
+
+
+// 抽屉样式
+.setting-drawer__handle {
+  position: fixed;
+  top: 240px;
+  background: #2F54EB;
+  width: 48px;
+  height: 48px;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: 999;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 4px 0 0 4px;
+  transition: right 0.3s cubic-bezier(0.9, 0, 0.3, 0.7);
+     i {
+      color: #fff;
+      font-size: 20px;
+    }
+}
+
+.setting-drawer__handle-opened {
+  right: 500px;
+  z-index: 1001;
+}
+
+

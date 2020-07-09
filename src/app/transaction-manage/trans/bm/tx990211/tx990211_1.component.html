@@ -1,0 +1,15 @@
+<div class="container">
+  <tms-form #baseForm nz-row >
+   <tms-filed nz-col [nzSpan]="24" [labelSpan]="3" [inputType]="'input'" [formsName]="'par_org_code'" [filedName]="'上级机构'" [required]="true"></tms-filed>
+   <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'org_code'" [filedName]="'机构代码'" [required]="true"></tms-filed>
+   <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'org_name'" [filedName]="'机构名称'" [required]="true"></tms-filed>
+   <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_ORG_TYPE'" [formsName]="'org_type'"[filedName]="'网点类型'" [required]="true"></tms-filed>
+   <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_FOR_TYPE'" [formsName]="'for_type'" [filedName]="'外汇网点类型'" [required]="true"></tms-filed>
+   <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'mcctl_user_cnt'" [filedName]="'重空内库柜员数'" [required]="true"></tms-filed>
+   <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'cash_user_cnt'" [filedName]="'现金内库柜员数'" [required]="true"></tms-filed>
+   <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_ORG_STATUS'" [formsName]="'org_status'" [filedName]="'机构状态'" [required]="true"></tms-filed>
+   <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_SIGN_OUT_FLAG'" [formsName]="'sign_out_flag'" [filedName]="'是否需扎帐'" [required]="true"></tms-filed>
+   <tms-filed nz-col [nzSpan]="24" [labelSpan]="3" [inputType]="'input'" [formsName]="'mark'" [filedName]="'备注'" [required]="true"></tms-filed>
+ </tms-form>
+</div>
+

@@ -1,0 +1,80 @@
+<app-titleback [titleName]="'设施检查'"></app-titleback>  
+<div class="container" style="margin-top: 24px;padding:20px;background-color: #fff;">
+<div class="header" style="text-align: center;margin-top: 48px;">
+  <nz-radio-group [(ngModel)]="radioValue" [nzButtonStyle]="'solid'">
+    <label nz-radio-button nzValue="A" (click)="select('test1')" style="font-size: 18px">营业前</label>
+    <label nz-radio-button nzValue="B" (click)="select('test2')" style="font-size: 18px">营业中</label>
+    <label nz-radio-button nzValue="C" (click)="select('test3')" style="font-size: 18px">营业后</label>
+  </nz-radio-group>
+</div>
+<div class="test1" *ngIf="flag === 'test1'" style="margin-top: 40px">
+  <nz-table #basicTable [nzData]="listOfData1" style="width: 90%;margin-left: 5%;" [nzShowPagination]="false">
+    <thead>
+      <tr>
+        <th>功能区域</th>
+        <th>项目设备</th>
+        <th>是否正常</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{ data.area }}</td>
+        <td>{{ data.checkItem }}</td>
+        <td>
+          <nz-radio-group [(ngModel)]="data.checkStatus">
+            <label nz-radio nzValue="0">是</label>
+            <label nz-radio nzValue="1">否</label>
+          </nz-radio-group>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
+<div class="test2" *ngIf="flag === 'test2'" style="margin-top: 40px">、
+  <nz-table #basicTable [nzData]="listOfData2" style="width: 90%;margin-left: 5%;" [nzShowPagination]="false">
+    <thead>
+      <tr>
+        <th>功能区域</th>
+        <th>项目设备</th>
+        <th>是否正常</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{ data.area }}</td>
+        <td>{{ data.checkItem }}</td>
+        <td>
+          <nz-radio-group [(ngModel)]="data.checkStatus">
+            <label nz-radio nzValue="0">是</label>
+            <label nz-radio nzValue="1">否</label>
+          </nz-radio-group>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
+<div class="test3" *ngIf="flag === 'test3'" style="margin-top: 40px">
+  <nz-table #basicTable [nzData]="listOfData3" style="width: 90%;margin-left: 5%;" [nzShowPagination]="false">
+    <thead>
+      <tr>
+        <th>功能区域</th>
+        <th>项目设备</th>
+        <th>是否正常</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{ data.area }}</td>
+        <td>{{ data.checkItem }}</td>
+        <td>
+          <nz-radio-group [(ngModel)]="data.checkStatus">
+            <label nz-radio nzValue="0">是</label>
+            <label nz-radio nzValue="1">否</label>
+          </nz-radio-group>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
+<button nz-button nzType="primary" (click)="commit()" style="position: relative;left: 90%;margin-top: 100px;">提交</button>
+</div>

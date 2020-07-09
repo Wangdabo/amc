@@ -1,0 +1,59 @@
+<!-- <div style="width:100%;text-align: center">
+  <h1 style="margin-top:5%">{{text}}</h1>
+</div>-->
+<div class="container">
+  <!-- <nz-card [nzBordered]="'false'">
+    <div nz-col nzSpan="12" nz-card-grid [ngStyle]="gridStyle" *ngFor="let i of topData" (click)="cardClick(i)">
+      <p><i nz-icon style="font-size: 2.5rem;" [type]="i.icon" theme="outline"></i></p>
+      <p>{{i.text}}</p>
+    </div>
+  </nz-card> -->
+
+  <div nz-row nzGutter="16" class="iconDiv">
+    <div nz-col class="gutter-row" nzSpan="12" *ngFor="let i of topData" >
+      <div class="gutter-box" (click)="cardClick(i)">
+        <div style="    position: relative;
+        top: 116px;">
+          <p>
+            <i nz-icon style="font-size: 68px;color: #314dc6;" [nzType]="i.icon" nzTheme="outline"></i>
+          </p>
+          <p style="font-size: 32px">{{i.text}}</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- <div class="table">
+    <div nz-row class="iconDiv">
+      <div nz-col nzSpan="8">
+        <i nz-icon type="team" theme="outline" class="icon"></i> 数据概览
+      </div>
+    </div>
+    <div nz-row nzType="flex" nzJustify="space-around" class="centerDiv">
+      <div nz-col nzSpan="4" *ngFor="let i of centerData">
+        <div class="sm-st clearfix">
+          <span class="sm-st-icon" [ngStyle]="i.color"><i nz-icon [type]="i.icon" theme="outline"></i></span>
+          <div class="sm-st-info">
+            <span style="display: block; font-size: 2rem; font-weight: bold;">{{i.value}}</span>
+            {{i.text}} </div>
+        </div>
+      </div>
+    </div>
+
+    <div nz-col nzSpan="24">
+      <div nz-col nzSpan="12" class="cardDiv">
+        <nz-card [nzLoading]="'false'" [nzBodyStyle]="styleDivChart" [nzBordered]="'false'">
+          <div *ngIf="temp" echarts style="height: 400px;" [options]="optionsLine" class="demo-chart"></div>
+        </nz-card>
+      </div>
+      <div nz-col nzSpan="12" class="cardDiv">
+        <nz-card [nzLoading]="'false'" [nzBodyStyle]="styleDivChart" [nzBordered]="'false'">
+          <div *ngIf="temp" echarts style="height: 400px;" [options]="optionsIT" class="demo-chart"></div>
+        </nz-card>
+      </div>
+    </div>
+
+  </div> -->
+</div>

@@ -1,0 +1,43 @@
+<div class="container">
+  <nz-card>
+    <tms-query
+      #baseQuery
+      [headerDate]="queryModel.queryHeader"
+      (getQuery)="getQueryData($event)"
+      (resetButton)="reset($event)"></tms-query>
+  </nz-card>
+  <nz-card style="margin-top: 20px;">
+    <div class="table">
+      <tms-list
+        [tableClass]="'bmtableClass'"
+        [listHeader]="queryModel.header"
+        [listData]="queryModel.data"
+        [pageSize]="queryModel.condition.pagesize"
+        [totalCount]="queryModel.totalCount"
+        [isLoading]="queryModel.isLoading"
+        (pageChangeHandler)="pageChange($event)"
+        (selectRowsHandler)="selectRowsHandler($event)"
+        [topActions]="queryModel.topActions"
+        (topActionsHandler)="topActionsHandler($event)"
+        [rowActions]="queryModel.rowActions"
+        (rowActionsHandler)="rowActionsHandler($event)">
+      </tms-list>
+    </div>
+  </nz-card>
+</div>
+<nz-modal nzWidth='{{settingService.modal.large}}' [(nzVisible)]="insertOrUpdateModel.isVisible"
+          nzTitle="{{insertOrUpdateModel.isUpdate ? '修改字典项' : '新增字典项'}}"
+          (nzOnCancel)="handleCancel()"
+          (nzOnOk)="handleOk()"
+          [nzOkLoading]="insertOrUpdateModel.isOkLoading">
+  <tms-form #baseForm  nz-row nzType="flex"  nzJustify="start"  [nzGutter]="24">
+    <tms-filed nz-col [nzSpan]="24" [labelSpan]="3" [inputType]="'input'"  [formsName]="'dict_key'" [filedName]="'字典Key'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'item_name'" [filedName]="'选项名'" [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'send_value'" [filedName]="'实际值'" [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'item_value'" [filedName]="'显示值'" [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'seqno'" [filedName]="'排序'" [required]="false"></tms-filed>
+  </tms-form>
+</nz-modal>
+
+
+

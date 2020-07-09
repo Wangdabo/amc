@@ -1,0 +1,54 @@
+<div class="container">
+    <nz-card>
+        <div class="queryHeard">
+            <input nz-input placeholder="请输入网点号" [(ngModel)]="branchValue" />
+            <button nz-button nzType="primary" (click)="getQueryData()">查询</button>
+            <button nz-button nzType="default" (click)="reset()">重置</button>
+          </div>
+    </nz-card>
+    <nz-card style="margin-top:20px;">
+      <div class="table">
+        <tms-list
+          [tableClass]="'bmtableClass'"
+          [listHeader]="listHeader"
+          [listData]= "listData"
+          [pageSize]="pageSize"
+          [totalCount]="totalCount"
+          (pageChangeHandler)="pageChange($event)"
+          [pageIndex]="indexPage"
+          [isrowActionsFlag]="true"
+          [topActions]="topActions"
+          (topActionsHandler)="topActionsHandler($event)"
+          (selectRowsHandler)="selectRowsHandler($event)"
+          [rowActions]="rowActions"
+          (rowActionsHandler)="rowActionsHandler($event)"
+          [isclickPointer]="false"
+          [isEdit]="true">
+        </tms-list>
+      </div>
+    </nz-card>
+  </div>
+  <!-- [listData]="transactionActionData['query'].response.resultdata.bdy.data"
+  [pageSize]="transactionActionData['query'].response.resultdata.bdy.pageSize"
+  [totalCount]="transactionActionData['query'].response.resultdata.bdy.count" -->
+  <nz-modal nzWidth="900"  [(nzVisible)]="isVisible"
+          nzTitle="{{!isUpdate?'重空阀值设置新增':'重空阀值设置修改'}}"
+          (nzOnCancel)="handleCancel()"
+          (nzOnOk)="handleOk()">
+      <tms-form #baseForm  nz-row nzType="flex"  nzJustify="start"  [nzGutter]="24">
+          <tms-filed nz-col [nzSpan]="12" [labelSpan]="6" [controlSpan]="18" [inputType]="'select'" 
+          [optionArray]="cardType"
+          [formsName]="'ibc_type'" [filedName]="'重空类型'" [required]="true"></tms-filed>
+          <tms-filed nz-col [nzSpan]="12"  [labelSpan]="6" [controlSpan]="18" [inputType]="'select'" [dictId]="'SYS_PAR_ORG_CODE'"
+           [formsName]="'org_code'"  
+           [filedName]="'网点'" [required]="true"></tms-filed>
+          <!-- <tms-filed nz-col [nzSpan]="12" [labelSpan]="6" [controlSpan]="18" [inputType]="'input'"
+            [formsName]="'org_code'" [filedName]="'网点号'" [required]="true"></tms-filed>
+            <tms-filed nz-col [nzSpan]="12" [labelSpan]="6" [controlSpan]="18" [inputType]="'input'"
+             [formsName]="'org_name'" [filedName]="'网点名称'" [required]="true"></tms-filed> -->
+            <tms-filed nz-col [nzSpan]="12" [labelSpan]="6" [controlSpan]="18" [inputType]="'input'"
+             [formsName]="'money_box_no'" [filedName]="'钱箱号'" [required]="true"></tms-filed>
+             <tms-filed nz-col [nzSpan]="12" [labelSpan]="6" [controlSpan]="18" [inputType]="'input'"
+              [formsName]="'threshold_num'" [filedName]="'预警数'" [required]="true"></tms-filed>
+      </tms-form>
+</nz-modal>

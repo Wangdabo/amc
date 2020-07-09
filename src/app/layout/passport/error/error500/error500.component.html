@@ -1,0 +1,11 @@
+<div nz-row class="errorBox">
+  <div nz-col nzSpan="24" class="boxcenter">
+    <!--<img src="'./assets/image/500.svg'">-->
+    <img [src]="img+'assets/image/500.svg'">
+    <div class="errorInfo">
+      <h1 class="errortitle">500</h1>
+      <div class="errordesc">抱歉，服务器出错了</div>
+      <div><button (click)="gorouter()" nz-button nzType="primary">返回首页</button></div>
+    </div>
+  </div>
+</div>

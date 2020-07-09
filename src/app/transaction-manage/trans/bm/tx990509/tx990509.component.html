@@ -1,0 +1,93 @@
+<div class="card-container redtimeRank">
+  <div class="tabs">
+    <div nz-row nzType="flex" nzJustify="space-around">
+      <div nz-col nzSpan="6" *ngFor="let tab of tabs" (click)="clickTab(tab)">
+        <img [src]="tab.src">
+        <span>{{tab.title}}</span>
+      </div>
+    </div>
+    <div class="container">
+      <div nz-row class="topDiv" nzGutter="16">
+        <div nz-col [nzSpan]="6" *ngIf="SelectedIndex === 1">
+          <nz-input-number  style="width: 100%;" [(ngModel)]="selectedValue.rank" (ngModelChange)="radioChange()" [nzMin]="1" [nzMax]="50" [nzStep]="1"></nz-input-number>
+        </div>
+        <div nz-col [nzSpan]="SelectedIndex === 1 ?'6':'8'">
+          <input nz-input style="width: 100%;" placeholder="交易码" [(ngModel)]="selectedValue.txcode" (ngModelChange)="radioChange()">
+        </div>
+        <div nz-col [nzSpan]="SelectedIndex === 1?'6':'8'">
+          <nz-select style="width: 100%;" nzShowSearch nzAllowClear nzPlaceHolder="渠道"
+                     [(ngModel)]="selectedValue.channel" (ngModelChange)="radioChange('0')">
+            <nz-option *ngFor="let i of channel" [nzLabel]="i.channel_name" [nzValue]="i.channel_code"></nz-option>
+          </nz-select>
+        </div>
+        <div nz-col [nzSpan]=" SelectedIndex === 1?'6':'8'">
+          <nz-range-picker [nzFormat]="'yyyy-MM-dd'" [(ngModel)]="someTime" (ngModelChange)="radioChange()">
+          </nz-range-picker>
+        </div>
+      </div>
+      <div  style="text-align: center;margin:16px 0;">
+        <nz-radio-group [(ngModel)]="selectedValue.type" [nzButtonStyle]="'solid'"
+                        (ngModelChange)="radioChange()">
+          <label *ngFor="let i of typeTime" nz-radio-button [nzValue]="i.value">{{i.label}}</label>
+        </nz-radio-group>
+      </div>
+      <div nz-row class="chartDiv" *ngIf="SelectedIndex === 0">
+        <!-- <h1>成功／失败交易活跃度监控</h1> -->
+        <div nz-col nzSpan="24">
+          <div echarts style="height: 800px;" [loading]="isLoading" [(options)]="optionsBank" class="demo-chart"></div>
+        </div>
+      </div>
+      <div nz-row class="chartDiv" *ngIf="SelectedIndex === 1">
+        <!-- <h1>前50活跃交易监控</h1> -->
+        <div nz-col nzSpan="16">
+          <div echarts style="height: 800px;" [loading]="isLoading" [(options)]="optionsTransaction"  (chartInit)="onMapInit($event)" class="demo-chart">
+          </div>
+        </div>
+        <div nz-col nzSpan="8">
+          <tms-list [tableClass]="'gradientHeader'" [listHeader]="queryModel.header" [listData]="queryModel.data"
+                    [pageSize]="queryModel.condition.pagesize" [totalCount]="queryModel.totalCount"
+                    [isLoading]="queryModel.isLoading" (pageChangeHandler)="pageChange($event)"
+                    (selectRowsHandler)="selectRowsHandler($event)" [topActions]="queryModel.topActions"
+                    (topActionsHandler)="topActionsHandler($event)" [rowActions]="queryModel.rowActions"
+                    (rowActionsHandler)="rowActionsHandler($event)" (rowActiveHandler)="rowActiveHandler($event)"
+                    [isShowCheckbox]="false" [showAlert]="false" [isrowEdit]="false" [isrowActionsFlag]="false"
+          >
+          </tms-list>
+
+        </div>
+
+      </div>
+      <div nz-row class="chartDiv" *ngIf="SelectedIndex === 2">
+        <!-- <h1>渠道交易频率&久眠交易监控</h1> -->
+        <div nz-col nzSpan="24" style="margin-bottom: 2rem">
+          <nz-select [nzMaxMultipleCount]="3" nzSize="large" style="width: 100%" nzMode="multiple"
+                     nzPlaceHolder="请选择监控渠道" [(ngModel)]="listOfSelectedValue">
+            <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value">
+            </nz-option>
+          </nz-select>
+        </div>
+        <!-- <h1>柜面交易频率漏洞</h1> -->
+
+        <div nz-col nzSpan="12">
+          <div echarts style="height: 800px;" [(options)]="optionFunnel" class="demo-chart" (chartClick)="chartClick($event)" ></div>
+
+        </div>
+        <div nz-col nzSpan="12" style="height: 800px;overflow: auto">
+          <div >
+            <tms-list
+              [tableClass]="'gradientHeader'"
+              [listHeader]="queryTransaction.header" [listData]="transChild"
+                      [pageSize]="queryTransaction.condition.pagesize" [totalCount]="queryTransaction.totalCount"
+                      [isLoading]="queryTransaction.isLoading" (pageChangeHandler)="pageChange($event)"
+                      (selectRowsHandler)="selectRowsHandler($event)" [topActions]="queryTransaction.topActions"
+                      (topActionsHandler)="topActionsHandler($event)" [rowActions]="queryTransaction.rowActions"
+                      (rowActionsHandler)="rowActionsHandler($event)" (rowActiveHandler)="rowActiveHandler($event)"
+                      [isShowCheckbox]="false" [showAlert]="false" [isrowEdit]="false" [isrowActionsFlag]="false"
+            >
+            </tms-list>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

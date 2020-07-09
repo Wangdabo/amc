@@ -1,0 +1,31 @@
+<div class="container">
+  <div nz-row>
+    <tms-query #baseQuery [headerDate]="queryModel.queryHeader" (getQuery)="getQueryData($event)" (resetButton)="reset($event)"></tms-query>
+  </div>
+  <div class="table">
+    <tms-list [listHeader]="queryModel.header" [listData]="queryModel.data" [pageSize]="queryModel.condition.pagesize"
+      [totalCount]="queryModel.totalCount" [isLoading]="queryModel.isLoading" (pageChangeHandler)="pageChange($event)"
+      (selectRowsHandler)="selectRowsHandler($event)" [topActions]="queryModel.topActions" (topActionsHandler)="topActionsHandler($event)"
+      [rowActions]="queryModel.rowActions" (rowActionsHandler)="rowActionsHandler($event)">
+    </tms-list>
+  </div>
+</div>
+<nz-modal nzWidth='{{settingService.modal.mid}}' [(nzVisible)]="insertOrUpdateModel.isVisible" nzTitle="{{insertOrUpdateModel.isUpdate ? '新增节点' : '修改节点'}}"
+  (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" [nzOkLoading]="insertOrUpdateModel.isOkLoading">
+  <tms-form #baseFormPeer nz-row [nzGutter]="24">
+
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'mspid'" [filedName]="'mspid'"
+      [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'domain'" [filedName]="'domain'"
+      [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'location'" [filedName]="'location'"
+      [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'event_hub'" [filedName]="'event_hub'"
+      [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'properties'" [filedName]="'properties'"
+      [required]="true"></tms-filed>
+
+
+
+  </tms-form>
+</nz-modal>

@@ -1,0 +1,65 @@
+<div class="container">
+  <nz-card>
+    <tms-query #baseQuery [headerDate]="queryModel.queryHeader" (getQuery)="getQueryData($event)" (resetButton)="reset($event)"></tms-query>
+  </nz-card>
+
+  <nz-card style="margin-top:20px;">
+    <div class="table">
+      <tms-list
+        [tableClass]="'bmtableClass'"
+        [listHeader]="queryModel.header" [listData]="queryModel.data" [pageSize]="queryModel.condition.pagesize"
+                [totalCount]="queryModel.totalCount" [isLoading]="queryModel.isLoading" (pageChangeHandler)="pageChange($event)"
+                (selectRowsHandler)="selectRowsHandler($event)" [topActions]="queryModel.topActions" (topActionsHandler)="topActionsHandler($event)"
+                [rowActions]="queryModel.rowActions" (rowActionsHandler)="rowActionsHandler($event)" [isEdit]="true" [isrowActionsFlag]="true">
+      </tms-list>
+    </div>
+  </nz-card>
+</div>
+<nz-modal nzWidth='{{settingService.modal.mid}}' [(nzVisible)]="insertOrUpdateModel.isVisible" nzTitle="{{insertOrUpdateModel.isUpdate ? '新增标签' : '修改标签'}}"
+  (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" [nzOkLoading]="insertOrUpdateModel.isOkLoading">
+  <tms-form #baseForm nz-row [nzGutter]="24">
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'tag_code'" [filedName]="'标签代码'"
+      [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'tag_value'" [filedName]="'标签值'"
+      [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'tag_name'" [filedName]="'标签名称'"
+      [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'order'" [filedName]="'排序'" [required]="true"></tms-filed>
+
+  </tms-form>
+</nz-modal>
+<nz-modal nzWidth='1024' [(nzVisible)]="upd.isVisible" [nzFooter]="modalFooter" nzTitle="编辑标签树" (nzOnCancel)="upd.isVisible = false"
+  [nzOkLoading]="upd.isOkLoading">
+  <div nz-row>
+    <nz-spin class="example" [nzSpinning]="isSpinning"></nz-spin>
+    <div nz-col [nzSpan]="8">
+      <tms-tree #tree [treeFlatData]="treeData" [ShowLine]="'false'" [istreeCard]="istreeCard" (clickEventHandler)="clickEventHandler($event)"
+        (treeEventHandler)="treeEvent($event)"></tms-tree>
+    </div>
+    <div nz-col [nzSpan]="16" [hidden]="!isShow">
+      <tms-form #baseFormAdd nz-row [nzGutter]="24">
+        <tms-filed [hidden]="isAdd" nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'id'" [filedName]="'标签ID'"
+          [required]="true"></tms-filed>
+        <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'tag_name'" [filedName]="'标签名称'"
+          [required]="true"></tms-filed>
+        <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'tag_code'" [filedName]="'标签代码'"
+          [required]="true"></tms-filed>
+        <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'tag_value'" [filedName]="'标签值'"
+          [required]="true"></tms-filed>
+        <tms-filed [hidden]="!isAdd" nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'par_tag_id'"
+          [filedName]="'父级标签ID'" [required]="true"></tms-filed>
+        <tms-filed [hidden]="!isAdd" nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'par_tag_name'"
+          [filedName]="'父级标签名称'" [required]="true"></tms-filed>
+      </tms-form>
+
+      <button nz-button (click)="buttonClick('add')" [hidden]="isAdd" nzType="primary" style="position: relative;
+        left: 5rem;">添加子节点</button>
+      <button nz-button nzType="primary" style="position: relative;
+        left: 19rem;" (click)="buttonClick('save')">保存</button>
+      <button nz-button nzType="danger" style="position: relative;
+        left: 19.5rem;" (click)="buttonClick('del')">{{isAdd
+        ? '取消' : '删除'}}</button>
+    </div>
+  </div>
+  <ng-template #modalFooter></ng-template>
+</nz-modal>

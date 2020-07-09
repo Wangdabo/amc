@@ -1,0 +1,102 @@
+<div>
+  <div class="divbody">
+    <div nz-row nzGutter="16" class="divBlock">
+      <div nz-col class="gutter-row" nzSpan="12">
+        <div class="grid-config">
+          <nz-card style="height: 600px; overflow-y: auto" nzTitle="工作站详情信息" [nzBordered]="false">
+              <div class="workInfo">
+                  <p>工作站代码: {{workDetails['workstationCode']}}</p>
+                  <p>序号: {{workDetails['versionNo']}}</p>
+                  <p>工作站名称: {{workDetails['workstationName']}}</p>
+                  <p>组织机构代码: {{workDetails['orgCode']}}</p>
+                  <p>渠道代码: {{workDetails['channelCode']}}</p>
+                  <p>工作站类别: {{workDetails['workstationKind']  == '0' && '柜员工作站' || workDetails['workstationKind']  == '1' && '移动柜员工作站' ||  workDetails['workstationKind']  == '2' && '超级柜台'}}</p>
+                  <p>主从站标志: {{workDetails['masterFlag']}}</p>
+                  <p>工作站IP: {{workDetails['workstationIp']}}</p>
+                  <p>地址端口: {{workDetails['msgpushPort']}}</p>
+                  <p>工作站状态: {{workDetails['workstationStatus'] == '0' && '正常 ' || workDetails['workstationStatus'] == '1' && '停用'}}</p>
+                  <p>工作站开关: {{workDetails['workstationSwitch']  == '0' && '开' || workDetails['workstationSwitch'] == '1' && '关'}}</p>
+                  <p>设置时间: {{workDetails['setDate']}}	</p>
+                  <p >启营时间: {{workDetails['shutoutDate']}}	</p>
+                  <p>套装代码: {{workDetails['suitCode']}}	</p>
+                  <p>最后登录时间: {{workDetails['lastDate']}}	</p>
+              </div>
+          </nz-card>
+        </div>
+      </div>
+      <div nz-col class="gutter-row" nzSpan="12">
+        <div class="grid-config">
+          <nz-card style="height: 600px; overflow-y: auto" nzTitle="工作站外设信息" [nzBordered]="false">
+            <!-- 有外设链接-->
+           <ng-container *ngIf="!realStauts">
+             <div nz-row class="firstDivTop">
+               <div nz-col nzSpan="6">
+                 <p>最大内存</p>
+                 <p><span class="h1Span">{{real['maxMemory']}}</span><span
+                   style="padding-top: 5%;margin: 0">%</span></p>
+               </div>
+               <div nz-col nzSpan="6">
+                 <p>空余内存</p>
+                 <p><span class="h1Span">{{real['freeMemory'] }}</span>%</p>
+               </div>
+               <div nz-col nzSpan="6">
+                 <p>总内存</p>
+                 <p><span class="h1Span">{{real['totalMemory'] }}</span><span
+                   style="padding-top: 5%;;margin: 0">%</span></p>
+               </div>
+               <div nz-col nzSpan="6">
+                 <p>日期</p>
+                 <p><span class="h1Span">{{real['time'] |  date: 'yyyy-MM-dd HH:mm:ss' }}</span><span
+                   style="padding-top: 5%;;margin: 0"></span></p>
+               </div>
+             </div>
+             <div style="margin-top:20px;" nz-col class="gutter-row" nzSpan="16" nzOffset="8">
+               <nz-timeline>
+                 <nz-timeline-item *ngFor="let i of peripheral">{{i.name}} <span *ngIf="i.status === '成功'" style="color:greenyellow">{{i.status}}</span> <span *ngIf="i.status !== '成功'" style="color:red">{{i.status}}</span></nz-timeline-item>
+               </nz-timeline>
+             </div>
+           </ng-container>
+            <!-- 无外设链接-->
+            <ng-container *ngIf="realStauts">
+              <div style="font-size: 36px; text-align: center; margin-top: 25%; font-weight: 900">
+                  暂无外设连接
+              </div>
+            </ng-container>
+          </nz-card>
+        </div>
+      </div>
+    </div>
+    <div nz-row  nzGutter="16" class="divBlock">
+      <div nz-col class="gutter-row" nzSpan="12">
+        <div class="grid-config">
+          <nz-card style="height: 800px;  overflow-y: auto" nzTitle="交易详情" [nzBordered]="false">
+            <app-tx990522 #tx990522   (submitEvent)="submitTx990522EventHandler($event)" [transactionContextChangeOb]="transactionContextChangeOb"></app-tx990522>
+          </nz-card>
+        </div>
+      </div>
+      <div nz-col class="gutter-row" nzSpan="12">
+        <div class="grid-config">
+          <nz-card style="height: 800px;"  nzTitle="工作站状态日志" [nzBordered]="false">
+            <div style="margin-top: 10px;">
+                <div   style="width: 100%; height: 700px; overflow-y: auto;border: 1px solid #ccc; background: #000; padding-top: 20px;">
+                  <!--  数组倒叙方法  reverse --- 用于颠倒数组中元素的顺序，因为春海给我的就是有序的不过是正序，我们要用这个方法颠倒过来 -->
+                  <div nz-col nzSpan="24" *ngFor="let i of runninglog"  style="color: #fff; text-indent:30px; font-size: 18px; margin: 5px 0px">
+                    <ng-container *ngIf="i.type ==='REGISTERED'">
+                      <span nz-col nzSpan="6">状态:<i nz-icon type="share-alt" theme="outline" style="font-size: 16px; color:greenyellow"></i>连接</span><span nz-col nzSpan="9" >时间:{{i.timestamp | date: 'yyyy-MM-dd HH:mm:ss'}}</span>
+                    </ng-container>
+                    <ng-container  *ngIf="i.type ==='STATUS_CHANGED'">
+                      <span nz-col nzSpan="6" >状态:<i *ngIf="i['statusInfo'].status === 'OnLINE'" nz-icon type="bulb" theme="outline" style="font-size: 16px; color:greenyellow"></i><i *ngIf="i['statusInfo'].status === 'OFFLINE'" nz-icon type="disconnect" theme="outline" style="font-size: 16px; color:red"></i>{{i['statusInfo'].status === 'OFFLINE' && '离线' || i['statusInfo'].status === 'OnLINE' && '在线'}}</span><span nz-col nzSpan="9" >时间:{{i.timestamp | date: 'yyyy-MM-dd HH:mm:ss'}}</span>
+                    </ng-container>
+                    <ng-container  *ngIf="i.type ==='REGISTRATION_UPDATED'">
+                      <span nz-col nzSpan="6" >状态:<i nz-icon type="branches" theme="outline" style="font-size: 16px; color:greenyellow"></i>在线</span><span nz-col nzSpan="9" >时间:{{i.timestamp |  date: 'yyyy-MM-dd HH:mm:ss'}}</span>
+                    </ng-container>
+
+                  </div>
+                </div>
+            </div>
+          </nz-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

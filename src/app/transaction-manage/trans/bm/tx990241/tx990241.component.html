@@ -1,0 +1,197 @@
+<nz-card>
+  <div *ngIf="isShow">
+    <button class='button' nz-button nzType="primary" (click)="clickIcon(false)"><i nz-icon type="plus"
+                                                                                    theme="outline"></i>新增定时器</button>
+    <button class='button' nz-button nzType="default" (click)="getList()"><i nz-icon type="sync" theme="outline"></i>刷新任务</button>
+  </div>
+</nz-card>
+
+
+<nz-card [nzBordered]="false">
+  <div class="gutter-example">
+    <div nz-row nzGutter="16" *ngFor="let x of data">
+      <div nz-col class="gutter-row" *ngFor="let i of x" nzSpan="6" style="margin-bottom: 16px;">
+        <div class="gutter-box">
+          <nz-card [nzHoverable]="true" [nzBordered]="true"
+            [nzActions]="i.trigger_state === 'WAITING' || i.trigger_state === 'ACQUIRED'||i.trigger_state === 'PAUSED'?[actionSetting,actionClick]:[actionSetting]">
+            <i nz-icon type="close" class="divHover divIcon" (click)="del(i)"></i>
+            <nz-skeleton [nzActive]="true" [nzLoading]="loading" [nzAvatar]="{ size: 'large' }">
+              <nz-card-meta [nzAvatar]="avatarTemplate" [nzTitle]="titleTemplate" [nzDescription]="i.description">
+              </nz-card-meta>
+            </nz-skeleton>
+            <div class="hiddenDiv" *ngIf="i.showDetail">
+              <div *ngIf="i.detail.trigger_type === 'CRON'">
+                <div nz-row>
+                  <div nz-col nzSpan="8" class="textLabel">任务模式：</div>
+                  <div nz-col nzSpan="16" class="textValue">固定周期触发</div>
+                </div>
+                <div nz-row>
+                  <div nz-col nzSpan="8" class="textLabel">类名：</div>
+                  <div nz-col nzSpan="16" class="textValue">{{i.detail.job_class_name}}</div>
+                </div>
+                <div nz-row>
+                  <div nz-col nzSpan="8" class="textLabel">周期：</div>
+                  <div nz-col nzSpan="16" class="textValue">{{i.detail.label}}</div>
+                </div>
+              </div>
+              <div *ngIf="i.detail.trigger_type === 'SIMPLE'">
+                <div nz-row>
+                  <div nz-col nzSpan="8" class="textLabel">任务模式：</div>
+                  <div nz-col nzSpan="16" class="textValue">固定模式触发</div>
+                </div>
+                <div nz-row>
+                  <div nz-col nzSpan="8" class="textLabel">类名：</div>
+                  <div nz-col nzSpan="16" class="textValue">{{i.detail.job_class_name}}</div>
+                </div>
+                <div nz-row>
+                  <div nz-col nzSpan="8" class="textLabel">间隔时间：</div>
+                  <div nz-col nzSpan="16" class="textValue">{{i.detail.repeat_interval/1000}}秒</div>
+                </div>
+                <div nz-row>
+                  <div nz-col nzSpan="8" class="textLabel">刷新次数：</div>
+                  <div nz-col nzSpan="16" class="textValue">{{i.detail.repeat_count}}次</div>
+                </div>
+              </div>
+            </div>
+
+          </nz-card>
+
+          <ng-template #titleTemplate>
+            <span (click)="getDetail(i)">{{i.job_name+' [ '+i.status.label+' ]'}}</span>
+          </ng-template>
+          <ng-template #actionClick>
+            <span
+              (click)="changeStatus(i)">{{i.trigger_state === 'WAITING' || i.trigger_state === 'ACQUIRED'?'暂停':'恢复'}}</span>
+          </ng-template>
+          <ng-template #actionSetting>
+            <span (click)="getTrigger(i)">执行一次</span>
+          </ng-template>
+          <ng-template #avatarTemplate>
+            <nz-avatar class="divHover" [nzSrc]="i.status.src">
+            </nz-avatar>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</nz-card>
+<nz-modal nzWidth="1300" [(nzVisible)]="isVisible" [nzTitle]="isEdit?'修改定时器':'新增定时器'" (nzOnCancel)="isVisible = false"
+  (nzOnOk)="handleOk()">
+  <tms-form (formDataHandler)="changesValue($event)" #baseForm nz-row nzType="flex" nzJustify="start"
+    [nzGutter]="24">
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'jobname'" [filedName]="'任务名称'"
+      [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'jobclassname'" [filedName]="'类名'"
+      [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'datetime'" [formsName]="'startat'" [filedName]="'开始时间'"
+      [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'datetime'" [formsName]="'endat'" [filedName]="'结束时间'"
+      [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'TRIGGER_TYPE'" [formsName]="'triggertype'"
+      [filedName]="'任务类型'" [required]="true"></tms-filed>
+    <!-- <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'part_desc'" [filedName]="'方法名'"
+      [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'part_desc'" [filedName]="'参数个数'"
+      [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'part_desc'" [filedName]="'输入参数'"
+      [required]="true"></tms-filed> -->
+    <!-- <tms-filed nz-col [nzSpan]="12" [inputType]="'date'" [formsName]="'part_desc'" [filedName]="'开始时间'"
+      [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'date'" [formsName]="'part_desc'" [filedName]="'结束时间'"
+      [required]="true"></tms-filed> -->
+
+    <!-- <tms-filed nz-col [nzSpan]="12 " [inputType]="'select'" [formsName]="'trigger'" [dictId]="'USER_TRIGGER'"
+      [filedName]="'触发模式'" [required]="true"></tms-filed> -->
+    <tms-filed nz-col [nzSpan]="12 " [inputType]="'textarea'" [formsName]="'desc'" [filedName]="'描述'"
+      [required]="true"></tms-filed>
+
+    <nz-divider nzText="循环模式" nzDashed nzOrientation="left"></nz-divider>
+    <tms-filed nz-col [nzSpan]="12 " [inputType]="'input'" [hidden]="isFixed==='CRON'"
+      [formsName]="'repeatinterval'" [filedName]="'间隔时间'" [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12 " [inputType]="'input'" [hidden]="isFixed==='CRON'"
+      [formsName]="'repeatcount'" [filedName]="'执行次数'" [required]="true"></tms-filed>
+  </tms-form>
+  <div *ngIf="isFixed==='CRON'">
+    <nz-tabset [nzTabPosition]="'left'" [nzType]="'line'" (nzSelectedIndexChange)="tabChange($event)"
+      [(nzSelectedIndex)]="nzSelectedIndex">
+      <nz-tab *ngFor="let i of tabs" [nzTitle]="i.name">
+        <nz-input-group nzAddOnBefore="触发时间">
+          <nz-time-picker [(ngModel)]="i.time" [nzDefaultOpenValue]="defaultOpenValue"></nz-time-picker>
+        </nz-input-group>
+        <div [ngSwitch]="i.index">
+          <div *ngSwitchCase="'week'" class="divTime">
+            <nz-checkbox-group [(ngModel)]="checkOptionsOne" (ngModelChange)="checkslog(checkOptionsOne,i)">
+            </nz-checkbox-group>
+          </div>
+          <div *ngSwitchCase="'month'" class="divTime">
+            <nz-radio-group [(ngModel)]="radioValue" (ngModelChange)="changeRadio($event,i)">
+              <div class="divDis">
+                <label nz-radio nzValue='A' [ngStyle]="style"></label>
+                <nz-select nzShowSearch nzAllowClear nzPlaceHolder="请选择日期"
+                  [nzDisabled]="radioValue==='A'?'false':'true'" [(ngModel)]="i.A.dayofMonth">
+                  <nz-option *ngFor="let j of  days" [nzLabel]="j+'日'" [nzValue]="j"></nz-option>
+                </nz-select>
+              </div>
+              <div class="divDis">
+                <label nz-radio nzValue='B' [ngStyle]="style"></label>
+                <nz-select nzShowSearch nzAllowClear nzPlaceHolder="请选择周" [nzDisabled]="radioValue==='B'?'false':'true'"
+                  [(ngModel)]="i.dayofWeek">
+                  <nz-option *ngFor="let j of weekNum" [nzLabel]="'第'+j+'周'" [nzValue]="j"></nz-option>
+                </nz-select>
+                <nz-select nzShowSearch nzAllowClear nzPlaceHolder="请选择星期"
+                  [nzDisabled]="radioValue==='B'?'false':'true'" [(ngModel)]="i.B.dayofMonth">
+                  <nz-option *ngFor="let j of  checkOptionsOne" [nzLabel]="j.label" [nzValue]="j.value"></nz-option>
+                </nz-select>
+              </div>
+
+            </nz-radio-group>
+
+          </div>
+          <div *ngSwitchCase="'year'" class="divTime">
+            <nz-radio-group [(ngModel)]="radioValue" (ngModelChange)="changeRadio($event,i)">
+              <div class="divDis">
+                <label nz-radio nzValue='A' [ngStyle]="style"></label>
+                <nz-select nzShowSearch nzAllowClear nzPlaceHolder="请选择月份"
+                  [nzDisabled]="radioValue==='A'?'false':'true'" [(ngModel)]="i.A.month">
+                  <nz-option *ngFor="let j of  months" [nzLabel]="j+'月'" [nzValue]="j"></nz-option>
+                </nz-select>
+                <nz-select nzShowSearch nzAllowClear nzPlaceHolder="请选择日期"
+                  [nzDisabled]="radioValue==='A'?'false':'true'" [(ngModel)]="i.A.dayofMonth">
+                  <nz-option *ngFor="let j of  days" [nzLabel]="j+'日'" [nzValue]="j"></nz-option>
+                </nz-select>
+              </div>
+              <div class="divDis">
+                <label nz-radio nzValue='B' [ngStyle]="style"></label>
+                <nz-select nzShowSearch nzAllowClear nzPlaceHolder="请选择月份"
+                  [nzDisabled]="radioValue==='B'?'false':'true'" [(ngModel)]="i.B.month">
+                  <nz-option *ngFor="let j of  months" [nzLabel]="j+'月'" [nzValue]="j"></nz-option>
+                </nz-select>
+                <nz-select nzShowSearch nzAllowClear nzPlaceHolder="请选择周" [nzDisabled]="radioValue==='B'?'false':'true'"
+                  [(ngModel)]="i.dayofWeek">
+                  <nz-option *ngFor="let j of weekNum" [nzLabel]="'第'+j+'周'" [nzValue]="j"></nz-option>
+                </nz-select>
+                <nz-select nzShowSearch nzAllowClear nzPlaceHolder="请选择星期"
+                  [nzDisabled]="radioValue==='B'?'false':'true'" [(ngModel)]="i.B.dayofMonth">
+                  <nz-option *ngFor="let j of  checkOptionsOne" [nzLabel]="j.label" [nzValue]="j.value"></nz-option>
+                </nz-select>
+              </div>
+
+            </nz-radio-group>
+          </div>
+          <div *ngSwitchDefault class="divTime"></div>
+        </div>
+      </nz-tab>
+    </nz-tabset>
+  </div>
+</nz-modal>
+
+
+<nz-card>
+  <div nz-row style='text-align: center;' *ngIf="!isShow">
+    <!-- <nz-empty></nz-empty> -->
+    <img [src]="img+'assets/image/empty.png'" alt="">
+    <p style='color: #b1aeae;'>暂无定时器</p>
+    <button nz-button nzType="primary" style='margin: 16px 0 32px 0;' (click)="clickIcon(false)">立即新增</button>
+  </div>
+</nz-card>

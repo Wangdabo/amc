@@ -1,0 +1,30 @@
+.pds{
+    width: 60%;
+    margin: 27px auto;
+    text-align: center;
+    font-size: 22px;  
+}
+.divRow{
+    margin-bottom: 16px;
+}
+.steps-content {
+    margin-top: 16px;
+    border: 1px dashed #e9e9e9;
+    border-radius: 6px;
+    background-color: #fafafa;
+    min-height: 200px;
+    padding: 24px;
+  }
+
+  .steps-action {
+    margin-top: 24px;
+  }
+
+  button {
+    margin-right: 8px;
+  }
+
+  .filed ::ng-deep .ant-form-item-children-icon{
+      margin-top: -15px;
+  }
+ 

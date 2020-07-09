@@ -1,0 +1,77 @@
+/* .container {
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+  } */
+
+  .action {
+    height: 40px;
+  }
+h2{
+    font-weight: bold
+}
+.divContent{
+    padding: 20px;
+}
+.ng-binding{
+     float:left;
+    width:50%;
+    height: 383px;
+     line-height: 383px;
+     text-align: center;
+     font-size: 15px;
+}
+.imgMan{
+  background: url('../../../../../assets/newimage/bigData/img_boy.png') no-repeat center;
+
+}
+.imgWomen{
+   background: url('../../../../../assets/newimage/bigData/img_girl.png') no-repeat center;
+  color: #fff;
+}
+.divBody{
+  box-shadow: 0 1px 1px rgba(0,0,0,.05);
+  border: none !important;
+}
+.spanFont{
+  text-align:right;color: #1890ff;line-height: 2rem;cursor: pointer;
+}
+.iconDiv{
+  font-size: 16px;padding: 10px;background: #f0f2f5
+}
+.icon{
+  font-size: 2rem;vertical-align: middle;
+}
+
+
+
+/* 新样式 */
+.redtimeRank {
+  background: url("../../../../../assets/newimage/home/content_bg_shishijiaoyi.png");
+  background-size:100% 100%;
+  padding: 5%
+}
+
+.cardTitle {
+  margin: 15px 15px;
+  position: relative;
+}
+
+.cardTitle h2 {
+  color:#fff;
+  margin-bottom: 0px;
+  font-weight: 900;
+}
+
+.cardTitle h2 span:nth-child(2) {
+  color:#5dc2c7;
+  position: relative;
+  right: -75%;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.title {
+  color: #fff
+}

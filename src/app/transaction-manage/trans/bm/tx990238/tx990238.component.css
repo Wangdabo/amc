@@ -1,0 +1,79 @@
+.divTop {
+  padding: 16px 16px 0 16px;
+}
+
+.labelDiv {
+  margin: 10px;
+}
+
+.labelText {
+  text-align: right;
+  padding-right: 5px;
+  font-weight: bold;
+}
+
+.divMargin {
+  margin: 32px 0 !important;
+}
+
+nz-select {
+  width: 100%;
+}
+
+.divBody {
+  margin: 1.5rem 0;
+}
+
+.divCollapse {
+  margin-bottom: 2rem;
+}
+
+.divButton {
+  margin-left: 16px;
+}
+
+.divBody>div {
+  padding: 0 16px;
+}
+
+.divBodyfirstL {
+  padding-right: 16px;
+
+}
+
+
+.divBodyfirstR>i {
+  cursor: pointer;
+}
+
+.divBodyfirstR {
+  padding-left: 16px;
+
+}
+
+.aspan {
+  cursor: pointer;
+  color: slategray
+}
+
+.aspan :hover {
+  color: #1890ff !important;
+}
+
+.aspanHover {
+  cursor: pointer;
+  color: #0fbb49 !important;
+}
+
+
+
+
+.divIcon {
+  color: #1890ff;
+  cursor: pointer;
+}
+
+.divIcon:hover {
+  color: red;
+
+}

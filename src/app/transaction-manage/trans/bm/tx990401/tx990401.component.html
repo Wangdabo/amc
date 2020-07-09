@@ -1,0 +1,36 @@
+<div class="container">
+ <nz-card>
+   <tms-query #baseQuery [headerDate]="queryModel.queryHeader" (getQuery)="getQueryData($event)" (resetButton)="reset($event)"></tms-query>
+ </nz-card>
+ <nz-card style="margin-top:20px;">
+   <div class="table">
+     <tms-list
+       [tableClass]="'bmtableClass'"
+       [listHeader]="queryModel.header" [listData]="queryModel.data" [pageSize]="queryModel.condition.pagesize"
+               [totalCount]="queryModel.totalCount" [isLoading]="queryModel.isLoading" (pageChangeHandler)="pageChange($event)"
+               (selectRowsHandler)="selectRowsHandler($event)" [topActions]="queryModel.topActions" (topActionsHandler)="topActionsHandler($event)"
+               [rowActions]="queryModel.rowActions" (rowActionsHandler)="rowActionsHandler($event)" (rowActiveHandler)="rowActiveHandler($event)"
+               [isEdit]="true" [isrowActionsFlag]="true">
+     </tms-list>
+   </div>
+ </nz-card>
+</div>
+
+<nz-modal nzWidth='{{settingService.modal.mid}}' [(nzVisible)]="insertOrUpdateModel.isVisible" nzTitle="{{insertOrUpdateModel.isUpdate ? '新增应用' : '修改应用'}}"
+  (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" [nzOkLoading]="insertOrUpdateModel.isOkLoading">
+  <tms-form #baseForm nz-row [nzGutter]="24">
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'code'" [filedName]="'应用代码'" [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'name'" [filedName]="'应用名称'" [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'version'" [filedName]="'版本'" [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'select'" [formsName]="'tls'" [dictId]="'SYS_TLS'" [filedName]="'启用tls'"
+      [required]="true"></tms-filed>
+
+  </tms-form>
+</nz-modal>
+
+<nz-modal [(nzVisible)]="isVisible" nzTitle="请选择通道" [nzFooter]="modalFooter" (nzOnCancel)="isVisible = false">
+  <nz-card>
+    <div nz-card-grid *ngFor="let i of data" (click)="goApp(i)" [ngStyle]="gridStyle">{{i.name}}</div>
+  </nz-card>
+  <ng-template #modalFooter></ng-template>
+</nz-modal>

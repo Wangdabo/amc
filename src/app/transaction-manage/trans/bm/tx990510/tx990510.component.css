@@ -1,0 +1,93 @@
+
+.container {
+  padding-top: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.chartDiv{
+  padding: 24px 0;
+}
+.action {
+  height: 40px;
+}
+
+.topDiv {
+  padding: 10px 0 10px 10px;
+}
+
+.fontSpan {
+  line-height: 30px;
+  /* text-align: center; */
+  cursor: pointer;
+  color: #1890ff;
+  /* display: flex */
+}
+
+.divSpan {
+  padding: 0 16px;
+  background: url("../../../../../assets/newimage/bigData/bg_second.png");
+  background-size: 100% 100%;
+}
+
+.divLi {
+  list-style-type: circle;
+  padding-left: 4px;
+  line-height: 2;
+  cursor: pointer;
+}
+
+
+
+.divSpanChild {
+  overflow-y: auto;
+   padding: 10px;
+}
+
+
+.divSpanChild::-webkit-scrollbar {
+  /*滚动条整体样式*/
+  width: 10px;
+  /*高宽分别对应横竖滚动条的尺寸*/
+  height: 1px;
+}
+
+.divSpanChild::-webkit-scrollbar-thumb {
+  /*滚动条里面小方块*/
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 2px rgba(97, 122, 146, 0.2);
+
+  background: #f0f2f5;
+}
+
+
+.divSpanChild::-webkit-scrollbar-track {
+  /*滚动条里面轨道*/
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  background: #fff;
+}
+
+
+
+/*  10.9 新樣式  */
+.redtimeRank {
+  background: url("../../../../../assets/newimage/home/content_bg_shishijiaoyi.png");
+  background-size:100% 100%;
+  padding: 5%
+}
+
+.cardTitle {
+  margin: 15px 15px;
+  padding-top:20px;
+}
+
+.cardTitle h2 {
+  color: #00fdfe;
+  font-size: 20px;
+  text-align: center;
+}
+
+
+
+
+

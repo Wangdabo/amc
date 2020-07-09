@@ -1,0 +1,36 @@
+<div class="container">
+  <nz-card>
+    <div nz-row>
+      <div nz-col [nzSpan]="18">
+        <div #divchart echarts [options]="optionsMap" style="height: 800px;" (chartClick)="chartDblClick($event)"
+             [loading]="showLoading" (chartInit)="onChartInit($event)" class="demo-chart"></div>
+      </div>
+      <div nz-col [nzSpan]="6" [hidden]="!upd.isVisible">
+        <div nz-col [nzSpan]="24" style="border: 1px dashed gainsboro;border-radius: 10px;padding: 11px;margin-top: 2rem;">
+          <tms-form #baseFormAdd nz-row [nzGutter]="24">
+            <tms-filed [hidden]="isAdd" nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'id'" [filedName]="'标签ID'"
+                       [required]="true"></tms-filed>
+            <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'tag_name'" [filedName]="'标签名称'"
+                       [required]="true"></tms-filed>
+            <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'tag_code'" [filedName]="'标签代码'"
+                       [required]="true"></tms-filed>
+            <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'tag_value'" [filedName]="'标签值'"
+                       [required]="true"></tms-filed>
+            <tms-filed [hidden]="!isAdd" nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'par_tag_id'"
+                       [filedName]="'父级标签ID'" [required]="true"></tms-filed>
+            <tms-filed [hidden]="!isAdd" nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'par_tag_name'"
+                       [filedName]="'父级标签名称'" [required]="true"></tms-filed>
+          </tms-form>
+
+          <button nz-button (click)="buttonClick('add')" [hidden]="isAdd" nzType="primary" style="position: relative;
+             ">添加子节点</button>
+          <button nz-button nzType="primary" style="position: relative;
+              left: 4.5rem;" (click)="buttonClick('save')">保存</button>
+          <button nz-button nzType="danger" style="position: relative;
+              left: 5rem;" (click)="buttonClick('del')">{{isAdd
+            ? '取消' : '删除'}}</button>
+        </div>
+      </div>
+    </div>
+  </nz-card>
+</div>

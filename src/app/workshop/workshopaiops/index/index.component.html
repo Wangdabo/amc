@@ -1,0 +1,20 @@
+<!--tws workshop界面布局首页-->
+<div class="layout">
+  <app-new-header></app-new-header>
+  <ng-container>
+    <nz-layout>
+      <!--shell --  头部 -->
+      <nz-sider [class]="isCollapsed? 'hidesilder': 'silder'">
+        <app-newsilder
+          [styleSider]="false"
+          [menuTyoe]="'aiops'"></app-newsilder>
+      </nz-sider>
+      <nz-layout style="padding:24px 24px 24px;min-height: calc(100vh - 64px);">
+        <nz-content class="aiops">
+          <router-outlet></router-outlet>
+        </nz-content>
+      </nz-layout>
+    </nz-layout>
+  </ng-container>
+  <btf-footer></btf-footer>
+</div>

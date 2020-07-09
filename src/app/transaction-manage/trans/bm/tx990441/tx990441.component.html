@@ -1,0 +1,119 @@
+<!-- <button nz-button nzType="primary" (click)="open()">d=ad-d</button>
+    <nz-drawer [nzClosable]="false" [nzVisible]="visible" nzPlacement="right" nzTitle="Basic Drawer" (nzOnClose)="close()">
+      <p>Some contents...</p>
+      <p>Some contents...</p>
+      <p>Some contents...</p>
+    </nz-drawer> -->
+
+
+<!-- <nz-cascader
+      style="margin:20px 0 0 10px;"
+      [(ngModel)]="valuesApp"
+      [nzOptions]="appData"
+      (nzSelect)="onChangesAppID($event)"
+       (ngModelChange)="onChangesAppChannel($event)"
+      >
+    </nz-cascader> -->
+
+<!-- <nz-cascader style="margin:20px 0 0 10px;" [nzPlaceHolder]="'请选择应用及通道'" [(ngModel)]="valuesApp" [nzLoadData]="loadData"
+  (ngModelChange)="onChangesAppChannel($event)">
+</nz-cascader> -->
+<div style="background: #fff">
+  <h1>{{appName}}/{{channelName}}</h1>
+  <div *ngIf="isShow">
+    <div nz-row nzType="flex" nzJustify="space-around" style="padding:10px;margin-top: 20px;">
+      <div nz-col nzSpan="6" *ngFor="let i of topData">
+        <nz-card [nzHoverable]="true">
+          <div nz-row>
+            <div nz-col [nzSpan]="8" style="text-align:right;">
+              <i nz-icon type="{{i.icon}}" style="font-size: 2.2rem;" [ngStyle]="{'color':i.color}" theme="outline"></i>
+            </div>
+            <div nz-col [nzSpan]="16" style="text-align:left;padding-left: 2rem;">
+              <h1 style="font-weight:bold">{{i.number}}</h1>
+            </div>
+          </div>
+          <div nz-row>
+            <div nz-col [nzSpan]="24" style="text-align:center">
+              <h1>{{i.title}}</h1>
+            </div>
+          </div>
+        </nz-card>
+      </div>
+    </div>
+
+    <div class="gutter-example" style="margin-top: 20px;">
+      <div nz-row [nzGutter]="20">
+        <div nz-col class="gutter-row" [nzSpan]="12">
+          <div class="gutter-box">
+
+
+            <tms-list isShowPagination="false" [showAlert]="false" isShowCheckbox="false" [listHeader]="nodesTable.header"
+                      [listData]="nodesTable.data" [isLoading]="nodesTable.isLoading">
+            </tms-list>
+
+          </div>
+        </div>
+        <div nz-col class="gutter-row" [nzSpan]="12">
+          <div class="gutter-box">
+            <nz-tabset (nzSelectedIndexChange)="changeTab($event)">
+              <nz-tab *ngFor="let tab of tabs" [nzTitle]="tab.label">
+                <nz-range-picker style="width: 40%;margin-bottom: 0.5rem;" *ngIf="tab.key === '0' || tab.key === '2'"
+                                 [(ngModel)]="dateRange" (ngModelChange)="changeDate()" [nzFormat]="'yyyy-MM-dd'"></nz-range-picker>
+                <!-- <div echarts [options]="columnShape" [loading]="showloading" class="demo-chart"></div> -->
+                <div echarts [options]="option" style="height: 400px;"></div>
+              </nz-tab>
+            </nz-tabset>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+    <div class="gutter-example" style="margin: 20px 0;">
+      <div nz-row [nzGutter]="20">
+        <div nz-col class="gutter-row" [nzSpan]="12">
+          <nz-card [nzBordered]="false">
+            <div #divChild (scroll)="handleScroll($event)" style="border:1px solid gainsboro;border-radius:10px;padding:20px;height: 400px;overflow-y: scroll;">
+              <nz-timeline>
+                <nz-timeline-item *ngFor="let i of timeData">
+                  <div style="box-shadow: rgba(0, 0, 0, 0.118) 0px 1px 6px, rgba(0, 0, 0, 0.118) 0px 1px 4px;">
+                    <div style="background-color: rgb(98, 131, 208);padding: 10px;color: rgb(255, 255, 255);font-size: 13pt;">
+                      <div style="font-weight: bold;">Block{{i.block_num}}</div>
+                      <div style="margin-top: -20px;float: right;text-align: right;"><img src="./assets/image/tubiao.png"
+                                                                                          style="height: 35px;margin-top: -10px;background-color: transparent;" alt=""></div>
+                    </div>
+                    <div style="background-color: transparent;margin-bottom: 1em;line-height: 1.6;padding: 10px;min-height: 40px;">
+                      <p class="jss139 jss148">
+                        <b class="jss129">通道名称:</b>
+                        {{i.channel_name}}
+                        <br>
+                        <b class="jss129"> 哈希值:</b>
+                        {{i.data_hash}}
+                        <br>
+                        <b class="jss129"> 交易数量:</b>
+                        {{i.tx_count}}
+                      </p>
+                      <h5 class="jss129">
+                      <span class="jss129 badge badge-secondary">
+                        <nz-tag [nzColor]="'#108ee9'">{{i.time}}</nz-tag>
+                      </span>
+                      </h5>
+                    </div>
+                  </div>
+                </nz-timeline-item>
+
+              </nz-timeline>
+              <nz-spin [nzSpinning]="isSpinning" style="text-align:center" nzTip='加载中...' [nzSize]="'small'"></nz-spin>
+            </div>
+
+          </nz-card>
+        </div>
+        <div nz-col class="gutter-row" [nzSpan]="12">
+          <div echarts [options]="optionsMap" [theme]="theme" class="demo-chart"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

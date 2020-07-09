@@ -1,0 +1,194 @@
+<div class="container">
+  <button nz-button nzType="primary" (click)="open()">版本发布</button>
+  <nz-divider nzDashed [nzText]="text" nzOrientation="left">
+    <ng-template #text><span style='font-size: 12px;
+      color: grey;'>版本记录</span> </ng-template>
+  </nz-divider>
+  <div nz-row>
+    <!--<div nz-col nzSpan="12" class="divSpan">
+      <h3 id="nz-tag"><i class="icon" nz-icon type="tag" theme="outline"></i><span>TMS版本库
+          &nbsp;<i class="searchIcon" nz-icon type="search" theme="outline" (click)="searchClick('t')"></i> &nbsp;<i
+            nz-icon class="searchIcon" (click)="getTmsVersion('reset')" type="redo" theme="outline"></i>
+        </span></h3>
+      <nz-input-group style="width: 300px;margin: 10px 0 0 10px;" *ngIf="istmsSearch" nzSearch [nzAddOnAfter]="suffixIcon">
+        <input type="text" nzSize="small" [(ngModel)]="tmsapp_name" nz-input placeholder="请输入版本应用名称">
+      </nz-input-group>
+      <ng-template #suffixIcon>
+        <button nz-button nzType="primary" (click)="getTmsVersion('search')" nzSearch><i nz-icon
+            type="search"></i></button>
+      </ng-template>
+      <div class="divSpanChild" (scroll)="tmsScroll($event)">
+        <nz-timeline>
+          <nz-timeline-item nzColor="green" *ngFor='let i of tmsList;let j = index' [nzColor]="j===0 ? 'green':'blue'"
+            [nzDot]="j===0 ? dotTemplateright:''">
+            <div class='itemDiv' (mouseenter)="changeInfo(i,'true')" (mouseleave)="changeInfo(i,'false')">
+              <span style='font-size: 16px;'>{{i.app_name}}</span>&nbsp;&nbsp;<nz-tag [nzColor]="'blue'">
+                {{i.version_no}}
+              </nz-tag>&nbsp;
+              <span [ngSwitch]="i.version_status">
+                <span *ngSwitchCase="'1'" style="color: rgb(13, 110, 13)">已生效</span>
+                <span *ngSwitchCase="'2'" style="color: orange">未生效</span>
+                <span *ngSwitchDefault style="color: red">作废</span>
+              </span>
+
+              <i nz-icon type="edit" [hidden]="i.hidden" theme="outline" (click)="editClick(i)" class="editIcon"></i>
+              <i nz-icon type="close" [hidden]="i.hidden" theme="outline" (click)="closeClick(i)" class="delIcon"></i>
+
+            </div>
+            <div>
+              <span>版本路径：{{i.version_location}} </span>
+            </div>
+
+          </nz-timeline-item>
+          <p style="margin:0px;text-align: center;font-size: 12px;color: grey">{{istmsSpinning}}</p>
+
+        </nz-timeline>
+        <ng-template #dotTemplateright>
+          <i nz-icon type="clock-circle-o" style="font-size: 16px;  margin-top: 4px;"></i>
+        </ng-template>
+      </div>
+    </div>-->
+    <div nz-col nzSpan="12" class="divSpan">
+      <h3 id="nz-tag"><i class="icon" nz-icon type="tag" theme="outline"></i><span>微服务版本库&nbsp;<i class="searchIcon" title="搜索"
+            nz-icon type="search" theme="outline" (click)="searchClick('i')"></i> &nbsp;<i nz-icon title="刷新" class="searchIcon"
+            (click)="getDockerVersion('reset')" type="reload" theme="outline"></i>&nbsp;</span>
+      </h3>
+      <nz-input-group style="width: 300px;margin: 10px 0 0 10px;" *ngIf="isSearch" nzSearch
+        [nzAddOnAfter]="suffixIconButton">
+        <input type="text" nzSize="small" [(ngModel)]="app_name" nz-input placeholder="请输入版本应用名称">
+      </nz-input-group>
+      <ng-template #suffixIconButton>
+        <button nz-button nzType="primary" (click)="getDockerVersion('search')" nzSearch><i nz-icon
+            type="search"></i></button>
+      </ng-template>
+      <div class="divSpanChild" (scroll)="imgScroll($event)">
+        <nz-timeline>
+          <nz-timeline-item *ngFor='let i of imgList;let j = index' [nzColor]="j===0 ? 'green':'blue'"
+            [nzDot]="j===0 ? dotTemplate:''">
+            <div class='itemDiv' (mouseenter)="changeInfo(i,'true')" (mouseleave)="changeInfo(i,'false')">
+              <span style='font-size: 16px;'>{{i.app_name}}</span>&nbsp;&nbsp;<nz-tag [nzColor]="'blue'">
+                {{i.version_no}}
+              </nz-tag>&nbsp;
+              <span [ngSwitch]="i.version_status">
+                <span *ngSwitchCase="'1'" style="color: rgb(13, 110, 13)">已生效</span>
+                <span *ngSwitchCase="'2'" style="color: orange">未生效</span>
+                <span *ngSwitchDefault style="color: red">作废</span>
+              </span>
+
+              <i nz-icon type="edit"  [hidden]="i.hidden" theme="outline" (click)="editClick(i)" class="editIcon"></i>
+              <i nz-icon type="to-top" [hidden]="i.hidden"  title="发布" class="editIcon" (click)="publish(i)"  theme="outline"></i>
+              <i nz-icon type="close" [hidden]="i.hidden" theme="outline" (click)="closeClick(i)" class="delIcon"></i>
+
+            </div>
+            <div>
+              <span style="margin-right: 16px;">镜像：{{i.version_md_file[0]}} </span>
+              <span>版本：{{i.version_md_file[1]}}</span>
+
+            </div>
+            <!-- <nz-spin [nzSize]="'small'" [nzSpinning]="isSpinning"></nz-spin> -->
+
+          </nz-timeline-item>
+          <p style="margin:0px;text-align: center;font-size: 12px;color: grey">{{isSpinning}}</p>
+        </nz-timeline>
+        <ng-template #dotTemplate>
+          <i nz-icon type="clock-circle-o" style="font-size: 16px;  margin-top: 4px;"></i>
+        </ng-template>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+<div *ngIf="out">
+  <nz-drawer [nzBodyStyle]="{ height: 'calc(100% - 55px)', overflow: 'auto', 'padding-bottom':'53px' }"
+    [nzMaskClosable]="false" [nzWidth]="820" [nzVisible]="visible" [nzTitle]="isEdit?'修改版本信息':'版本发布'"
+    (nzOnClose)="close()">
+
+
+
+    <tms-form #baseForm (formDataHandler)="changesValue($event)" nz-row nzType="flex"
+      style='margin-bottom: 24px;margin-top: 24px;' nzJustify="start" [nzGutter]="24">
+      <tms-filed nz-col [nzSpan]="12" [labelSpan]="9" [inputType]="'input'" [formsName]="'app_name'"
+        [filedName]="'插件名称'" [required]="true"></tms-filed>
+      <tms-filed nz-col [nzSpan]="12" [labelSpan]="9" [inputType]="'input'" [formsName]="'version_no'"
+        [filedName]="'版本号'" [required]="true"></tms-filed>
+        <tms-filed nz-col [nzSpan]="12" [labelSpan]="9" [inputType]="'input'" [formsName]="'app_port'"
+        [filedName]="'应用端口'" [required]="true"></tms-filed>
+      <tms-filed nz-col [nzSpan]="12" [labelSpan]="9" [inputType]="'input'" [formsName]="'open_port'"
+        [filedName]="'对外端口'" [required]="true"></tms-filed>
+      <tms-filed nz-col [nzSpan]="12" [labelSpan]="9" [inputType]="'select'" [dictId]="'WORKSTATION_TYPE'"
+        [formsName]="'workstation_type'" [filedName]="'系统类型'" [required]="true"></tms-filed>
+      <tms-filed nz-col [nzSpan]="12" [labelSpan]="9" [inputType]="'select'" [dictId]="'VERSION_STATUS'"
+        [formsName]="'version_status'" [filedName]="'版本状态'" [required]="true"></tms-filed>
+      <div style='padding: 24px 64px' *ngIf="isTms">
+        <nz-upload [nzAction]="action" [nzData]="fileData"
+          [nzShowUploadList]="ShowUploadList" [nzHeaders]="headers" nzName="fileList" (nzChange)="fileChange($event)"
+          [nzRemove]="moveFile" [(nzFileList)]="files">
+          <button nz-button>
+            <i nz-icon type="upload"></i><span>版本发布</span>
+          </button>
+        </nz-upload>
+      </div>
+      <tms-filed nz-col [nzSpan]="24" [labelSpan]="6" [controlSpan]="18" [inputType]="'input'"
+        [formsName]="'version_location'" [hidden]="!isTms" [filedName]="'版本文件路径'" [required]="true"></tms-filed>
+      '
+    </tms-form>
+    <div nz-row style="margin-top: -2.5rem;" *ngIf="!isTms">
+      <div nz-col nzSpan="4" style="text-align: right;line-height: 30px;margin-right:12px;">镜像：</div>
+      <div nz-col nzSpan="18" style='margin: 0 12px'>
+        <nz-cascader nzChangeOnSelect nzPlaceHolder="请选择镜像及其版本" [nzOptions]="nzOptions" [(ngModel)]="values"
+          (ngModelChange)="onChanges($event)">
+        </nz-cascader>
+      </div>
+    </div>
+
+    <div nz-row style="margin: 32px;">
+      <div nz-col nzSpan="12" class="button">
+        <button nz-button nzType="primary" (click)="saveVesion()" nzBlock>提交</button>
+      </div>
+      <div nz-col nzSpan="12" class="button">
+        <button nz-button nzType="default" (click)="visible = false" nzBlock>取消</button>
+      </div>
+    </div>
+
+  </nz-drawer>
+</div>
+
+
+<nz-modal
+[(nzVisible)]="isVisible"
+nzTitle="请选择服务器"
+nzOkText="确定"
+nzCancelText="取消"
+(nzOnOk)="handOk()"
+(nzOnCancel)="isVisible = false"
+>
+
+
+<nz-spin [nzSpinning]="isSpinningModal" nzTip="发布中..." [nzDelay]="300">
+  <nz-alert
+    [nzType]="'info'"
+    [nzDescription]="indicatorTemplate"
+  >
+  </nz-alert>
+</nz-spin>
+<ng-template #indicatorTemplate>
+    <div style="margin-top:8px;">
+        <nz-cascader
+        [nzOptions]="server"
+        [(ngModel)]="valuesServe"
+        (ngModelChange)="onChangescascader($event)" style="margin-bottom: 10px;">
+        </nz-cascader>
+        <div *ngIf="serverObj.server.ip !== undefined && serverObj.server.user !== undefined">
+
+        <p>IP：{{serverObj.server.ip}}</p>
+        <p>用户：{{serverObj.server.user}}</p>
+
+        </div>
+      </div>
+</ng-template>
+
+</nz-modal>

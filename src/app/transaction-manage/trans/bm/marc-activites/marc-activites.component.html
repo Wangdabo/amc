@@ -1,0 +1,312 @@
+<!--
+<div nz-row style="margin-top: 40px;padding: 100px">
+  <div nz-col nzSpan="12">
+    <nz-tabset>
+      <nz-tab *ngFor="let tab of tabs" [nzTitle]="tab.label">
+        <ng-container *ngIf="tab.key === 'xc'">
+          <div class="background">
+            <div class="phoneInner">
+              <div style="position: absolute;width: 100%;height: 100%;overflow-x: hidden;overflow-y: auto;">
+                <div class="temUrl">
+                  <div class="templatePage">
+                    <div class="page currentPage">
+                      <div class="scrollDivInner">
+                        <div style="width: 100%;  position: relative;">
+                          <img src="./assets/image/nmBj.jpg" alt="">
+                        </div>
+                        <div class="banner canEdit" (click)="editImg('banner')">
+                          <img [src]="imgJson.bannerSrc" src="" alt="">
+                          <div class="buyBtn" (click)="ceshiimg($event)">
+                            <img [src]="imgJson.shopSrc" src="">
+                          </div>
+                        </div>
+                        <div id="scrollerDiv">
+                          <div class="marquee">
+                            <marquee>
+                              <ul>
+                                <li>恭喜174****4567，领取10元现金</li>
+                                <li>恭喜174****9931，领取5元现金</li>
+                                <li>恭喜158****0406，领取10元现金</li>
+                                <li>恭喜132****4533，领取1元现金</li>
+                                <li>恭喜182****1957，领取50元现金</li>
+                                <li>恭喜182****9144，领取2元现金</li>
+                              </ul>
+                            </marquee>
+                          </div>
+                        </div>
+                        <div class="receive canEdit" (click)="editImg('goAward')" style="bottom: 22rem">
+                          <img [src]="imgJson.goawardSrc"  src="">
+                        </div>
+                        <div class="canEdit receive" (click)="editImg('myAward')" data-editarea="receive">
+                          <img [src]="imgJson.myawardSrc" src="">
+                        </div>
+                        <div class="wrapCon">
+                          <div class="detail divBox canEdit" (click)="buttonEdit('details')">
+                            <div class="tit ng-binding">{{titleJson.details.title}}</div>
+                            <div class="content ng-binding">
+                              <p><strong>活动对象：</strong>仅限内蒙古地区新用户</p>
+                              <p><strong>活动时间：</strong>2017年11月10日0：00-12月31日23：59：59</p>
+                            </div>
+                          </div>
+                          <div class="explain divBox canEdit" (click)="buttonEdit('desc')" style="margin-top: 1rem">
+                            <div class="tit ng-binding">{{titleJson.desc.title}}</div>
+                            <div class="content ng-binding">
+                              <p><strong>货币基金:</strong>1元起购，每位客户每日申购上限均为500万元；</p>
+                              <p><strong>定期理财:</strong>1000元起购，追加金额为0.01元，每位客户每日申购上限为1000万元。</p>
+                            </div>
+                          </div>
+                          <div class="rule divBox canEdit" (click)="buttonEdit('rule')" style="margin-top: 1rem">
+                            <div class="tit ng-binding">{{titleJson.rule.title}}</div>
+                            <div class="content ng-binding" ng-bind-html="previews.rule.desc|to_trusted">
+                              <p>1）活动期间首次购买易商理财（中银活期宝、广发天天利货币E类及嘉实货币、定期宝）任意一种产品，不限购买额度，即可获得红包。</p>
+                              <p>2）购买时填写销售代码00006，方可领取红包。</p>
+                              <p>3）若存在用户恶意刷奖行为，易商理财将有权取消其获奖资格，并保留相关法律权利。</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="tab.key === 'yz'">
+          <div class="background">
+            <div class="phoneInner">
+              <div style="position: absolute;width: 100%;height: 100%;overflow-x: hidden;overflow-y: auto;">
+                <div class="temUrl">
+                  <div class="templatePage">
+                    <div class="page currentPage">
+                      <div class="scrollDivInner">
+                        <div style="width: 100%;  position: relative;">
+                          <img src="./assets/image/nmBj.jpg" alt="">
+                        </div>
+                        <div class="banner canEdit" (click)="editImg()">
+                          <img src="./assets/image/nmBanner.jpg" alt="">
+                          <div class="buyBtn" (click)="ceshiimg($event)">
+                            <img src="./assets/image/goBtn.jpg">
+                          </div>
+                        </div>
+                        <div id="scrollerDiv">
+                          <div class="marquee">
+                            <marquee>
+                              <ul>
+                                <li>恭喜174****4567，领取10元现金</li>
+                                <li>恭喜174****9931，领取5元现金</li>
+                                <li>恭喜158****0406，领取10元现金</li>
+                                <li>恭喜132****4533，领取1元现金</li>
+                                <li>恭喜182****1957，领取50元现金</li>
+                                <li>恭喜182****9144，领取2元现金</li>
+                              </ul>
+                            </marquee>
+                          </div>
+                        </div>
+                        <div class="receive canEdit" (click)="editImg()" style="bottom: 22rem">
+                          <img src="./assets/image/goBtn.jpg">
+                        </div>
+                        <div class="canEdit receive" (click)="editImg()" data-editarea="receive">
+                          <img src="./assets/image/receive.png">
+                        </div>
+                        <div class="wrapCon">
+                          <div class="detail divBox canEdit" (click)="buttonEdit()">
+                            <div class="tit ng-binding">活动详情</div>
+                            <div class="content ng-binding">
+                              <p><strong>活动对象：</strong>仅限内蒙古地区新用户</p>
+                              <p><strong>活动时间：</strong>2017年11月10日0：00-12月31日23：59：59</p>
+                            </div>
+                          </div>
+                          <div class="explain divBox canEdit" (click)="buttonEdit()" style="margin-top: 1rem">
+                            <div class="tit ng-binding">产品说明</div>
+                            <div class="content ng-binding">
+                              <p><strong>货币基金:</strong>1元起购，每位客户每日申购上限均为500万元；</p>
+                              <p><strong>定期理财:</strong>1000元起购，追加金额为0.01元，每位客户每日申购上限为1000万元。</p>
+                            </div>
+                          </div>
+                          <div class="rule divBox canEdit" (click)="buttonEdit()" style="margin-top: 1rem">
+                            <div class="tit ng-binding">活动规则</div>
+                            <div class="content ng-binding" ng-bind-html="previews.rule.desc|to_trusted">
+                              <p>1）活动期间首次购买易商理财（中银活期宝、广发天天利货币E类及嘉实货币、定期宝）任意一种产品，不限购买额度，即可获得红包。</p>
+                              <p>2）购买时填写销售代码00006，方可领取红包。</p>
+                              <p>3）若存在用户恶意刷奖行为，易商理财将有权取消其获奖资格，并保留相关法律权利。</p>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+                <div class="modal_tem">
+                  <div class="modal-dialog modal-md modal_phone">
+                    <div class="modal-content">
+                      <div class="modal-inner">
+                        <div class="modal-inner-box">
+                          <div class="modal-core">
+                            <div class="modal-header">
+                              <img src="./assets/image/modal-tit.png">
+                              <div class="star">
+                                <img src="./assets/image/star.png">
+                              </div>
+                            </div>
+                            <div class="modal-body ng-binding">
+                              <div class="formPanel flex">
+                                <span class="tit">姓　　名</span>
+                                <div class="inpBox">
+                                  <input type="text" ng-model="userName" placeholder="请输入您的姓名">
+                                </div>
+                              </div>
+                              <div class="formPanel flex">
+                                <span class="tit">手机号码</span>
+                                <div class="inpBox">
+                                  <input type="text" placeholder="请输入参加活动手机号" ng-model="phone">
+                                </div>
+                              </div>
+                              <font style="color:red;font-size:12px;">注:手机号为参加活动购买产品的手机号</font>
+                              <div class="formPanel flex">
+                                <div class="inpBox">
+                                  <input type="text" placeholder="请输入验证码">
+                                </div>
+                                <div style="width:5px"></div>
+                                <div><img (click)="reVerifycode()" src="./assets/image/generateVerifyImage.jpg" style="height:30px;width:60px;cursor: pointer"></div>
+                              </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="makeshur" style="border: none;background: none;" (click)="submit()">
+                                <img style="cursor:pointer;" src="./assets/image/quedingbtn.png">
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="tab.key === 'mya'">
+          <div class="background">
+            <div class="phoneInner">
+              <div style="position: absolute;width: 100%;height: 100%;overflow-x: hidden;overflow-y: auto;">
+                <div class="temUrl">
+                  <div class="templatePage">
+                    <div class="page currentPage">
+                      <div class="scrollDivInner">
+                        <div style="width: 100%;  position: relative;">
+                          <img src="./assets/image/nmBj.jpg" alt="">
+                        </div>
+                        <div class="banner canEdit" (click)="changeImg()">
+                          <img style="    display: block;width: 85%;margin: 0 auto;margin-top: -.1rem;" src="./assets/image/myAwardBanner.png"
+                            alt="">
+                        </div>
+                        <div class="wrapCon" style="bottom: 32rem;border: 1px dashed #000; border-top:none">
+                          <div class="awradList">
+                            <ul class="thead">
+                              <li>中奖日期</li>
+                              <li>中奖类型</li>
+                            </ul>
+                            <ul class="tbody">
+                              <li>2017年xx月xx日</li>
+                              <li>现金红包 5元</li>
+                            </ul>
+                            <ul class="tbody">
+                              <li>2017年xx月xx日</li>
+                              <li>现金红包 5元</li>
+                            </ul>
+                            <ul class="tbody">
+                              <li>2017年xx月xx日</li>
+                              <li>现金红包 5元</li>
+                            </ul>
+                            <ul class="tbody">
+                              <li>2017年xx月xx日</li>
+                              <li>现金红包 5元</li>
+                            </ul>
+                          </div>
+                          <p style="text-align:center;font-size:0.25rem;margin-top: 5%; color:#7e5920;position:relative;z-index:10;">系统会在您参与活动后n个工作日内更新您的中奖纪录</p>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="tab.key === 'myb'">
+          <div class="background">
+            <div class="phoneInner">
+              <div style="position: absolute;width: 100%;height: 100%;overflow-x: hidden;overflow-y: auto;">
+                <div class="temUrl">
+                  <div class="templatePage">
+                    <div class="page currentPage">
+                      <div class="scrollDivInner">
+                        <div style="width: 100%;  position: relative;">
+                          <img src="./assets/image/nmBj.jpg" alt="">
+                        </div>
+                        <div class="banner canEdit" (click)="changeImg()">
+                          <img style="    display: block;width: 85%;margin: 0 auto;margin-top: -.1rem;" src="./assets/image/myAwardBanner.png"
+                            alt="">
+                        </div>
+                        <div class="wrapCon" style="bottom: 32rem;border: 1px dashed #000; border-top:none">
+                          <div class="awradList">
+                            <div style="margin-top: 50px;text-align: center;">
+                              <p>对不起，您暂无中奖记录，</p>
+                              <p>系统会在您参与活动后n个工作日内更新您的中奖纪录。</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </nz-tab>
+    </nz-tabset>
+  </div>
+</div>
+
+&lt;!&ndash;更换图片弹出框&ndash;&gt;
+<nz-modal [(nzVisible)]="isVisibleImg" [nzTitle]="imgTitle" (nzOnCancel)="isVisibleImg = false" (nzOnOk)="changeImgOk()">
+  <p-fileUpload name="demo[]" url="./"  chooseLabel="." [showUploadButton]="false"  [showCancelButton]="false"
+                accept="image/*" maxFileSize="1000000">
+    <ng-template pTemplate="content">
+      <ul *ngIf="uploadedFiles.length">
+        <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+      </ul>
+    </ng-template>
+  </p-fileUpload>
+</nz-modal>
+
+<nz-modal nzWidth="800px" [(nzVisible)]="isVisibleTitle"  (nzOnCancel)="isVisibleTitle = false">
+  <form nz-form>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="3">标题</nz-form-label>
+      <nz-form-control [nzSpan]="17"  nzHasFeedback>
+        <input nz-input [ngModel]="txttitle" name="warningHighValid">
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="3">内容</nz-form-label>
+      <nz-form-control [nzSpan]="17"  nzHasFeedback>
+        <p-editor [(ngModel)]="text" name="ds" [style]="{'height':'200px'}">
+        </p-editor>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+
+</nz-modal>
+
+
+-->

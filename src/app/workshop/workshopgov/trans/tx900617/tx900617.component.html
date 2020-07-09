@@ -1,0 +1,82 @@
+
+<app-titleback [titleName]="'排队详情'" [oldTransDef] = "true"></app-titleback>  
+
+
+<div  style="padding: 24px; background: white;height: 100%">
+      <nz-card style="margin-top:20px;">
+          <div class="list"> 
+              <tms-list
+                  [listHeader]="header"
+                  [listData]="listData"
+                  [pageSize]="condition.pagesize"
+                  [totalCount]="condition.totalCount"
+                  [isLoading]="condition.isLoading"
+                  (pageChangeHandler)="pageChange($event)"
+                  (selectRowsHandler)="selectRowsHandler($event)"
+                  [topActions]="topActions"
+                  [rowActions]="rowActions"
+                  [isclickPointer]="true"
+                  [isBordered]="true"
+                  (rowActionsHandler)="rowActionsHandler($event)"
+                  [isEdit]="true"
+                  [isShowCheckbox]="true"
+                  [showAlert]="false"
+                  [isrowActionsFlag]="true">
+              </tms-list>
+          </div>  
+          <div class="button" style="margin-top:30px">
+              <div nz-row nzGutter="16">
+                  <div nz-col class="gutter-row" nzSpan="6" [nzOffset]='3'>
+                      <button style="width: 80%;" nz-button nzType="primary" (click)='specifyvip()'>指定叫号</button>
+                  </div>
+                  <div nz-col class="gutter-row" nzSpan="6" [nzOffset]='4'>
+                      <button style="width: 80%;" nz-button nzType="default" (click)='reset()'>刷新</button>
+                  </div>
+                </div>    
+          </div>  
+          
+      </nz-card>
+         
+  </div>
+  
+  <nz-modal nzWidth='800' [(nzVisible)]="isVisible"
+            nzTitle="指定叫号"
+            [nzFooter]= 'null'
+            (nzOnCancel)="isVisible = false">
+            <form nz-form>
+              <nz-form-item>
+                <nz-form-label [nzSpan]="4" nzFor="email">指定排队号</nz-form-label>
+                <nz-form-control [nzSpan]="8">
+                  <input nz-input name="selectedValue" [(ngModel)]='selectedValue' type="input">
+                </nz-form-control>
+                <nz-form-control [nzSpan]="3">
+                  <button style="margin-left: 20px;" nz-button nzType="primary" (click)='submit(selectedValue)'><i nz-icon nzType="search"></i>提交</button>
+               </nz-form-control>
+              </nz-form-item >
+            </form>
+  </nz-modal>
+  
+  
+  
+  <nz-modal nzWidth='1024' [(nzVisible)]="bustypedetailisVisible"
+            nzTitle="客户详情"
+            [nzFooter]= 'null'
+            (nzOnCancel)="bustypedetailisVisible = false">
+            <tms-list
+                  [listHeader]="bustypedetailheader"
+                  [listData]="bustypedetaillistData"
+                  [pageSize]="condition.pagesize"
+                  [totalCount]="condition.totalCount"
+                  [isLoading]="condition.isLoading"
+                  (pageChangeHandler)="pageChange($event)"
+                  (selectRowsHandler)="selectRowsHandler($event)"
+                  [topActions]="topActions"
+                  [rowActions]="bustypedetailrowActions"
+                  [isclickPointer]="true"
+                  (rowActiveHandler)="bustypedetailrowrowActiveHandler($event)"
+                  [isEdit]="false"
+                  [isShowCheckbox]="false"
+                  [showAlert]="false"
+                  [isrowActionsFlag]="true">
+              </tms-list>
+  </nz-modal>

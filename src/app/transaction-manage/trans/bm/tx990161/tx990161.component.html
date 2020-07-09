@@ -1,0 +1,44 @@
+<div class="container">
+  <nz-card>
+    <tms-query
+      #baseQuery
+      [headerDate]="queryModel.queryHeader"
+      (getQuery)="getQueryData($event)"
+      (resetButton)="reset($event)"></tms-query>
+  </nz-card>
+  <nz-card style="margin-top: 20px;">
+    <div class="table">
+      <tms-list
+        [tableClass]="'bmtableClass'"
+        [listHeader]="queryModel.header"
+        [listData]="queryModel.data"
+        [pageSize]="queryModel.condition.pagesize"
+        [totalCount]="queryModel.totalCount"
+        [isLoading]="queryModel.isLoading"
+        (pageChangeHandler)="pageChange($event)"
+        (selectRowsHandler)="selectRowsHandler($event)"
+        [topActions]="queryModel.topActions"
+        (topActionsHandler)="topActionsHandler($event)"
+        [rowActions]="queryModel.rowActions"
+        (rowActionsHandler)="rowActionsHandler($event)"
+        [isEdit]="true"
+        [isrowActionsFlag]="true">
+      </tms-list>
+    </div>
+  </nz-card>
+</div>
+<nz-modal nzWidth='{{settingService.modal.large}}' [(nzVisible)]="insertOrUpdateModel.isVisible"
+          nzTitle="{{insertOrUpdateModel.isUpdate ? '修改报文' : '新增报文'}}"
+          (nzOnCancel)="handleCancel()"
+          (nzOnOk)="handleOk()"
+          [nzOkLoading]="insertOrUpdateModel.isOkLoading">
+  <tms-form #baseForm  nz-row nzType="flex"  nzJustify="start"  [nzGutter]="24">
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'USER_SERVER_NAME'"  [formsName]="'server_code'" [filedName]="'服务代码'" [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_VALID_FLAG'"  [formsName]="'valid_flag'" [filedName]="'有效标识'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'priority_level'" [filedName]="'报文优先级'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [labelSpan]="5" [inputType]="'input'" [formsName]="'rule_exe_exp'" [filedName]="'执行表达式'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [labelSpan]="5" [controlSpan]="19" [inputType]="'textarea'" [formsName]="'message_desc'" [filedName]="'报文描述'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [labelSpan]="5" [controlSpan]="19" [inputType]="'textarea'" [formsName]="'message_content'" [filedName]="'报文内容'" [required]="false"></tms-filed>
+  </tms-form>
+</nz-modal>
+

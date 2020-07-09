@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="table">
+    <tms-list
+      [listHeader]="queryModel.header"
+      [listData]="queryModel.data"
+      [isLoading]="queryModel.isLoading"
+      [rowActions]="rowActions"
+      (rowActionsHandler)="rowActionsHandler($event)"
+      [isShowCheckbox]="false">
+    </tms-list>
+  </div>
+</div>
+<nz-modal nzWidth='{{settingService.modal.large}}' [(nzVisible)]="detailModel.isVisible"
+          nzTitle="票据详情"
+          (nzOnCancel)="handleDetailCancel()"
+          [nzOkText]="null"
+          [nzOkLoading]="detailModel.isOkLoading">
+  <app-bill-detail #billDetail (submitEvent)="submitBillDetailEventHandler($event)" [transactionContextChangeOb]="transactionContextChangeOb"></app-bill-detail>
+</nz-modal>

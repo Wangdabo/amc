@@ -1,0 +1,39 @@
+<div class="container">
+  <div nz-row>
+    <tms-query #baseQuery [headerDate]="queryModel.queryHeader" (getQuery)="getQueryData($event)" (resetButton)="reset($event)"></tms-query>
+  </div>
+  <div class="table">
+    <tms-list
+      [tableClass]="'bmtableClass'"
+      [listHeader]="queryModel.header" [listData]="queryModel.data" [pageSize]="queryModel.condition.pagesize"
+      [totalCount]="queryModel.totalCount" [isLoading]="queryModel.isLoading" (pageChangeHandler)="pageChange($event)"
+      (selectRowsHandler)="selectRowsHandler($event)" [topActions]="queryModel.topActions" (topActionsHandler)="topActionsHandler($event)"
+      [rowActions]="queryModel.rowActions" (rowActionsHandler)="rowActionsHandler($event)">
+    </tms-list>
+  </div>
+</div>
+<nz-modal nzWidth='{{settingService.modal.mid}}' [(nzVisible)]="insertOrUpdateModel.isVisible" nzTitle="{{insertOrUpdateModel.isUpdate ? '新增用户' : '修改用户'}}"
+  (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" [nzOkLoading]="insertOrUpdateModel.isOkLoading">
+  <tms-form #baseForm nz-row [nzGutter]="24" (formDataHandler)="changeValue($event)">
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'select'" [formsName]="'type'" [filedName]="'类型'" [dictId]="'USER_TYPE'"
+      [required]="true"></tms-filed>
+
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'name'" [filedName]="'用户名称'" [required]="true"></tms-filed>
+
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'account'" [filedName]="'ͨ账户'"
+      [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'select'" [formsName]="'mspid'" [filedName]="'ͨ机构mspid'"
+      [dictId]="'USER_ORG_MSP_ID'" [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'affiliation'" [filedName]="'ͨ部门'"
+      [required]="isaffiliation"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'secret'" [filedName]="'ͨ密码'" [required]="issecret"></tms-filed>
+
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'roles'" [filedName]="'ͨ角色'" [required]="true"></tms-filed>
+
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'textarea'" [formsName]="'private_key'" [filedName]="'私钥'"
+      [required]="isrequired"></tms-filed>
+
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'textarea'" [formsName]="'certificate'" [filedName]="'证书'"
+      [required]="isrequired"></tms-filed>
+  </tms-form>
+</nz-modal>

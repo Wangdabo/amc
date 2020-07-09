@@ -1,0 +1,118 @@
+<div class="container">
+  <nz-card>
+    <div class="queryHeard">
+      <nz-select [(ngModel)]="titleValue" nzAllowClear nzPlaceHolder="搜索条件" (ngModelChange)="selectChange($event)">
+        <nz-option nzValue="msg_info_title" nzLabel="标题"></nz-option>
+        <nz-option nzValue="msg_info_status" nzLabel="消息状态"></nz-option>
+      </nz-select>
+      <input nz-input placeholder="请填写值" [(ngModel)]="valueinfo" *ngIf="flags"/>
+      <nz-select [(ngModel)]="valueInfo" nzAllowClear nzPlaceHolder="请填写值" *ngIf="!flags">
+        <nz-option nzValue="0" nzLabel="拟稿中"></nz-option>
+        <nz-option nzValue="1" nzLabel="已发布"></nz-option>
+        <nz-option nzValue="2" nzLabel="已撤回"></nz-option>
+      </nz-select>
+      <button nz-button nzType="primary" (click)="getQueryData()">查询</button>
+      <button nz-button nzType="default" (click)="reset()">重置</button>
+    </div>
+    
+  </nz-card>
+  <nz-card style="margin-top:20px;">
+    <div class="table">
+      <tms-list
+        [tableClass]="'bmtableClass'"
+        [listHeader]="listHeader"
+        [listData]="transactionActionData['query'].response.resultdata.bdy.data"
+        [pageSize]="transactionActionData['query'].response.resultdata.bdy.pageSize"
+        [totalCount]="transactionActionData['query'].response.resultdata.bdy.count"
+        (pageChangeHandler)="pageChange($event)"
+        [isrowActionsFlag]="true"
+        [topActions]="topActions"
+        (topActionsHandler)="topActionsHandler($event)"
+        [rowActions]="rowActions"
+        (rowActionsHandler)="rowActionsHandler($event)"
+        (rowActiveHandler)="rowActiveHandler($event)"
+        [isclickPointer]="false"
+        [isEdit]="true">
+      </tms-list>
+    </div>
+  </nz-card>
+</div>
+
+<nz-modal nzWidth="900"  [(nzVisible)]="isVisible"
+          nzTitle="{{isUpdate ? '编辑信息' : '新增信息'}}"
+          (nzOnCancel)="handleCancel()"
+          (nzOnOk)="handleOk()">
+      <tms-form #baseForm  nz-row nzType="flex"  nzJustify="start"  [nzGutter]="24">
+          <tms-filed nz-col [nzSpan]="12" [labelSpan]="6" [controlSpan]="18" [inputType]="'input'" [(fieldModel)] = "transactionActionData['saveOrUpdate'].request.requestdata.bdy.item.msg_info_title" [formsName]="'msg_info_title'" [filedName]="'消息标题'" [required]="true"></tms-filed>
+          <tms-filed nz-col [nzSpan]="12" [labelSpan]="6" [controlSpan]="18" [inputType]="'select'"  [(fieldModel)] = "transactionActionData['saveOrUpdate'].request.requestdata.bdy.item.msg_info_status" [formsName]="'msg_info_status'" [filedName]="'消息状态'" [required]="true" [optionArray]="optionArray1"></tms-filed>
+          <tms-filed nz-col [nzSpan]="12" [labelSpan]="6" [controlSpan]="18" [inputType]="'select'"  [(fieldModel)] = "transactionActionData['saveOrUpdate'].request.requestdata.bdy.item.msg_info_type" [formsName]="'msg_info_type'" [filedName]="'消息类型'" [required]="true" [optionArray]="optionArray2"></tms-filed>
+          <tms-filed nz-col [nzSpan]="12" [labelSpan]="6" [controlSpan]="18" [inputType]="'select'"  [(fieldModel)] = "transactionActionData['saveOrUpdate'].request.requestdata.bdy.item.msg_info_rec_flag" [formsName]="'msg_info_rec_flag'" [filedName]="'接收范围'" [required]="true" [optionArray]="optionArray3" (onChangeEvent)="change()"></tms-filed>
+      </tms-form>
+      <div class="selectItem" *ngIf="expression">
+        <div class="item-1">
+          <div class="clo-md-1">
+            <ul *ngFor="let item of text4;let i = index">
+              <li>{{item.org_name}}</li>
+              <i nz-icon nzType="close" nzTheme="outline" (click)="deletItem(i,'orgs')"></i>
+            </ul>
+          </div>
+          <span style="margin-left: 12px;">选择机构</span>
+          <button nz-button nzType="primary" nzShape="circle" (click)="addItem('orgs')">＋</button>
+          <button nz-button nzType="primary" nzShape="circle" (click)="clearItem('orgs')">-</button>
+        </div>
+        <div class="item-2">
+          <div class="clo-md-2">
+            <ul *ngFor="let item2 of text3;let k = index">
+              <li>{{item2.role_name}}</li>
+              <i nz-icon nzType="close" nzTheme="outline" (click)="deletItem(k,'roles')"></i>
+            </ul>
+          </div>
+          <span style="margin-left: 12px;">选择角色</span>
+          <button nz-button nzType="primary" nzShape="circle" (click)="addItem('roles')">＋</button>
+          <button nz-button nzType="primary" nzShape="circle" (click)="clearItem('roles')">-</button>
+        </div>
+        <div class="item-3">
+          <div class="clo-md-3">
+            <ul *ngFor="let item3 of text2;let e = index">
+              <li>{{item3.user_name}}</li>
+              <i nz-icon nzType="close" nzTheme="outline" (click)="deletItem(e,'users')"></i>
+            </ul>
+          </div>
+          <span style="margin-left: 12px;">选择员工</span>
+          <button nz-button nzType="primary" nzShape="circle" (click)="addItem('users')">＋</button>
+          <button nz-button nzType="primary" nzShape="circle" (click)="clearItem('users')">-</button>
+        </div>
+      </div>
+      <div class="text">
+        <p>消息内容:</p>
+        <textarea id="textArea" [(ngModel)]="value" rows="10" cols="100" placeholder="请输入消息内容" required="true"></textarea>
+      </div>
+</nz-modal>
+
+<nz-modal nzWidth="900" [(nzVisible)]="isExit" (nzOnCancel)="cancel()" (nzOnOk)="ok()" [nzOkLoading]="false" [nzTitle]="modalTitle">
+  <nz-card style="margin-top:20px;">
+    <div class="table">
+      <tms-list
+        [tableClass]="'bmtableClass'"
+        [listHeader]="flag === 'org'?listHeader2:(flag === 'role'?listHeader3:listHeader4)"
+        [listData]="flag === 'org'?listData2:(flag === 'role'?listData3:listData4)"
+        [pageSize]="pageSize"
+        [totalCount]="totalCount"
+        (pageChangeHandler)="pageChange($event)"
+        (selectRowsHandler)="selectRowsHandler($event)"
+        [isrowActionsFlag]="true"
+        [isclickPointer]="false"
+        [isEdit]="true">
+      </tms-list>
+    </div>
+  </nz-card>
+</nz-modal>
+
+<nz-modal nzWidth="900"  [(nzVisible)]="Visible"
+          nzTitle="消息内容"
+          (nzOnCancel)="handleCancel()"
+          (nzOnOk)="handleOk()">
+  <div class="msg">
+    {{msgData}}
+  </div>
+</nz-modal>

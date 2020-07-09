@@ -1,0 +1,206 @@
+.container {
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .action {
+    height: 40px;
+  }
+
+  :host {
+    display: block;
+  }
+
+
+  .table ::ng-deep .ant-tabs-card .ant-tabs-bar .ant-tabs-tab {
+    margin-left: 10px;
+   border-radius:10px 10px 0 0;
+  }
+
+  .table ::ng-deep .ant-tabs-card .ant-tabs-bar .ant-tabs-tab-active {
+    background: -webkit-linear-gradient(top,#00fdfe,#2a65be);
+  }
+.divImg{
+  position: relative;
+  min-height: 1300px;
+}
+.divImg>img{
+  position: absolute;
+}
+.centerImg{
+    top: 30%;
+    left:45%;
+    margin-left: -150px;
+    margin-top: -150px;
+    z-index: 99;
+}
+.allLineImg{
+  left: 45%;
+  margin-left: -396px;
+  top: 30%;
+  margin-top: -256px;
+  z-index: 1;
+
+}
+.yun1Img{
+  left: 50%;
+  margin-left: -84px;
+  top: 10%;
+}
+.divNumber{
+  text-align: center; font-size: 50px;display: block;
+}
+.yun2Img{
+  left: 37%;
+  top: 43%;
+  width: 130px;
+}
+.yun3Img{
+  left: 12%;
+  top: 39%;
+}
+.yun4Img{
+  top:72%;
+  left:26%;
+}
+h3{
+  background: url(../../../../../assets/image/title.png)no-repeat center;
+    height: 20px;
+    width: 100%;
+    margin: 0px;
+
+}
+.violetDiv{
+  background-color: #8a94ed;
+  padding: 20px 5px 5px 5px;
+  width: 20%;
+  border-radius: 9px;
+  position: absolute;
+  z-index: 99;
+  left: 7rem;
+}
+.colorViolet{
+  background: #8a94ed;
+}
+.violetTile{
+  color: #8a94ed;
+}
+
+.blueDiv{
+  background-color: #52c3ff;
+  padding: 20px 5px 5px 5px;
+  width: 25%;
+  border-radius: 9px;
+  position: absolute;
+  z-index: 99;
+  left: 55rem;
+}
+.colorBlue{
+  background: #52c3ff;
+}
+.blueTitle{
+  color:#52c3ff;
+}
+.pinkDiv{
+  background-color: #d647d7;
+  padding: 20px 5px 5px 5px;
+  width: 25%;
+  border-radius: 9px;
+  position: absolute;
+  z-index: 99;
+  left: 5rem;
+  top: 32rem;
+
+}
+.colorPink{
+  background: #d647d7;
+}
+.pinkTitle{
+  color:#d647d7;
+}
+.greenDiv{
+  background-color: #6dc964;
+  padding: 20px 5px 5px 5px;
+  width: 25%;
+  border-radius: 9px;
+  position: absolute;
+  z-index: 99;
+  left: 32rem;
+  top: 40rem;
+}
+.colorGreen{
+  background: #6dc964;
+}
+.greenTitle{
+  color:#6dc964;
+}
+.orangeDiv{
+  background-color: #ff9900;
+  padding: 20px 5px 5px 5px;
+  width: 26%;
+  border-radius: 9px;
+  position: absolute;
+  z-index: 99;
+  left: 58rem;
+  top: 35rem;
+}
+.colorOrange{
+  background: #ff9900;
+}
+.orangeTitle{
+  color:#ff9900;
+}
+.divColor{
+  background-color: #fff;
+  min-height: 300px;
+}
+
+ul{
+  padding: 0 0 1px 0;
+  list-style-type:none;
+}
+
+li{
+  display: flex;
+  padding: 0 10px;
+  margin-bottom: 10px;
+  white-space: nowrap
+}
+.pTitle{
+  margin: 5px 0;
+  text-align: center;
+  font-size: 14px;
+}
+
+ .liRight{
+  width: 50%;
+  margin: 0 0 0 5px;
+  text-align: center;
+  line-height: 2rem;
+  color: #fff;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+ .liLeft{
+  margin: 0 5px 0 0;
+  width: 50%;
+  line-height: 2rem;
+  text-align: center;
+  color: #fff;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+
+}
+
+
+
+.redtimeRank {
+  background: url("../../../../../assets/newimage/home/content_bg_shishijiaoyi.png");
+  background-size:100% 100%;
+  padding: 5%
+}
+
+

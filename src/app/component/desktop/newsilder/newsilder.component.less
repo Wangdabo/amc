@@ -1,0 +1,158 @@
+.rootui {
+  //background:url('../../../../assets/image/viewBackground.png') no-repeat center center;background-size: 100% 100%;
+  background-color: #333;
+  //background-color: #fff;
+  height: 100%;
+  color: #fff;
+  margin-top: -4px;
+}
+
+
+.uiroot {
+  background-color: #fff;
+  height: 100%;
+  color: #000;
+}
+
+li {
+
+  /*取消routerLink点击出现的边框*/
+  &:focus {
+    outline: none !important;
+  }
+}
+
+/*.ant-menu-item-selected {
+  background: #e6f7ff !important;
+}*/
+
+/* 9.28 新样式 */
+.silder {
+  width: 100%;
+  //min-height: 70%;
+  min-height: 700px;
+  background: url("../../../../assets/newimage/leftbar/leftbar_bg_first.png") no-repeat;
+  background-size: 100% 100%;
+  position: relative;
+  padding: 30px 0
+}
+
+
+.nosilder {
+  width: 65%;
+  min-height: 700px;
+  background: url("../../../../assets/newimage/leftbar/leftbar_bg_first.png") no-repeat;
+  background-size: 100% 100%;
+  position: relative;
+}
+
+.ant-menu-inline {
+  border: none
+}
+
+
+
+.menuUl {
+  width: 80%;
+  overflow-y: auto;
+  height: 700px;
+  overflow-x: hidden;
+}
+
+.menuUl::-webkit-scrollbar {
+  /*滚动条整体样式*/
+  width: 5px;
+  /*高宽分别对应横竖滚动条的尺寸*/
+  height: 1px;
+}
+
+.menuUl::-webkit-scrollbar-thumb {
+  /*滚动条里面小方块*/
+  border-radius: 10px;
+  background-color: #87ceeb4d;
+  background-image: -webkit-linear-gradient(45deg,
+      rgba(255, 255, 255, 0.2) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0.2) 75%,
+      transparent 75%,
+      transparent);
+}
+
+.menuUl::-webkit-scrollbar-track {
+  /*滚动条里面轨道*/
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+.menuLi {
+  margin-top: 40px !important;
+}
+
+.imgIcon {
+  margin-right: 20px;
+}
+
+
+.childSpan {
+  position: relative;
+  top: 2px;
+}
+
+.childLi {
+  text-align: left;
+  position: relative;
+  left: 27px;
+}
+
+// 覆蓋list样式
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+  background: none;
+}
+
+
+.ant-menu-inline .ant-menu-item:after,
+.ant-menu-vertical .ant-menu-item:after,
+.ant-menu-vertical-left .ant-menu-item:after,
+.ant-menu-vertical-right .ant-menu-item:after {
+  border-right: none;
+}
+
+
+// 缩小
+.isCollapsed {
+  position: absolute;
+  top: 48%;
+  right: 24px;
+  cursor: pointer;
+}
+
+
+
+
+
+.ant-menu-inline,
+.ant-menu-vertical,
+.ant-menu-vertical-left {
+  border-right: none
+}
+
+.ant-menu-submenu-popup {
+  background: green;
+}
+
+
+.ant-menu-submenu>.ant-menu {
+  background-color: red;
+  border-radius: 4px;
+}
+
+
+.textNone {
+  visibility: hidden;
+}
+
+.notextNone {
+  visibility: inherit;
+}

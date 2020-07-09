@@ -1,0 +1,41 @@
+<app-titleback [titleName]="'排队管理'"></app-titleback>  
+<div  style="padding: 24px; background: white;height: 100%">
+      <nz-card style="margin-top:20px;">
+       <div class="query">
+              <form nz-form>
+                  <nz-form-item>
+                    <nz-form-label [nzSpan]="3" nzFor="email">网点号</nz-form-label>
+                    <nz-form-control [nzSpan]="6">
+                      <input nz-input name="outlet_number" [(ngModel)]='outletNumber' type="input">
+                    </nz-form-control>
+                    <nz-form-control [nzSpan]="4">
+                      <button nz-button nzType="primary" (click)='searchoutlet(outletNumber)'><i nz-icon nzType="search"></i>查询</button>
+                      <button style="margin-left: 10px;" nz-button nzType="default" (click)='getData()'><i nz-icon nzType="search"></i>重置</button>
+                   </nz-form-control>
+                  </nz-form-item >
+                </form>
+             
+              </div>
+          <div class="list"> 
+              <tms-list
+              [tableClass]="'bmtableClass'"
+              [listHeader]="header"
+              [listData]="listData"
+              [pageSize]="condition.pagesize"
+              [totalCount]="condition.totalCount"
+              [isLoading]="condition.isLoading"
+              (pageChangeHandler)="pageChange($event)"
+              [topActions]="topActions"
+              [rowActions]="rowActions"
+              [isclickPointer]="true"
+              [isEdit]="false"
+              [isShowCheckbox]="false"
+              (rowActiveHandler)="rowActiveHandler($event)"
+              [showAlert]="false"
+              [isrowActionsFlag]="true">
+      </tms-list>
+          </div>   
+          
+      </nz-card>
+         
+    </div>

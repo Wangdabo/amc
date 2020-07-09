@@ -1,0 +1,95 @@
+.divbody {
+  width: 100%;
+  min-height: 16px;
+  background: #f0f2f5;
+  display: block;
+}
+
+.divTop {
+  padding: 12px 22px 22px 22px;
+}
+
+.configDiv {
+  color: gray
+}
+
+i {
+  cursor: pointer;
+}
+
+i:hover {
+  color: #1890ff !important;
+}
+
+.divTextRight {
+  text-align: right;
+  padding-right: 5px;
+}
+
+.textColor {
+  color: #1890ff;
+  cursor: pointer;
+}
+
+p {
+  margin-bottom: 6px !important;
+}
+
+h2 {
+  margin-bottom: 16px !important;
+}
+
+.divTitle {
+  text-align: left;
+}
+
+.divBlock>button {
+  margin-right: 32px;
+}
+
+
+
+.divButtom {
+  margin-bottom: 32px !important;
+}
+
+.divF {
+  padding: 32px;
+}
+
+.h1Span {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0 !important;
+}
+
+.divDis {
+  display: flex
+}
+
+.divDis>span {
+  line-height: 3rem;
+  margin-left: 5px;
+}
+
+.textSize {
+  font-weight: bold;
+}
+
+.firstDivTop {
+  text-align: center;
+  min-height: 50px;
+}
+
+span {
+  margin: 0 16px;
+}
+
+.divBlock {
+  /* margin: 16px 0; */
+  margin-bottom: 16px;
+}
+
+.colortext {
+  color: #fff;
+}

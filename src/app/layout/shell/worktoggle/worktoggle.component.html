@@ -1,0 +1,21 @@
+<div class="bj">
+      <img class="circle" src="./assets/newimage/workshoptoggle/bg_left@2x.png" alt="">
+      <img class="book" src="./assets/newimage/workshoptoggle/bg_right@2x.png" alt="">
+      <h1> 请选择您的工作空间 </h1>
+      <div nz-row style="position: absolute; top: 60%;width: 100%;padding: 0 24px">
+        <div nz-col class="gutter-row" *ngFor="let i of radios;let x = index" nzSpan="6" [nzOffset]="x===0? '3': '0'" style="margin-bottom:16px; position:relative;">
+          <img _ngcontent-dce-c7="" alt="" style="width: 100%" [src]="i.imgsrc">
+          <div class="gutter-box">
+            <h1 style="font-size: 2.7vw;color: #006fff;margin-top: 13%">{{i.workname}}</h1>
+            <button  nztype="primary"
+                     class="ant-btn ant-btn-primary ant-btn-round ant-btn-lg chenckButton" style="margin-top: 79%"  (click)="clickToggle(i.value)" ><span> 选择 </span></button>
+          </div>
+        </div>
+      </div>
+
+
+</div>
+
+
+
+

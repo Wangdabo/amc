@@ -1,0 +1,64 @@
+<div class="container">
+  <div nz-row>
+    <tms-query #baseQuery [headerDate]="queryModel.queryHeader" (getQuery)="getQueryData($event)" (resetButton)="reset($event)"></tms-query>
+  </div>
+  <div class="table">
+    <tms-list
+      [tableClass]="'bmtableClass'"
+      [listHeader]="queryModel.header" [listData]="queryModel.data" [pageSize]="queryModel.condition.pagesize"
+      [totalCount]="queryModel.totalCount" [isLoading]="queryModel.isLoading" (pageChangeHandler)="pageChange($event)"
+      (selectRowsHandler)="selectRowsHandler($event)" [topActions]="queryModel.topActions" (topActionsHandler)="topActionsHandler($event)"
+      [rowActions]="queryModel.rowActions" (rowActionsHandler)="rowActionsHandler($event)">
+    </tms-list>
+  </div>
+</div>
+<nz-modal nzWidth='{{settingService.modal.mid}}' [(nzVisible)]="insertOrUpdateModel.isVisible" nzTitle="{{insertOrUpdateModel.isUpdate ? '新增机构' : '修改机构'}}"
+  (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" [nzOkLoading]="insertOrUpdateModel.isOkLoading">
+  <tms-form #baseForm nz-row [nzGutter]="24">
+    <!-- <tms-filed nz-col [nzSpan]="24" [inputType]="'select'" [formsName]="'app_id'" [filedName]="'应用'" [dictId]="'SYS_APP_ID'"
+      [required]="true"></tms-filed> -->
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'name'" [filedName]="'名称'" [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'domain'" [filedName]="'domain'"
+      [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'mspid'" [filedName]="'mspid'"
+      [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'ca_name'" [filedName]="'ca_name'"
+      [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'ca_location'" [filedName]="'ca_location'"
+      [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'ca_properties'" [filedName]="'ca_properties'"
+      [required]="true"></tms-filed>
+
+
+  </tms-form>
+</nz-modal>
+<nz-modal [(nzVisible)]="isVisible" nzWidth="1224" nzTitle="节点维护" [nzFooter]="modalFooter" (nzOnCancel)="isVisible = false">
+  <nz-card>
+    <tms-list [listHeader]="peerModal.header" [isrowEdit]="peerModal.isrowEdit" [listData]="peerModal.data" [pageSize]="peerModal.condition.pagesize"
+      [totalCount]="peerModal.totalCount" [isLoading]="peerModal.isLoading" (pageChangeHandler)="pageChange($event)"
+      (selectRowsHandler)="selectRowsHandler($event)" [topActions]="peerModal.topActions" (editActiveHandler)="editActiveHandler($event)"
+      (topActionsHandler)="topActionsHandlerPeer($event)" [rowActions]="peerModal.rowActions" (rowActionsHandler)="peerRowActionsHandler($event)">
+    </tms-list>
+  </nz-card>
+  <ng-template #modalFooter></ng-template>
+</nz-modal>
+
+<nz-modal nzWidth='800' [(nzVisible)]="peerModal.isVisible" nzTitle="'新增节点'" (nzOnCancel)="peerModal.isVisible = false"
+  (nzOnOk)="handleOkPeer()" [nzOkLoading]="peerModal.isOkLoading">
+  <tms-form #baseFormPeer nz-row [nzGutter]="24">
+
+    <!-- <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'mspid'" [filedName]="'mspid'"
+      [required]="true"></tms-filed> -->
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'domain'" [filedName]="'domain'"
+      [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'location'" [filedName]="'location'"
+      [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'event_hub'" [filedName]="'event_hub'"
+      [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'input'" [formsName]="'properties'" [filedName]="'properties'"
+      [required]="true"></tms-filed>
+
+
+
+  </tms-form>
+</nz-modal>

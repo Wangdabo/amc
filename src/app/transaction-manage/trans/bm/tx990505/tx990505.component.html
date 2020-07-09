@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="table">
+    <tms-list
+      [listHeader]="queryModel.header"
+      [listData]="queryModel.data"
+      [isLoading]="queryModel.isLoading"
+      [topActions]="topActions"
+      (topActionsHandler)="topActionsHandler($event)"
+      [rowActions]="rowActions"
+      (rowActionsHandler)="rowActionsHandler($event)"
+      [topActions]="topActions"
+      [isShowCheckbox]="false">
+    </tms-list>
+  </div>
+</div>
+<nz-modal nzWidth='{{settingService.modal.large}}' [(nzVisible)]="insertModel.isVisible"
+          nzTitle="发布票据"
+          (nzOnCancel)="handleCancel()"
+          (nzOnOk)="handleOk()"
+          [nzOkLoading]="insertModel.isOkLoading">
+  <tms-form #baseForm nz-row [nzGutter]="24">
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'BillInfoID'" [filedName]="'票据号码'" [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'BillInfoAmt'" [filedName]="'票据金额'" [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'date'" [formsName]="'BillInfoAmt'" [filedName]="'票据出票日期'" [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'date'" [formsName]="'BillInfoDueDate'" [filedName]="'票据到期日期'" [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'DrwrAcct'" [filedName]="'出票人名称'" [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'DrwrCmID'" [filedName]="'出票人证件号码'" [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'AccptrAcct'" [filedName]="'承兑人名称'" [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'AccptrCmID'" [filedName]="'承兑人证件号码'" [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'PyeeAcct'" [filedName]="'收款人名称'" [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'PyeeCmID'" [filedName]="'收款人证件号码'" [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'HodrAcct'" [filedName]="'持票人名称'" [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'HodrCmID'" [filedName]="'持票人证件号码'" [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'BillInfoType'" [filedName]="'票据类型'" [required]="true"></tms-filed>
+  </tms-form>
+</nz-modal>
+<nz-modal nzWidth='{{settingService.modal.large}}' [(nzVisible)]="detailModel.isVisible"
+          nzTitle="票据详情"
+          (nzOnCancel)="handleDetailCancel()"
+          [nzOkText]="null"
+          [nzOkLoading]="detailModel.isOkLoading">
+  <app-bill-detail #billDetail (submitEvent)="submitBillDetailEventHandler($event)" [transactionContextChangeOb]="transactionContextChangeOb"></app-bill-detail>
+</nz-modal>
+<nz-modal nzWidth='{{settingService.modal.large}}' [(nzVisible)]="pushModel.isVisible"
+          nzTitle="发起背书"
+          (nzOnCancel)="handlePushCancel()"
+          (nzOnOk)="handlePushOk()"
+          [nzOkText]="'发起背书'"
+          [nzOkLoading]="pushModel.isOkLoading">
+  <tms-form #baseForm nz-row [nzGutter]="24">
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'EndrAcct'" [filedName]="'被背书人名称'" [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'EndrCmID'" [filedName]="'被背书人证件号码'" [required]="true" [labelSpan]="8"></tms-filed>
+  </tms-form>
+</nz-modal>

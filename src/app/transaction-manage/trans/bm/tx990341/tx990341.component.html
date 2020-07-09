@@ -1,0 +1,87 @@
+<div class="container">
+  <nz-card>
+    <div nz-row>
+      <div nz-col nzSpan="6">
+        <nz-select style="width: 80%; margin-bottom: 20px; margin-right: 10px" [(ngModel)]="appId" (ngModelChange)="selectChange()" nzShowSearch nzAllowClear nzPlaceHolder="请先选择应用" >
+          <nz-option *ngFor="let i of appList"  [nzLabel]="i.app_name" [nzValue]="i.app_id"></nz-option>
+        </nz-select>
+        <button *ngIf="rootMune"  nz-button nzType="primary"  (click)="addrootMenu()" nzShape="circle"><i nz-icon type="plus" theme="outline"></i></button>
+        <tms-tree  [hidden] = "treeshow"
+                   [treeTitle]="'菜单信息'"
+                   [menuList]="menuList"
+                   [treeFlatData]="treeData"
+                   (treeEventHandler)="treeEvent($event)"
+                   (clickEventHandler)="clickEventHandler($event)"
+                   (rightClickEventHandler)="rightClick($event)"
+                   (rightEventHandler)="rightEventHandler($event)"></tms-tree>
+      </div>
+      <div nz-col nzSpan="17" style="margin-left: 10px;">
+        <nz-tabset *ngIf="isshowTab" [nzSelectedIndex]="sindex" [nzType]="'card'">
+          <nz-tab *ngFor="let tab of tabs" [nzTitle]="titleTemplate" (nzSelect)="tabSelect(tab.id)">
+            <ng-template #titleTemplate>
+              <i nz-icon [nzType]="tab.icon" nzTheme="outline"></i>
+              <span [title]="tab.text">{{ tab.text }}</span>
+            </ng-template>
+            <div *ngIf="tab.id === 'main'">
+              <tms-form #baseForm nz-row>
+                <tms-filed nz-col [nzSpan]="12" [labelSpan]="6" [inputType]="'input'" [formsName]="'menu_code'"
+                           [filedName]="'菜单代码'" [required]="false"></tms-filed>
+                <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'menu_name'"
+                           [filedName]="'菜单名称'" [required]="false"></tms-filed>
+                <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'show_name'"
+                           [filedName]="'显示名称'" [required]="false"></tms-filed>
+                <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_SYSTEM_FLAG'"
+                           [formsName]="'system_flag'" [filedName]="'所属渠道'" [required]="false"></tms-filed>
+                <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'menu_seqno'"
+                           [filedName]="'菜单顺序'" [required]="false"></tms-filed>
+                <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_VALID_FLAG'"
+                           [formsName]="'valid_flag'" [filedName]="'有效标识'" [required]="false"></tms-filed>
+                <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'icon'" [filedName]="'图标'"
+                           [required]="false"></tms-filed>
+                <tms-filed nz-col [nzSpan]="24"  [labelSpan]="3" [controlSpan]="19" [inputType]="'input'" [formsName]="'parent_id'"
+                           [filedName]="'上级菜单'" [required]="false"></tms-filed>
+                <tms-filed nz-col [nzSpan]="24" [labelSpan]="3" [controlSpan]="19" [labelSpan]="6" [controlSpan]="18" [inputType]="'textarea'"
+                           [formsName]="'menu_desc'" [filedName]="'菜单描述'" [required]="false"></tms-filed>
+              </tms-form>
+            </div>
+            <div *ngIf="tab.id === 'nexme'">
+              <app-tx990341_2 #tx990341_2 (submitEvent)="submitTx990341_2EventHandler($event)"
+                              [transactionContextChangeOb]="transactionContextChangeOb"></app-tx990341_2>
+            </div>
+            <div *ngIf="tab.id === 'translist'">
+              <app-tx990341_3 #tx990341_3 (submitEvent)="submitTx990341_3EventHandler($event)"
+                              [transactionContextChangeOb]="transactionContextChangeOb"></app-tx990341_3>
+            </div>
+          </nz-tab>
+        </nz-tabset>
+      </div>
+    </div>
+  </nz-card>
+</div>
+
+
+<nz-modal nzWidth='{{settingService.modal.large}}' [(nzVisible)]="modalopen" nzTitle="{{modaltt}}"
+  (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <tms-form #baseForm2 nz-row [nzGutter]="24">
+    <tms-filed nz-col [nzSpan]="24" [labelSpan]="3" [controlSpan]="19" [inputType]="'input'" [formsName]="'menu_code'"
+      [filedName]="'菜单代码'" [required]="actionisupdate ? 'false' : 'true'"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'menu_name'" [filedName]="'菜单名称'"
+      [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'show_name'" [filedName]="'显示名称'"
+      [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_SYSTEM_FLAG'"
+      [formsName]="'system_flag'" [filedName]="'所属渠道'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'menu_seqno'" [filedName]="'菜单顺序'"
+      [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_VALID_FLAG'"
+      [formsName]="'valid_flag'" [filedName]="'有效标识'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'icon'" [filedName]="'图标'"
+      [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [labelSpan]="3" [controlSpan]="19" [inputType]="'input'" [formsName]="'parent_id'"
+      [filedName]="'上级菜单'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [labelSpan]="3" [controlSpan]="19"  [inputType]="'textarea'"
+      [formsName]="'menu_desc'" [filedName]="'菜单描述'" [required]="false"></tms-filed>
+    <tms-filed nz-col [nzSpan]="24" [labelSpan]="3" [controlSpan]="19"  [inputType]="'textarea'"
+      [formsName]="'sort_rule'" [filedName]="'交易排序规则'" [required]="false"></tms-filed>
+  </tms-form>
+</nz-modal>

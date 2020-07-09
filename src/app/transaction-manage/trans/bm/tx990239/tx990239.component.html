@@ -1,0 +1,147 @@
+<div *ngIf="isShow">
+  <div nz-row class="divTop">
+    <div nz-col nzSpan="24">
+      <span class="textSize">监控方案</span>
+      <nz-select style="width:300px" [(ngModel)]="monitorid" (ngModelChange)="ngModelChange($event)">
+        <nz-option *ngFor="let i of topSelects" [nzLabel]="i.config_name" [nzValue]="i.id"></nz-option>
+      </nz-select>
+      <button class="Gradient" style="border-radius: 6px; margin-left:10px; border: none;" nz-button (click)="goConfig()" nzType="primary">
+        配置方案<i nz-icon type="edit" theme="outline"></i>
+      </button>
+      <nz-progress class="whiteprogress" [nzPercent]="percent" nzType="circle"  [nzWidth]="50" [nzFormat]="formatOne"></nz-progress>
+    </div>
+  </div>
+  <div class="divbody">
+    <div nz-row nzGutter="16" class="divBlock">
+      <div nz-col class="gutter-row" nzSpan="14">
+        <div class="grid-config">
+          <!--<nz-card nzTitle="实时交易情况" [nzBordered]="false" style="background: red">-->
+          <nz-card [nzBordered]="false" class="realTime">
+            <div class="cardTitle">
+                <h2>实时交易情况</h2>
+            </div>
+            <div nz-row class="firstDivTop">
+              <div nz-col nzSpan="8">
+                  <div class="totalTrans">
+                    <p>今日交易总数</p>
+                    <p><span class="h1Span">{{resultData.global_count.total_trans}}</span><span
+                      style="padding-top: 5%;margin: 0">笔</span></p>
+                  </div>
+              </div>
+              <div nz-col nzSpan="8">
+                <div class="totalTrans">
+                  <p>交易成功率</p>
+                  <p><span class="h1Span">{{resultData.global_count.succ_rate | percent}}</span></p>
+                </div>
+              </div>
+              <div nz-col nzSpan="8">
+                <div class="totalTrans">
+                  <p>每秒交易笔数</p>
+                  <p><span class="h1Span">{{resultData.global_count.sec_trans }}</span><span
+                    style="padding-top: 5%;;margin: 0">笔</span></p>
+                </div>
+
+              </div>
+            </div>
+            <div *ngIf="temp" echarts style="height: 400px;" [options]="optionsTrading" class="demo-chart"></div>
+          </nz-card>
+        </div>
+      </div>
+      <div nz-col class="gutter-row" nzSpan="10">
+        <div class="grid-config">
+          <!--<nz-card nzTitle="交易渠道及类型占比" [nzBordered]="false">-->
+          <nz-card class="realType"  [nzBordered]="false">
+            <div class="cardTitle">
+              <h2>交易渠道及类型占比</h2>
+            </div>
+            <div *ngIf="radios.length === 0"  style="height: 400px;text-align: center; margin-top:50px">
+                <img  src="./assets/image/empty.png" alt="">
+            </div>
+            <div nz-row class="firstDivTop" *ngIf="radios.length !== 0">
+              <nz-radio-group [(ngModel)]="radioValue" (ngModelChange)="changeRadio($event)" [nzButtonStyle]="'solid'">
+                <label nz-radio-button *ngFor="let i of radios" [nzValue]="i.key">{{i.label}}</label>
+              </nz-radio-group>
+            </div>
+            <div *ngIf="temp && radios.length !== 0" echarts style="height: 400px;" [options]="optionsGrid" class="demo-chart"></div>
+          </nz-card>
+        </div>
+      </div>
+    </div>
+    <div nz-row class="divBlock">
+      <div nz-col nzSpan="24">
+        <nz-card class="redtimeRank" [nzBordered]="false">
+          <div class="cardTitle">
+            <h2>实时交易清单</h2>
+          </div>
+            <tms-list
+              [tableClass]="'gradientHeader'"
+              [listHeader]="queryModel.header"
+                      [listData]="queryModel.data"
+              [pageSize]="queryModel.condition.pagesize"
+                      [totalCount]="queryModel.totalCount"
+              [isLoading]="queryModel.isLoading"
+                      (pageChangeHandler)="pageChange($event)"
+              (selectRowsHandler)="selectRowsHandler($event)"
+                      [topActions]="queryModel.topActions"
+              (topActionsHandler)="topActionsHandler($event)"
+                      [rowActions]="[]"
+              (rowActionsHandler)="rowActionsHandler($event)"
+                      (rowActiveHandler)="rowActiveHandler($event)"
+                     [isShowCheckbox]="false"
+                      [showAlert]="false"
+                      [isrowEdit]="false"
+                      [isrowActionsFlag]="true"
+                      [isEdit]="false">
+
+          </tms-list>
+        </nz-card>
+      </div>
+    </div>
+    <div nz-row class="divBlock">
+      <div nz-col nzSpan="24">
+        <nz-card class="redtimeRank"  [nzBordered]="false">
+          <div class="cardTitle">
+            <h2>实时交易统计</h2>
+          </div>
+          <div nz-row nzGutter="16">
+            <div nz-col class="gutter-row" nzSpan="6" *ngFor="let i of divCards">
+              <div nz-card-grid [ngStyle]="gridStyle" class="gutter-box">
+                <div class="divTitle" style="color:#00fdfe">{{i.menu_name}}</div>
+                <div nz-row>
+                  <div nz-col nzSpan="8" style="padding-top: 5%;
+                  padding-left: 5%;">
+                    <div class="divDis">
+                      <nz-badge style="line-height: 3rem" nzStatus="success"></nz-badge> <span
+                        class="h1Span">{{i.succ_count}}</span><span style="padding-top: 5%;margin-right: 0;color: #fff;">笔</span>
+                    </div>
+                    <div class="divDis">
+                      <nz-badge style="line-height: 3rem" nzStatus="error"></nz-badge> <span
+                        class="h1Span">{{i.fail_count}}</span><span style="padding-top: 5%;margin-right: 0;color: #fff;">笔</span>
+                    </div>
+                  </div>
+                  <div nz-col nzSpan="16">
+                    <div style="min-height: 150px;min-width: 150px">
+                      <div *ngIf="temp" echarts style="height: 150px;width: 150px"
+                        [options]="divCards.length > 0 ? i.optionsGrid : optionsCards" class="demo-chart">
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="divCards.length === 0" style="text-align: center; color:#fff;">
+              暂无交易统计
+            </div>
+          </div>
+        </nz-card>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div nz-row class="divEmpty" *ngIf="!isShow">
+  <!-- <nz-empty></nz-empty> -->
+  <img src="./assets/image/empty.png" alt="">
+  <p> {{returnmessage}}</p>
+</div>

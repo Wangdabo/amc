@@ -1,0 +1,38 @@
+<div class="container">
+  <div nz-row>
+    <tms-query
+      #baseQuery
+      [headerDate]="queryModel.queryHeader"
+      (getQuery)="getQueryData($event)"
+      (resetButton)="reset($event)"></tms-query>
+  </div>
+  <div class="table">
+    <tms-list
+      [listHeader]="queryModel.header"
+      [listData]="queryModel.data"
+      [pageSize]="queryModel.condition.pagesize"
+      [totalCount]="queryModel.totalCount"
+      [isLoading]="queryModel.isLoading"
+      (pageChangeHandler)="pageChange($event)"
+      (selectRowsHandler)="selectRowsHandler($event)"
+      [topActions]="queryModel.topActions"
+      (topActionsHandler)="topActionsHandler($event)"
+      [rowActions]="queryModel.rowActions"
+      (rowActionsHandler)="rowActionsHandler($event)">
+    </tms-list>
+  </div>
+</div>
+<nz-modal nzWidth='{{settingService.modal.mid}}' [(nzVisible)]="insertOrUpdateModel.isVisible"
+          nzTitle="{{insertOrUpdateModel.isUpdate ? '新增节点与智能合约配置' : '修改节点与智能合约配置'}}"
+          (nzOnCancel)="handleCancel()"
+          (nzOnOk)="handleOk()"
+          [nzOkLoading]="insertOrUpdateModel.isOkLoading">
+  <tms-form #baseForm nz-row [nzGutter]="24">
+    <tms-filed nz-col [nzSpan]="24" [inputType]="'select'" [formsName]="'peer_id'" [filedName]="'节点'" [dictId]="'SYS_PEER_ID'" [required]="true"></tms-filed>
+ <tms-filed nz-col [nzSpan]="24" [inputType]="'select'" [formsName]="'chaincode_id'" [filedName]="'智能合约'" [dictId]="'SYS_CHAINCODE_ID'" [required]="true"></tms-filed>
+ <tms-filed nz-col [nzSpan]="24" [inputType]="'select'" [formsName]="'channel_id'" [filedName]="'通道'" [dictId]="'SYS_CHANNERL_ID'" [required]="true"></tms-filed>
+
+
+  </tms-form>
+</nz-modal>
+

@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="table">
+    <tms-list
+      [listHeader]="historyModel.header"
+      [listData]="historyModel.data"
+      [isShowPagination]="false"
+      [showAlert]="false"
+      [isShowCheckbox]="false">
+    </tms-list>
+  </div>
+  <tms-form #baseForm nz-row [nzGutter]="24">
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'BillInfoID'" [filedName]="'票据号码'"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'BillInfoAmt'" [filedName]="'票据金额'"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'date'" [formsName]="'BillInfoAmt'" [filedName]="'票据出票日期'"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'date'" [formsName]="'BillInfoDueDate'" [filedName]="'票据到期日期'"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'DrwrAcct'" [filedName]="'出票人名称'"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'DrwrCmID'" [filedName]="'出票人证件号码'"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'AccptrAcct'" [filedName]="'承兑人名称'"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'AccptrCmID'" [filedName]="'承兑人证件号码'"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'PyeeAcct'" [filedName]="'收款人名称'"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'PyeeCmID'" [filedName]="'收款人证件号码'"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'HodrAcct'" [filedName]="'持票人名称'"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'HodrCmID'" [filedName]="'持票人证件号码'"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'BillInfoType'" [filedName]="'票据类型'"></tms-filed>
+  </tms-form>
+</div>

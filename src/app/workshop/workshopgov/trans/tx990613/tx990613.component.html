@@ -1,0 +1,117 @@
+<app-titleback [titleName]="'失物招领'"></app-titleback>  
+<div class="container" style="margin-top: 24px;padding:20px;background-color: #fff;height: 600px;">
+  <div class="header" style="text-align: center;margin-top: 48px;">
+    <nz-radio-group [(ngModel)]="radioValue" [nzButtonStyle]="'solid'">
+      <label nz-radio-button nzValue="A" (click)="select('A')" style="font-size: 18px">拾物登记</label>
+      <label nz-radio-button nzValue="B" (click)="select('B')" style="font-size: 18px">实物处理</label>
+    </nz-radio-group>
+  </div>
+  <div class="content">
+    <div class="register" *ngIf="Flag === 'A'">
+        <div nz-col nzSpan="25">
+            <div nz-row style="padding-top: 30px">
+              <div nz-col nzSpan="12">
+                <div class="divForm">
+                  <tms-form #baseForm1 nz-row [nzGutter]="24">
+                    <tms-filed nz-col [nzSpan]="22" [labelSpan]="10" [(fieldModel)]="article_name" [inputType]="'input'"
+                      [formsName]="'article_name'" [filedName]="'物品名称'" [required]="false">
+                    </tms-filed>
+        
+                    <tms-filed nz-col [nzSpan]="22" [labelSpan]="10" [(fieldModel)]="location_pickup" [inputType]="'input'"
+                      [formsName]="'location_pickup'" [filedName]="'拾遗位置'" [required]="false"></tms-filed>、
+                    
+                      <tms-filed nz-col [nzSpan]="22" [labelSpan]="10" [(fieldModel)]="watchman" [inputType]="'input'"
+                      [formsName]="'watchman'" [filedName]="'值班人'" [required]="false"></tms-filed>
+                  </tms-form>
+                </div>
+              </div>
+              <div nz-col nzSpan="12">
+                <div class="divForm">
+        
+                  <tms-form #baseForm2 nz-row [nzGutter]="24">
+                    <tms-filed nz-col [nzSpan]="22" [labelSpan]="10" [(fieldModel)]="pickup_time" [inputType]="'date'"
+                      [formsName]="'pickup_time'"  [filedName]="'拾遗日期'" [required]="false"></tms-filed>
+
+                    <tms-filed nz-col [nzSpan]="22" [labelSpan]="10" [(fieldModel)]="pickup_people" [inputType]="'input'"
+                    [formsName]="'pickup_people'" [filedName]="'拾遗人'" [required]="false"></tms-filed>
+
+                    <tms-filed nz-col [nzSpan]="22" [labelSpan]="10" [(fieldModel)]="article_characteristics" [inputType]="'input'"
+                    [formsName]="'article_characteristics'" [filedName]="'物品特征'" [required]="false">
+                  </tms-filed>
+                  </tms-form>
+                </div>
+              </div>
+            </div>
+        
+        
+        
+            <div nz-col nzSpan="24" class="buttonDiv" style="padding-top: 12px;padding-bottom: 12px;margin-left: 2%;margin-top: 40px;">
+              <div nz-col nzSpan="8" style="margin-left: 120px">
+                <button nz-button nzSize='large' nzBlock nzType="primary" (click)="commit()">提交</button>
+              </div>
+              <div nz-col nzSpan="8" style="margin-left: 120px">
+                <button nz-button nzSize='large' nzBlock nzType="primary" (click)="result()">重置</button>
+              </div>
+            </div>
+        
+          </div>
+    </div>
+    <div class="handle" *ngIf="Flag === 'B'" style="margin-top: 24px">
+        <tms-list [listHeader]="listHeader"
+        [listData]="listData"
+        [isShowPagination]="false"
+        (rowActionsHandler)="selectList($event)"
+        [showAlert]="false"
+        [isrowActionsFlag] = "true"
+        [rowActions] = "rowActions"
+        [isclickPointer]="false"
+        [isEdit]="true"
+        [isShowCheckbox] = "false">
+      </tms-list>
+    </div>
+  </div>
+</div>
+<div>
+  <nz-modal nzWidth="800"  [(nzVisible)]="isVisible"
+          nzTitle="'修改信息'"
+          (nzOnCancel)="isVisible = false"
+          (nzOnOk)="ok()">
+      <tms-form #baseForm  nz-row nzType="flex"  nzJustify="start"  [nzGutter]="24">
+        <div nz-col nzSpan="25">
+          <div nz-row style="padding-top: 30px">
+            <div nz-col nzSpan="12">
+              <div class="divForm">
+                <tms-form #baseForm1 nz-row [nzGutter]="24">
+                  <tms-filed nz-col [nzSpan]="22" [labelSpan]="10" [(fieldModel)]="article_name" [inputType]="'input'"
+                    [formsName]="'article_name'" [filedName]="'物品名称'" [required]="false">
+                  </tms-filed>
+      
+                  <tms-filed nz-col [nzSpan]="22" [labelSpan]="10" [(fieldModel)]="location_pickup" [inputType]="'input'"
+                    [formsName]="'location_pickup'" [filedName]="'拾遗位置'" [required]="false"></tms-filed>、
+                  
+                    <tms-filed nz-col [nzSpan]="22" [labelSpan]="10" [(fieldModel)]="watchman" [inputType]="'input'"
+                    [formsName]="'watchman'" [filedName]="'值班人'" [required]="false"></tms-filed>
+                </tms-form>
+              </div>
+            </div>
+            <div nz-col nzSpan="12">
+              <div class="divForm">
+      
+                <tms-form #baseForm2 nz-row [nzGutter]="24">
+                  <tms-filed nz-col [nzSpan]="22" [labelSpan]="10" [(fieldModel)]="pickup_time" [inputType]="'date'"
+                    [formsName]="'pickup_time'"  [filedName]="'拾遗日期'" [required]="false"></tms-filed>
+
+                  <tms-filed nz-col [nzSpan]="22" [labelSpan]="10" [(fieldModel)]="pickup_people" [inputType]="'input'"
+                  [formsName]="'pickup_people'" [filedName]="'拾遗人'" [required]="false"></tms-filed>
+
+                  <tms-filed nz-col [nzSpan]="22" [labelSpan]="10" [(fieldModel)]="article_characteristics" [inputType]="'input'"
+                  [formsName]="'article_characteristics'" [filedName]="'物品特征'" [required]="false">
+                </tms-filed>
+                </tms-form>
+              </div>
+            </div>
+          </div>      
+        </div>
+      </tms-form>
+</nz-modal>
+</div>

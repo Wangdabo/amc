@@ -1,0 +1,47 @@
+<div class="container">
+  <nz-card>
+    <tms-query
+      #baseQuery
+      [headerDate]="queryHeader"
+      (getQuery)="getQueryData($event)"
+      (resetButton)="reset($event)"></tms-query>
+  </nz-card>
+
+  <nz-card style="margin-top: 20px;">
+    <div class="table">
+      <tms-list
+        [tableClass]="'bmtableClass'"
+        [listHeader]="header"
+        [listData]="transactionActionData[CommonActionCodeContants.QUERY].response.resultdata.bdy.data"
+        [pageSize]="transactionActionData[CommonActionCodeContants.QUERY].request.requestdata.bdy.pagesize"
+        [totalCount]="transactionActionData[CommonActionCodeContants.QUERY].response.resultdata.bdy.count"
+        [isLoading]="transactionActionData[CommonActionCodeContants.QUERY].actioning"
+        (pageChangeHandler)="pageChange($event)"
+        [topActions]="topActions"
+        (topActionsHandler)="topActionsHandler($event)"
+        [rowActions]="rowActions"
+        (rowActionsHandler)="rowActionsHandler($event)"
+        [isclickPointer]="false"
+        [isEdit]="true"
+        [isrowActionsFlag]="true">
+      </tms-list>
+    </div>
+  </nz-card>
+</div>
+
+<nz-modal nzWidth='{{settingService.modal.large}}' [(nzVisible)]="isVisible "
+          nzTitle="{{isUpdate ? '修改应用' : '新增应用'}}"
+          (nzOnCancel)="handleCancel()"
+          (nzOnOk)="handleOk()"
+          [nzOkLoading]="transactionActionData[CommonActionCodeContants.INSERT_OR_UPDATE].actioning">
+  <tms-form #baseForm  nz-row nzType="flex"  nzJustify="start"  [nzGutter]="24">
+    <tms-filed nz-col [nzSpan]="12" [(fieldModel)] = "transactionActionData[CommonActionCodeContants.INSERT_OR_UPDATE].request.requestdata.bdy.data.app_name" [inputType]="'input'"  [formsName]="'app_name'" [filedName]="'应用名称'" ></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [(fieldModel)] = "transactionActionData[CommonActionCodeContants.INSERT_OR_UPDATE].request.requestdata.bdy.data.app_id" [inputType]="'input'"  [formsName]="'app_id'" [filedName]="'应用代码'" ></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [(fieldModel)] = "transactionActionData[CommonActionCodeContants.INSERT_OR_UPDATE].request.requestdata.bdy.data.app_type" [inputType]="'select'"  [dictId]="'SYS_TYPE_APP'" [formsName]="'app_type'" [filedName]="'应用类型'" ></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [(fieldModel)] = "transactionActionData[CommonActionCodeContants.INSERT_OR_UPDATE].request.requestdata.bdy.data.status" [inputType]="'select'"  [dictId]="'SYS_APP_STAUTS'"  [formsName]="'status'"   [filedName]="'应用状态'" ></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [(fieldModel)] = "transactionActionData[CommonActionCodeContants.INSERT_OR_UPDATE].request.requestdata.bdy.data.app_os" [inputType]="'select'"  [dictId]="'SYS_APP_OS'" [formsName]="'app_os'" [filedName]="'运行系统'" ></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [(fieldModel)] = "transactionActionData[CommonActionCodeContants.INSERT_OR_UPDATE].request.requestdata.bdy.data.website" [inputType]="'input'"  [formsName]="'website'" [filedName]="'网站地址'" ></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [(fieldModel)] = "transactionActionData[CommonActionCodeContants.INSERT_OR_UPDATE].request.requestdata.bdy.data.create_time" [inputType]="'date'"  [formsName]="'create_time'" [filedName]="'创建时间'" ></tms-filed>
+    <tms-filed nz-col  [nzSpan]="24" [(fieldModel)] = "transactionActionData[CommonActionCodeContants.INSERT_OR_UPDATE].request.requestdata.bdy.data.app_desc" [labelSpan]="3" [controlSpan]="19" [inputType]="'textarea'"  [formsName]="'app_desc'" [filedName]="'应用描述'" ></tms-filed>
+  </tms-form>
+</nz-modal>

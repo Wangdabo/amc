@@ -1,0 +1,193 @@
+.mapStyle {
+  /* background: url("../../../../../assets/newimage/workMagger/logbg.png");
+  background-size: 100% 100%; */
+  background-color: #00000038;
+  padding: 24px;
+  min-height: 450px;
+
+}
+
+.tabDiv {
+
+  font-size: 18px;
+  line-height: 36px;
+  color: #ffffff;
+  text-align: center;
+  padding: 5px 0;
+}
+
+.tabDiv:hover {
+  cursor: pointer;
+}
+
+.tabDivNo {
+  background: url("../../../../../assets/newimage/Insight/btn_normal.png");
+  background-size: 100% 100%;
+}
+
+.tabDivSelect {
+  background: url("../../../../../assets/newimage/Insight/btn_selected.png");
+  background-size: 100% 100%;
+}
+
+.labelLeft {
+  text-align: right;
+  color: #ffffff;
+  font-size: 16px;
+  margin-bottom: 10px;
+
+}
+
+.valueRight {
+  font-size: 16px;
+  color: #ffffff;
+
+}
+
+.labelLeft::after {
+  content: ':';
+  position: relative;
+  top: -.5px;
+  margin: 0 8px 0 2px;
+}
+
+.title {
+  color: #00f1e0;
+  margin-bottom: 16px;
+  border-left: 3px solid #00fdfe;
+  padding-left: 7px;
+}
+
+.evaluate {
+  border-radius: 10px;
+  padding: 0 !important;
+}
+
+.boxDiv {
+  box-shadow: inset 0px 0px 7px 5px #00fdfe40;
+  padding: 16px 32px !important;
+}
+
+/* 右下 */
+.gutter-boxB1 {
+  box-shadow: inset -15px -15px 8px -15px #00fdfe94;
+
+}
+
+/* 左下 */
+.gutter-boxB2 {
+  box-shadow: inset 15px -15px 8px -15px #00fdfe94;
+}
+
+/* 右上 */
+.gutter-boxB3 {
+  box-shadow: inset -15px 15px 8px -15px #00fdfe94;
+
+}
+
+/* 左上 */
+.gutter-boxB4 {
+  box-shadow: inset 15px 15px 8px -15px #00fdfe94;
+
+}
+
+.gutter-box {
+  /* border: 1px solid #00a0e9; */
+  padding: 16px;
+  /* border-radius: 16px; */
+  min-height: 100px;
+  color: #00fdfe;
+  text-align: center;
+  /* box-shadow: inset 0px 0px 10px 5px #00fdfe26; */
+
+}
+
+.boxBorder {
+  border: 1px solid #00a0e9;
+}
+
+.gutter-box>h3 {
+  margin-top: 1rem
+}
+
+h3 {
+  color: #00f1e0;
+  margin-top: .5em
+}
+
+.valueText {
+  font-size: 42px;
+  font-weight: 600;
+  margin-right: 2px;
+}
+
+.labelName {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 72px;
+}
+
+.labelText {
+  font-size: 18px;
+  line-height: 36px;
+  /* padding: 10px 0;
+  margin-bottom: 12px; */
+}
+
+.labelText>label {
+  margin-right: 15px;
+}
+
+
+.boxDivSpan {
+  font-size: 26px;
+}
+
+.nice {
+  color: #68f920;
+}
+
+.good {
+  color: #faad14;
+}
+
+.bad {
+  color: #ff4d4f;
+}
+
+.listStyle {
+  margin-top: 16px;
+}
+
+.listStyle::ng-deep .ng-star-inserted {
+  color: #ffffff !important;
+}
+
+nz-select {
+  width: 100%;
+
+}
+
+nz-select ::ng-deep .ant-select-selection {
+  background: none;
+  color: #fff;
+  font-size: 18px;
+  padding: 5px;
+  height: 42px;
+}
+
+.loading-icon {
+  margin-right: 8px;
+}
+
+nz-empty ::ng-deep p {
+  color: #fff;
+}
+
+.gutter-example {
+  padding: 0 32px;
+}
+
+.transAll::after {
+  content: '元';
+}

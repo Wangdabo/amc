@@ -1,0 +1,108 @@
+.container {
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .action {
+    height: 40px;
+  }
+  div[_ngcontent-c19]{
+
+      padding: 0 10px;
+  }
+  i{
+    font-size: 2rem;
+  }
+  .cardDiv{
+    padding: 0 16px;
+
+  }
+  .cardDiv > div{
+    margin-bottom: 16px;
+  }
+  p{
+    margin: 0;
+  }
+
+  .iconDiv{
+    font-size: 16px;padding: 5px;background: #f0f2f5;margin-bottom: 16px;
+  }
+  .icon{
+    font-size: 2rem;vertical-align: middle;
+  }
+  .demo-chart {
+    width: 100%;
+  }
+  canvas {
+    width: 100% !important;
+    height: 600px !important;
+  }
+
+  .spanFont{
+    text-align:right;color: #1890ff;line-height: 2rem;cursor: pointer;
+  }
+
+
+
+/* 新样式 */
+.redtimeRank {
+  background: url("../../../../../assets/newimage/home/content_bg_shishijiaoyi.png");
+  background-size:100% 100%;
+  padding: 5%
+}
+
+.cardTitle {
+  margin: 15px 15px;
+  position: relative;
+}
+
+.cardTitle h2 {
+  color:#fff;
+  margin-bottom: 0px;
+  font-weight: 900;
+}
+
+.cardTitle h2 span:nth-child(2) {
+  color:#5dc2c7;
+  position: relative;
+  right: -75%;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+
+/*资产负债*/
+.liabilities {
+  background: url("../../../../../assets/newimage/bigData/bg_second.png");
+  background-size:100% 100%;
+  padding: 25px;
+  border: none;
+}
+
+/* 大图样式 */
+.liabilitiese {
+  background: url("../../../../../assets/newimage/workMagger/logbg.png");
+  background-size:100% 100%;
+  padding: 25px;
+  border: none;
+}
+
+.liabilitiess {
+  background: url("../../../../../assets/newimage/workMagger/workbg.png");
+  background-size:100% 100%;
+  padding: 25px;
+  border: none;
+}
+
+
+.liabilities  p {
+  color: #fff;
+  font-size: 16px;
+}
+
+
+.liabilitiesTitle {
+  color: #00fdfe;
+  font-size: 20px;
+}

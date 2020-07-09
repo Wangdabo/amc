@@ -1,0 +1,18 @@
+<div nz-row style="height: 40px;margin-bottom: 15px;">
+    <div nz-col nzSpan="22">
+      <nz-breadcrumb style="margin-left:2%; line-height: 40px;">
+        <nz-breadcrumb-item>
+          <img style="vertical-align: baseline;margin-right: 10px;" src="./assets/bmimage/BM1/icon_flag@2x.png" alt="">
+          <a style="font-size: 18px;" [routerLink]="['../../']">首页</a>
+        </nz-breadcrumb-item>
+        <nz-breadcrumb-item style="font-size: 18px;">
+          交易
+        </nz-breadcrumb-item>
+        <nz-breadcrumb-item style="font-size: 18px;">
+          {{titleName}}
+          <i title="返回上一级" style="cursor: pointer;" *ngIf="oldTransDef" nz-icon type="enter" theme="outline"
+            (click)="sonRouteBack()"></i>
+        </nz-breadcrumb-item>
+      </nz-breadcrumb>
+    </div>
+  </div>

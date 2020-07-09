@@ -1,0 +1,56 @@
+<div class="container">
+  <nz-card>
+    <tms-query
+      #baseQuery
+      [headerDate]="queryModel.queryHeader"
+      (getQuery)="getQueryData($event)"
+      (resetButton)="reset($event)"></tms-query>
+  </nz-card>
+  <nz-card style="margin-top: 20px;">
+    <div class="table">
+      <tms-list
+        [tableClass]="'bmtableClass'"
+        [listHeader]="queryModel.header"
+        [listData]="queryModel.data"
+        [pageSize]="queryModel.condition.pagesize"
+        [totalCount]="queryModel.totalCount"
+        [isLoading]="queryModel.isLoading"
+        (pageChangeHandler)="pageChange($event)"
+        (selectRowsHandler)="selectRowsHandler($event)"
+        [topActions]="queryModel.topActions"
+        (topActionsHandler)="topActionsHandler($event)"
+        [rowActions]="queryModel.rowActions"
+        (rowActionsHandler)="rowActionsHandler($event)"
+        (rowActiveHandler)="rowActiveHandler($event)"
+        [isEdit]="true"
+        [isrowActionsFlag]="true">
+      </tms-list>
+    </div>
+  </nz-card>
+</div>
+<nz-modal nzWidth='{{settingService.modal.large}}' [(nzVisible)]="insertOrUpdateModel.isVisible"
+          nzTitle="{{insertOrUpdateModel.isUpdate ? '修改终端' : '新增终端'}}"
+          (nzOnCancel)="handleCancel()"
+          (nzOnOk)="handleOk()"
+          [nzOkLoading]="insertOrUpdateModel.isOkLoading">
+  <tms-form #baseForm  nz-row nzType="flex"  nzJustify="start"  [nzGutter]="24">
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'"  [formsName]="'workstation_code'" [filedName]="'工作站代码'" [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'"  [formsName]="'version_no'" [filedName]="'版本号'" [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'workstation_name'" [filedName]="'工作站名称'" [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'org_code'" [filedName]="'机构代码'" [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'channel_code'" [filedName]="'渠道代码'" [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_WORKSTATION_KIND'"  [formsName]="'workstation_kind'" [filedName]="'工作站类别'" [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_WORKSTATION_STATUS'"  [formsName]="'workstation_status'" [filedName]="'工作站状态'" [required]="true"></tms-filed>
+    <tms-filed nz-col [nzSpan]="12" [inputType]="'select'" [dictId]="'SYS_WORKSTATION_SWITCH'"  [formsName]="'workstation_switch'" [filedName]="'工作站开关'" [required]="true"></tms-filed>
+    <tms-filed  nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'suit_code'" [filedName]="'套装代码'" [required]="true"></tms-filed>
+
+    <tms-filed [hidden]="insertOrUpdateModel.data['channel_code'] !== 'Itm'" nz-col [nzSpan]="12" [inputType]="'select'" [formsName]="'Installation_method'" [filedName]="'安装方式'" [optionArray]="optionArray1" [required]="false"></tms-filed>
+    <tms-filed [hidden]="insertOrUpdateModel.data['channel_code'] !== 'Itm'" nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'mininum_bankn'" [filedName]="'钞少总张数'" [required]="false"></tms-filed>
+    <tms-filed [hidden]="insertOrUpdateModel.data['channel_code'] !== 'Itm'" nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'maxnum_bankn'" [filedName]="'钞满总张数'" [required]="false"></tms-filed>
+    <tms-filed [hidden]="insertOrUpdateModel.data['channel_code'] !== 'Itm'" nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'withdboxes_num'" [filedName]="'取款箱数量'" [required]="false"></tms-filed>
+    <tms-filed [hidden]="insertOrUpdateModel.data['channel_code'] !== 'Itm'" nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'numberboxes'" [filedName]="'存款箱数量'" [required]="false"></tms-filed>
+    <tms-filed [hidden]="insertOrUpdateModel.data['channel_code'] !== 'Itm'" nz-col [nzSpan]="12" [inputType]="'input'" [formsName]="'unionpay_org_code'" [filedName]="' 银联机构号'" [required]="false"></tms-filed>
+
+  </tms-form>
+</nz-modal>
+

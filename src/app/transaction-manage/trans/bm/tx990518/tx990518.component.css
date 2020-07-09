@@ -1,0 +1,124 @@
+.iconDiv {
+  font-size: 16px;
+  padding: 5px;
+  background: #f0f2f5
+}
+
+.icon {
+  font-size: 2rem;
+  vertical-align: middle;
+}
+
+.topDiv>div {}
+
+.centerDiv>div {
+  margin: 2rem 0;
+  /* // border: 1px solid #2570BE;
+    // border-radius: 23px; */
+
+}
+
+.cardDiv {
+  padding: 0 16px;
+
+}
+
+.cardDiv>div {
+  margin-bottom: 16px;
+}
+
+p {
+  margin: 0;
+}
+
+.sm-st-icon {
+  width: 4.5rem;
+  height: 4.5rem;
+  display: inline-block;
+  line-height: 4rem;
+  text-align: center;
+  font-size: 2.5rem;
+  /*background: #eee;*/
+  border-radius: 5px;
+  float: left;
+  margin-right: 10px;
+  color: #fff;
+}
+
+.iconRed {
+  background-color: #F05050;
+}
+
+.divQudao1 {
+  background: #ffffff;
+  text-align: center;
+  height: 200px;
+  cursor: pointer;
+}
+
+
+
+.textRight {
+  text-align: right
+}
+
+.textLeft {
+  text-align: left;
+}
+
+
+
+h4 {
+  color: gray;
+}
+
+.textH2 {
+  margin-bottom: 0px !important;
+  font-size: 24px;
+  color: #4c8bfd;
+}
+
+.clickIcon {
+  top: 30%;
+  z-index: 999;
+  cursor: pointer;
+  font-size: 2rem;
+  position: absolute
+}
+
+.clickIcon:hover {
+  color: #1890ff;
+}
+
+.clickIconRight {
+  right: 0;
+}
+
+.clickIconLeft {
+  left: 0;
+}
+
+.divider {
+  margin: 32px 0;
+}
+
+
+.imgStyle {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.icontitle {
+  position: absolute;
+  top: 20%;
+  left: 14%;
+  font-size: 44px;
+  color:#fff;
+}
+
+.iconimg  {
+  position: absolute;
+  right: 15%;
+  top: 22%;
+}

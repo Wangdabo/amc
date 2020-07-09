@@ -1,0 +1,104 @@
+.footer {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  border-top: 1px solid rgb(232, 232, 232);
+  padding: 10px 16px;
+  text-align: right;
+  left: 0px;
+}
+
+.container {
+  padding: 24px;
+  background-color: white;
+}
+
+p{
+  padding-left: 16px;
+}
+
+.button {
+  padding: 0 32px;
+}
+
+.icon {
+  font-size: 14px;
+  margin-right: 5px;
+}
+
+h3 {
+  margin-bottom: 0px !important;
+}
+
+.ant-cascader-picker {
+  width: 300px;
+}
+
+.itemDiv {
+  position: relative;
+}
+
+.itemDiv:hover {
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.delIcon {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+}
+
+.delIcon:hover {
+  color: red !important;
+}
+
+.editIcon:hover {
+  color: #1890ff !important;
+}
+
+.editIcon {
+  margin-left: 5px;
+}
+
+.divSpan {
+  padding: 0 16px;
+
+}
+
+.divSpanChild {
+  height: 380px;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.divSpanChild::-webkit-scrollbar {
+  /*滚动条整体样式*/
+  width: 10px;
+  /*高宽分别对应横竖滚动条的尺寸*/
+  height: 1px;
+}
+
+.divSpanChild::-webkit-scrollbar-thumb {
+  /*滚动条里面小方块*/
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 2px rgba(97, 122, 146, 0.2);
+
+  background: #f0f2f5;
+}
+
+
+.divSpanChild::-webkit-scrollbar-track {
+  /*滚动条里面轨道*/
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.searchIcon {
+  cursor: pointer;
+}
+
+.searchIcon:hover {
+  color: #1890ff
+}

@@ -1,0 +1,20 @@
+<div class="header">
+  <div class="title">AMC数据运营中心</div>
+  <div class="navleft">
+    <ul class="toggle">
+    <!--  <li><span style="color:#00ffff">智能运营 </span>/<span (click)="active()"> BM</span></li>-->
+      <li><span [class]="lanuI8n ==='zh'? 'clickLang': 'noclickLang'"  (click)="changeLanguage('zh')">中 </span>/<span [class]="lanuI8n ==='en'? 'clickLang': 'noclickLang'"  (click)="changeLanguage('en')"> EN</span></li>
+    </ul>
+  </div>
+  <div class="navright">
+        <ul>
+          <li (click)="togglework()"><img src="./assets/newimage/nav/qiehuan.png" alt=""></li>
+          <li (click)="logout()"><img src="./assets/newimage/nav/nav_btn_quit_normal.png" alt=""></li>
+          <li (click)="message()"><img src="./assets/newimage/nav/nav_btn_geren_normal.png"/></li>
+        </ul>
+  </div>
+</div>
+<div>
+
+</div>
+

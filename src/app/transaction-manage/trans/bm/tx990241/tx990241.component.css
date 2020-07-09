@@ -1,0 +1,73 @@
+nz-card {
+  width: 100%;
+}
+
+/* .gutter-row {
+  padding: 0 !important;
+} */
+.divHover {
+  cursor: pointer;
+
+}
+
+.divIcon {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  color: #b5b5b5;
+}
+
+.divIcon:hover {
+  color: red
+}
+
+.container {
+  padding-top: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+p {
+  margin-bottom: 5px !important;
+}
+
+.hiddenDiv {
+  border-top: 1px dashed gainsboro;
+  padding-top: 10px;
+  margin-top: 16px;
+}
+
+.button {
+  margin: 15px 0 0 25px;
+}
+
+nz-tabset {
+  margin-left: 45px;
+  margin-top: 10px;
+}
+
+.textLabel {
+  text-align: right
+}
+
+.textValue {
+  word-break: break-word;
+}
+
+.divTime {
+  margin-top: 24px;
+}
+
+[nz-radio] {
+  display: block;
+}
+
+.divDis {
+  display: flex;
+  margin-bottom: 24px;
+}
+
+nz-select {
+  width: 300px;
+  margin-right: 16px;
+}

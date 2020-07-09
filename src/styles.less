@@ -1,0 +1,392 @@
+/* You can add global styles to this file, and also import other style files */
+/*取消百度地图logo*/
+.anchorBL{
+    display:none;
+}
+
+nz-date-picker nz-picker .ant-calendar-picker {
+  width: 100% !important;
+}
+
+
+
+.ant-modal-body  {
+  margin-bottom: 40px!important; ;
+}
+
+/*  list 组件样式更改 */
+
+.ant-list-vertical .ant-list-item-extra {
+  border-left: 1px solid #ccc;
+  position: relative;
+}
+
+
+.ant-list-vertical .ant-list-item-extra button {
+    position: relative;
+    top:39%;
+    left: 11%
+}
+
+
+.ant-timeline-item-content {
+  position: relative;
+  padding: 0 0 35px !important;
+}
+
+
+.ant-layout-footer {
+
+}
+
+
+
+
+/* 9.23 新版样式修改 */
+// 首页样式修改
+.ant-layout {
+  background: none;
+}
+
+
+/*侧边栏样式修改*/
+.ant-menu {
+  background: none;
+  color:#fff
+}
+
+.ant-menu-submenu>.ant-menu {
+  background: none;
+}
+
+
+/*  首頁workshop 进度条样式 */
+.whiteprogress {
+  .ant-progress-circle .ant-progress-text {
+    color:#fff !important;
+  }
+}
+
+.gradientHeader {
+   thead {
+     background: -webkit-linear-gradient(top, #00fdfe,#2a65be);
+     border:none;
+     th {
+       background: none;
+     }
+   }
+   tbody {
+     td {
+       color:#fff;
+       .noactive {
+         color:#fff !important;
+       }
+     }
+   }
+
+   .ant-list-bordered {
+     border-color: rgba(214, 240, 255, 0.4) !important;
+   }
+
+   .ant-table-placeholder {
+     background: transparent;
+   }
+
+   .ant-empty-description {
+     color: #fff;
+   }
+
+   .ant-table-tbody>tr:hover:not(.ant-table-expanded-row) > td {
+     background: rgba(0, 253,254,0.2);
+   }
+
+   /* 翻页样式 */
+   .ant-pagination-item-link {
+     background: rgba(255,255,255,0.5);
+     color: #fff;
+   }
+   .ant-pagination-next {
+     .ant-pagination-item-link {
+       background: -webkit-linear-gradient(left,#00fdfe,#2a65be);
+       border:none;
+     }
+   }
+
+   .ant-pagination-item-container .ant-pagination-item-ellipsis {
+     color: #fff;
+   }
+
+   .ant-pagination-item {
+     background: transparent;
+
+     .ng-star-inserted {
+       color:#fff;
+     }
+   }
+
+
+   .ant-pagination-item-active {
+     background: transparent;
+     border-color: #00fdfe;
+   }
+
+   .ant-table-thead>tr>th {
+     border-color: rgba(214, 240, 255, 0.4);
+   }
+   /*td 线条*/
+   .ant-table-tbody>tr>td {
+     border-color: rgba(214, 240, 255, 0.4);
+     transition: all .3s,border 0s;
+   }
+ }
+
+/*  网点画像样式修改 */
+/*.tabLibrary {
+  .conent {
+    width: 150px;
+    border: none !important;
+    border-radius: 10px;
+    background: linear-gradient(to right, #2a65be, #00fdfe);
+  }
+}*/
+
+.queryClass {
+  .tabLibrary {
+    .conent{
+      width: 100px !important;
+      border:none !important;
+      border-radius: 10px;
+      background: linear-gradient(to right, #2a65be, #00fdfe);
+      .icon, .title {
+        color:#fff !important;
+      }
+    }
+
+    .allData {
+      border: none !important;;
+      .ant-btn {
+        border-radius: 20px;
+        padding: 0 25px;
+        background: none !important;
+      }
+    }
+  }
+  /* 标签库样式修改 */
+  nz-select {
+    left: 2.5% !important;
+    .ant-select-selection {
+      background: transparent;
+      border-color: #00fdfe;
+      .ant-select-selection-selected-value {
+        color:#fff;
+      }
+      .ant-select-arrow {
+        color: #fff!important;
+      }
+
+      .ant-select-selection__clear {
+        background: none;
+        color:#fff;
+      }
+    }
+  }
+  nz-card  {
+     background: url("./assets/newimage/home/content_bg_jiaoyiqingdan.png");
+     background-size:100% 100%;
+      border: none !important;
+     color: #fff !important;
+     padding-left: 70px;
+     width: 80% !important;
+     button:nth-child(1) {
+       background: linear-gradient(to right, #2a65be, #00fdfe);
+       border: none!important;
+     }
+     button:nth-child(2) {
+        background: none;
+        border-color: #00fdfe!important;
+        border-radius: 20px;
+        color:#fff !important;
+     }
+     .dynamic-delete-button {
+       color: #00fdfe;
+     }
+    }
+}
+
+/*  智能分析样式修改  */
+.topDiv, .chartDiv {
+  nz-select {
+    left: 2.5% !important;
+    .ant-select-selection {
+      background: transparent;
+      border-color: #00fdfe;
+      .ant-select-selection-selected-value {
+        color:#fff;
+      }
+      .ant-select-arrow {
+        color: #fff!important;
+      }
+
+      .ant-select-selection__clear {
+        background: none;
+        color:#fff;
+      }
+    }
+  }
+
+  input, nz-input-number, .ant-calendar-picker-input   {
+    background: transparent;
+    border-color: #00fdfe;
+    color: #fff;
+    .ant-calendar-range-picker-separator {
+      color:#fff;
+    }
+  }
+
+}
+
+
+/* 工作站模态框样式修改*/
+/* 模态框样式修改 */
+.modalStyle {
+  .ant-modal-header {
+    background: transparent;
+    border-bottom: none;
+  }
+  .ng-star-inserted {
+    color:#fff;
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .ant-modal-close-x {
+    position: relative;
+    right: 30px;
+  }
+
+  .ant-modal-content {
+    background: url("./assets/newimage/workMagger/tanchuang.png");
+    background-size: 100% 100%;
+    padding: 17px;
+  }
+
+}
+
+/* 文本框颜色 */
+.aiops {
+  // 文本框颜色
+  .formfiled {
+    form {
+      nz-form-item {
+        .ant-form-item-required {
+          span {
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+
+  // tab内容修改
+  .ant-tabs-bar {
+    border-bottom-color: #00fdfe !important;
+  }
+
+
+  .ant-tabs.ant-tabs-card .ant-tabs-card-bar .ant-tabs-tab {
+    color: #fff;
+    background: transparent;
+    border: 1px solid #00fdfe;
+    border-radius: 4px 4px 0 0;
+
+  }
+
+
+}
+
+
+/* 工作站监控样式 */
+.workRunstyle {
+  .ant-card-type-inner .ant-card-body {
+    padding: 0;
+  }
+  .ant-card-body {
+    padding: 0;
+  }
+}
+
+
+
+/* -------------------------- bm菜单修改 ----------------------*/
+:root .ant-menu-submenu.ant-menu-submenu-placement-rightTop {
+  .ant-menu, .ant-menu ol, .ant-menu ul {
+    background-image:-webkit-linear-gradient(top,#3c6cee,#232795);
+  }
+}
+.ant-menu-dark .ant-menu-inline.ant-menu-sub {
+  background: none !important;
+  box-shadow: none !important;
+}
+
+
+.ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected, .ant-menu.ant-menu-dark .ant-menu-item-selected {
+  background-color: rgba(255,255,255, 0.14);
+}
+
+/* gov　 workshop样式集合 */
+.card-container{
+  .ant-card-grid:hover {
+    box-shadow: none;
+  }
+  .ant-card-grid {
+    padding: 24px 0px;
+    box-shadow: none;
+  }
+  tms-query {
+    .divBorder {
+      border: none;
+    }
+    .ant-row-flex {
+      background:#fff !important;
+      padding-bottom: 15px;
+    }
+    .mb-md {
+     .ant-btn-primary {
+        border-radius: 25px;
+        width: 80px;
+        background: #4c8bfd;
+      }
+      button:nth-child(2) {
+        width: 80px;
+        border-radius: 25px;
+      }
+    }
+
+  }
+}
+
+/*  BM  table 界面表格样式 */
+.ant-alert-info {
+  background: #f6f9ff;
+}
+.ant-alert-description {
+  span {
+    color:#7c89a0;
+    font-size: 16px;
+  }
+  strong, a {
+    color:#4c8bfd !important;
+  }
+}
+.bmtableClass {
+  thead {
+    background: rgba(76,139,253,0.16);
+    border:none;
+    th {
+      background: none;
+    }
+  }
+}
+
+
+
