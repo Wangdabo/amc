@@ -20,6 +20,7 @@ import { Tx900617Component } from './trans/tx900617/tx900617.component';
 import { Tx990617Component } from './trans/tx990617/tx990617.component';
 import { Tx990618Component } from './trans/tx990618/tx990618.component';
 import { Tx990619Component } from './trans/tx990619/tx990619.component';
+import { Tx339599Component } from './trans/tx339599/tx339599.component';
 
 
 const routes: Routes = [
@@ -95,6 +96,11 @@ const routes: Routes = [
         // 客户需求建议
         path: 'transaction3/tx990619',
         component: Tx990619Component,
+      },
+      {
+        // 客户需求建议
+        path: 'transaction3/tx339599',
+        component: Tx339599Component,
       },
       {
         path: 'transaction3/:transCode',  // 进入交易管理组件路径。PS：必须指定:transCode参数

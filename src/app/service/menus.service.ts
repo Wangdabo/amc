@@ -430,6 +430,21 @@ export class MenusService {
           ]
         }
       ]
+    },
+    {
+      text: 'demo测试',
+      link: '',
+      code: 'demotest',
+      icon: 'anticon anticon-home',
+      children: [
+        {
+          text: '流水查询',
+          link: 'transaction3',
+          code: 'pipelineQuery',
+          icon: 'anticon anticon-gold',
+          transCode: 'tx339599'
+        }
+      ]
     }
   ];
   opsMenu = [

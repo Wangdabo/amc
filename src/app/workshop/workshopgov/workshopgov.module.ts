@@ -26,6 +26,7 @@ import { Tx900617Component } from './trans/tx900617/tx900617.component';
 import { Tx990618Component } from './trans/tx990618/tx990618.component';
 import { Tx990617Component } from './trans/tx990617/tx990617.component';
 import { Tx990619Component } from './trans/tx990619/tx990619.component';
+import { Tx339599Component } from './trans/tx339599/tx339599.component';
 
 
 @NgModule({
@@ -42,7 +43,7 @@ import { Tx990619Component } from './trans/tx990619/tx990619.component';
      Tx990609Component,
      Tx990610Component,
       Tx990611Component, Tx990612Component, Tx990613Component, Tx990614Component, Tx990615Component, 
-      Tx990616Component, Tx900617Component, Tx990618Component, Tx990617Component, Tx990619Component],
+      Tx990616Component, Tx900617Component, Tx990618Component, Tx990617Component, Tx990619Component, Tx339599Component],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class WorkshopgovModule { }

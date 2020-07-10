@@ -73,5 +73,7 @@ export default {
   customladge: '客户投诉',
   facrequest: '设施检查',
   lostfind: '失物招领',
-  infofind: '工作日志查询'
+  infofind: '工作日志查询',
+  demotest: 'demo测试',
+  pipelineQuery: '流水查询'
 };

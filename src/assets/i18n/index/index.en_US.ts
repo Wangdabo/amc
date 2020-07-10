@@ -72,5 +72,7 @@ export default {
   customladge: 'customladge',
   facrequest: 'facrequest',
   lostfind: 'lostfind',
-  infofind: 'infofind'
+  infofind: 'infofind',
+  demotest: 'demotest',
+  pipelineQuery: 'pipelineQuery'
 };
