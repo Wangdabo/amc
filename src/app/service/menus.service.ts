@@ -108,6 +108,21 @@ export class MenusService {
       children: []
     },
     {
+      text: 'demo测试',
+      link: '',
+      code: 'demotest',
+      icon: 'anticon anticon-home',
+      children: [
+        {
+          text: '流水查询',
+          link: 'transaction3',
+          code: 'pipelineQuery',
+          icon: 'anticon anticon-gold',
+          transCode: 'tx339599'
+        }
+      ]
+    },
+    {
       text: '业务参数',
       link: '',
       icon: 'anticon anticon-dashboard',
@@ -428,21 +443,6 @@ export class MenusService {
               transCode: 'tx990614'
             }
           ]
-        }
-      ]
-    },
-    {
-      text: 'demo测试',
-      link: '',
-      code: 'demotest',
-      icon: 'anticon anticon-home',
-      children: [
-        {
-          text: '流水查询',
-          link: 'transaction3',
-          code: 'pipelineQuery',
-          icon: 'anticon anticon-gold',
-          transCode: 'tx339599'
         }
       ]
     }
