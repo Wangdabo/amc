@@ -5600,15 +5600,10 @@ lodash.toarray@^3.0.0:
     lodash._basevalues "^3.0.0"
     lodash.keys "^3.0.0"
 
-lodash@^4.17.10, lodash@^4.17.4, lodash@^4.17.5:
-  version "4.17.11"
-  resolved "http://registry.npm.taobao.org/lodash/download/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
-  integrity sha1-s56mIp72B+zYniyN8SU2iRysm40=
-
-lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15:
-  version "4.17.15"
-  resolved "https://registry.npm.taobao.org/lodash/download/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
-  integrity sha1-tEf2ZwoEVbv+7dETku/zMOoJdUg=
+lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.4, lodash@^4.17.5:
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
+  integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
 
 log4js@^4.0.0:
   version "4.5.1"
@@ -8693,10 +8688,10 @@ tmp@0.0.33, tmp@0.0.x, tmp@^0.0.33:
   dependencies:
     os-tmpdir "~1.0.2"
 
-tms-platform-component@^2.4.2-snapshot:
-  version "2.4.2-snapshot"
-  resolved "https://registry.npm.taobao.org/tms-platform-component/download/tms-platform-component-2.4.2-snapshot.tgz#df02238cd90c75c2dc0011efe5e4003a8f96f89a"
-  integrity sha1-3wIjjNkMdcLcABHv5eQAOo+W+Jo=
+tms-platform-component@^2.5.9-snapshot:
+  version "2.5.9-snapshot"
+  resolved "https://registry.yarnpkg.com/tms-platform-component/-/tms-platform-component-2.5.9-snapshot.tgz#0b85011985e0942aed693f71f493b5ba9c79df11"
+  integrity sha512-nhyT3mfqrK774W26q2srTxQx4oOlcItedQcWMP08pMw1E6N0mWNvMGT00gNWyuOK+s0dVh6GBDQ72d+tVcSb6g==
   dependencies:
     tslib "^1.9.0"
 
