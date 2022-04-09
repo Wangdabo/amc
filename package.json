@@ -56,7 +56,7 @@
     "core-js": "^3.2.1",
     "echarts": "^4.3.0",
     "maptalks": "^0.45.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "ng-zorro-antd": "^8.3.1",
     "ngx-childprocess": "0.0.6",
     "ngx-echarts": "^4.2.1",
