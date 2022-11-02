@@ -65,7 +65,7 @@
     "rxjs": "^6.5.3",
     "tms-platform": "^1.6.7-snapshot",
     "tms-platform-component": "^2.5.9-snapshot",
-    "video.js": "^7.6.5",
+    "video.js": "^7.20.3",
     "web-animations-js": "^2.3.2",
     "zone.js": "~0.10.2"
   },
