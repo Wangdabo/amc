@@ -858,19 +858,12 @@
     js-levenshtein "^1.1.3"
     semver "^5.5.0"
 
-"@babel/runtime@^7.0.0":
-  version "7.2.0"
-  resolved "http://registry.npm.taobao.org/@babel/runtime/download/@babel/runtime-7.2.0.tgz#b03e42eeddf5898e00646e4c840fa07ba8dcad7f"
-  integrity sha1-sD5C7t31iY4AZG5MhA+ge6jcrX8=
+"@babel/runtime@^7.11.2", "@babel/runtime@^7.12.5", "@babel/runtime@^7.5.5":
+  version "7.20.1"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.20.1.tgz#1148bb33ab252b165a06698fde7576092a78b4a9"
+  integrity sha512-mrzLkl6U9YLF8qpqI7TB82PESyEGjm/0Ly91jG575eVxMMlb8fYfOXFZIJ8XfLrJZQbm7dlKry2bJmXBUEkdFg==
   dependencies:
-    regenerator-runtime "^0.12.0"
-
-"@babel/runtime@^7.4.5":
-  version "7.6.3"
-  resolved "https://registry.npm.taobao.org/@babel/runtime/download/@babel/runtime-7.6.3.tgz#935122c74c73d2240cafd32ddb5fc2a6cd35cf1f"
-  integrity sha1-k1Eix0xz0iQMr9Mt21/Cps01zx8=
-  dependencies:
-    regenerator-runtime "^0.13.2"
+    regenerator-runtime "^0.13.10"
 
 "@babel/template@^7.1.0":
   version "7.2.2"
@@ -1133,31 +1126,37 @@
   resolved "http://registry.npm.taobao.org/@types/zrender/download/@types/zrender-4.0.0.tgz#a6806f12ec4eccaaebd9b0d816f049aca6188fbd"
   integrity sha1-poBvEuxOzKrr2bDYFvBJrKYYj70=
 
-"@videojs/http-streaming@1.10.6":
-  version "1.10.6"
-  resolved "https://registry.npm.taobao.org/@videojs/http-streaming/download/@videojs/http-streaming-1.10.6.tgz#a9119b1828b354c5cc17b42ea051cc7bcce2dca0"
-  integrity sha1-qRGbGCizVMXMF7QuoFHMe8zi3KA=
+"@videojs/http-streaming@2.14.3":
+  version "2.14.3"
+  resolved "https://registry.yarnpkg.com/@videojs/http-streaming/-/http-streaming-2.14.3.tgz#3277e03b576766decb4fc663e954e18bfa10d2a1"
+  integrity sha512-2tFwxCaNbcEZzQugWf8EERwNMyNtspfHnvxRGRABQs09W/5SqmkWFuGWfUAm4wQKlXGfdPyAJ1338ASl459xAA==
   dependencies:
-    aes-decrypter "3.0.0"
-    global "^4.3.0"
-    m3u8-parser "4.4.0"
-    mpd-parser "0.8.1"
-    mux.js "5.2.1"
-    url-toolkit "^2.1.3"
-    video.js "^6.8.0 || ^7.0.0"
+    "@babel/runtime" "^7.12.5"
+    "@videojs/vhs-utils" "3.0.5"
+    aes-decrypter "3.1.3"
+    global "^4.4.0"
+    m3u8-parser "4.7.1"
+    mpd-parser "0.21.1"
+    mux.js "6.0.1"
+    video.js "^6 || ^7"
 
-"@videojs/http-streaming@1.4.1":
-  version "1.4.1"
-  resolved "http://registry.npm.taobao.org/@videojs/http-streaming/download/@videojs/http-streaming-1.4.1.tgz#0b9c5d1a271d72546ec77e9c3f3b75995102032f"
-  integrity sha1-C5xdGicdclRux36cPzt1mVECAy8=
+"@videojs/vhs-utils@3.0.5", "@videojs/vhs-utils@^3.0.4", "@videojs/vhs-utils@^3.0.5":
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/@videojs/vhs-utils/-/vhs-utils-3.0.5.tgz#665ba70d78258ba1ab977364e2fe9f4d4799c46c"
+  integrity sha512-PKVgdo8/GReqdx512F+ombhS+Bzogiofy1LgAj4tN8PfdBx3HSS7V5WfJotKTqtOWGwVfSWsrYN/t09/DSryrw==
   dependencies:
-    aes-decrypter "3.0.0"
-    global "^4.3.0"
-    m3u8-parser "4.2.0"
-    mpd-parser "0.7.0"
-    mux.js "4.5.1"
-    url-toolkit "^2.1.3"
-    video.js "^6.8.0 || ^7.0.0"
+    "@babel/runtime" "^7.12.5"
+    global "^4.4.0"
+    url-toolkit "^2.2.1"
+
+"@videojs/xhr@2.6.0":
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/@videojs/xhr/-/xhr-2.6.0.tgz#cd897e0ad54faf497961bcce3fa16dc15a26bb80"
+  integrity sha512-7J361GiN1tXpm+gd0xz2QWr3xNWBE+rytvo8J3KuggFaLg+U37gZQ2BuPLcnkfGffy2e+ozY70RHC8jt7zjA6Q==
+  dependencies:
+    "@babel/runtime" "^7.5.5"
+    global "~4.4.0"
+    is-function "^1.0.1"
 
 "@webassemblyjs/ast@1.8.5":
   version "1.8.5"
@@ -1305,6 +1304,11 @@
     "@webassemblyjs/wast-parser" "1.8.5"
     "@xtuc/long" "4.2.2"
 
+"@xmldom/xmldom@^0.7.2":
+  version "0.7.8"
+  resolved "https://registry.yarnpkg.com/@xmldom/xmldom/-/xmldom-0.7.8.tgz#a8d0a0067c9554c187b0d04e86ad1845053c0e06"
+  integrity sha512-PrJx38EfpitFhwmILRl37jAdBlsww6AZ6rRVK4QS7T7RHLhX7mSs647sTmgr9GIxe3qjXdesmomEgbgaokrVFg==
+
 "@xtuc/ieee754@^1.2.0":
   version "1.2.0"
   resolved "https://registry.npm.taobao.org/@xtuc/ieee754/download/@xtuc/ieee754-1.2.0.tgz#eef014a3145ae477a1cbc00cd1e552336dceb790"
@@ -1359,14 +1363,15 @@ adm-zip@^0.4.9:
   resolved "http://registry.npm.taobao.org/adm-zip/download/adm-zip-0.4.13.tgz#597e2f8cc3672151e1307d3e95cddbc75672314a"
   integrity sha1-WX4vjMNnIVHhMH0+lc3bx1ZyMUo=
 
-aes-decrypter@3.0.0:
-  version "3.0.0"
-  resolved "http://registry.npm.taobao.org/aes-decrypter/download/aes-decrypter-3.0.0.tgz#7848a1c145b9fdbf57ae3e2b5b1bc7cf0644a8fb"
-  integrity sha1-eEihwUW5/b9Xrj4rWxvHzwZEqPs=
+aes-decrypter@3.1.3:
+  version "3.1.3"
+  resolved "https://registry.yarnpkg.com/aes-decrypter/-/aes-decrypter-3.1.3.tgz#65ff5f2175324d80c41083b0e135d1464b12ac35"
+  integrity sha512-VkG9g4BbhMBy+N5/XodDeV6F02chEk9IpgRTq/0bS80y4dzy79VH2Gtms02VXomf3HmyRe3yyJYkJ990ns+d6A==
   dependencies:
-    commander "^2.9.0"
-    global "^4.3.2"
-    pkcs7 "^1.0.2"
+    "@babel/runtime" "^7.12.5"
+    "@videojs/vhs-utils" "^3.0.5"
+    global "^4.4.0"
+    pkcs7 "^1.0.4"
 
 after@0.8.2:
   version "0.8.2"
@@ -2635,7 +2640,7 @@ commander@^2.11.0, commander@^2.20.0:
   resolved "https://registry.npm.taobao.org/commander/download/commander-2.20.3.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcommander%2Fdownload%2Fcommander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
   integrity sha1-/UhehMA+tIgcIHIrpIA16FMa6zM=
 
-commander@^2.12.1, commander@^2.9.0:
+commander@^2.12.1:
   version "2.19.0"
   resolved "http://registry.npm.taobao.org/commander/download/commander-2.19.0.tgz#f6198aa84e5b83c46054b94ddedbfed5ee9ff12a"
   integrity sha1-9hmKqE5bg8RgVLlN3tv+1e6f8So=
@@ -3904,13 +3909,6 @@ follow-redirects@^1.0.0:
   dependencies:
     debug "=3.1.0"
 
-for-each@^0.3.2:
-  version "0.3.3"
-  resolved "http://registry.npm.taobao.org/for-each/download/for-each-0.3.3.tgz#69b447e88a0a5d32c3e7084f3f1710034b21376e"
-  integrity sha1-abRH6IoKXTLD5whPPxcQA0shN24=
-  dependencies:
-    is-callable "^1.1.3"
-
 for-in@^1.0.1, for-in@^1.0.2:
   version "1.0.2"
   resolved "http://registry.npm.taobao.org/for-in/download/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
@@ -4179,13 +4177,13 @@ glob@^7.1.3, glob@^7.1.4:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-global@4.3.2, global@^4.3.0, global@^4.3.1, global@^4.3.2, global@~4.3.0:
-  version "4.3.2"
-  resolved "http://registry.npm.taobao.org/global/download/global-4.3.2.tgz#e76989268a6c74c38908b1305b10fc0e394e9d0f"
-  integrity sha1-52mJJopsdMOJCLEwWxD8DjlOnQ8=
+global@^4.3.1, global@^4.4.0, global@~4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/global/-/global-4.4.0.tgz#3e7b105179006a323ed71aafca3e9c57a5cc6406"
+  integrity sha512-wv/LAoHdRE3BeTGz53FAamhGlPLhlssK45usmGFThIi4XqnBmjKQ16u+RNbP7WvigRZDxUsM0J3gcQ5yicaL0w==
   dependencies:
     min-document "^2.19.0"
-    process "~0.5.1"
+    process "^0.11.10"
 
 globals@^11.1.0:
   version "11.9.0"
@@ -5658,17 +5656,14 @@ lru-cache@^5.1.1:
   dependencies:
     yallist "^3.0.2"
 
-m3u8-parser@4.2.0:
-  version "4.2.0"
-  resolved "http://registry.npm.taobao.org/m3u8-parser/download/m3u8-parser-4.2.0.tgz#c8e0785fd17f741f4408b49466889274a9e36447"
-  integrity sha1-yOB4X9F/dB9ECLSUZoiSdKnjZEc=
-
-m3u8-parser@4.4.0:
-  version "4.4.0"
-  resolved "https://registry.npm.taobao.org/m3u8-parser/download/m3u8-parser-4.4.0.tgz#adf606c0af6d97f6750095a42006c2ae03dde177"
-  integrity sha1-rfYGwK9tl/Z1AJWkIAbCrgPd4Xc=
+m3u8-parser@4.7.1:
+  version "4.7.1"
+  resolved "https://registry.yarnpkg.com/m3u8-parser/-/m3u8-parser-4.7.1.tgz#d6df2c940bb19a01112a04ccc4ff44886a945305"
+  integrity sha512-pbrQwiMiq+MmI9bl7UjtPT3AK603PV9bogNlr83uC+X9IoxqL5E4k7kU7fMQ0dpRgxgeSMygqUa0IMLQNXLBNA==
   dependencies:
-    global "^4.3.2"
+    "@babel/runtime" "^7.12.5"
+    "@videojs/vhs-utils" "^3.0.5"
+    global "^4.4.0"
 
 magic-string@0.25.3:
   version "0.25.3"
@@ -6056,21 +6051,15 @@ move-concurrently@^1.0.1:
     rimraf "^2.5.4"
     run-queue "^1.0.3"
 
-mpd-parser@0.7.0:
-  version "0.7.0"
-  resolved "http://registry.npm.taobao.org/mpd-parser/download/mpd-parser-0.7.0.tgz#d36e3322579fce23d657f71a3c2f3e6cc5ce4002"
-  integrity sha1-024zIlefziPWV/caPC8+bMXOQAI=
+mpd-parser@0.21.1:
+  version "0.21.1"
+  resolved "https://registry.yarnpkg.com/mpd-parser/-/mpd-parser-0.21.1.tgz#4f4834074ed0a8e265d8b04a5d2d7b5045a4fa55"
+  integrity sha512-BxlSXWbKE1n7eyEPBnTEkrzhS3PdmkkKdM1pgKbPnPOH0WFZIc0sPOWi7m0Uo3Wd2a4Or8Qf4ZbS7+ASqQ49fw==
   dependencies:
-    global "^4.3.2"
-    url-toolkit "^2.1.1"
-
-mpd-parser@0.8.1:
-  version "0.8.1"
-  resolved "https://registry.npm.taobao.org/mpd-parser/download/mpd-parser-0.8.1.tgz#db299dbec337999fbbbace989d227c7b03dc8ea7"
-  integrity sha1-2ymdvsM3mZ+7us6YnSJ8ewPcjqc=
-  dependencies:
-    global "^4.3.2"
-    url-toolkit "^2.1.1"
+    "@babel/runtime" "^7.12.5"
+    "@videojs/vhs-utils" "^3.0.5"
+    "@xmldom/xmldom" "^0.7.2"
+    global "^4.4.0"
 
 ms@2.0.0:
   version "2.0.0"
@@ -6105,15 +6094,13 @@ mute-stream@0.0.8:
   resolved "https://registry.npm.taobao.org/mute-stream/download/mute-stream-0.0.8.tgz#1630c42b2251ff81e2a283de96a5497ea92e5e0d"
   integrity sha1-FjDEKyJR/4HiooPelqVJfqkuXg0=
 
-mux.js@4.5.1:
-  version "4.5.1"
-  resolved "http://registry.npm.taobao.org/mux.js/download/mux.js-4.5.1.tgz#1d70f1ad9b951315e16390d47be8fc42fd080194"
-  integrity sha1-HXDxrZuVExXhY5DUe+j8Qv0IAZQ=
-
-mux.js@5.2.1:
-  version "5.2.1"
-  resolved "https://registry.npm.taobao.org/mux.js/download/mux.js-5.2.1.tgz#6698761fc88da5acecea0758ac25f11d3a08bee8"
-  integrity sha1-Zph2H8iNpazs6gdYrCXxHToIvug=
+mux.js@6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/mux.js/-/mux.js-6.0.1.tgz#65ce0f7a961d56c006829d024d772902d28c7755"
+  integrity sha512-22CHb59rH8pWGcPGW5Og7JngJ9s+z4XuSlYvnxhLuc58cA1WqGDQPzuG8I+sPm1/p0CdgpzVTaKW408k5DNn8w==
+  dependencies:
+    "@babel/runtime" "^7.11.2"
+    global "^4.4.0"
 
 nan@^2.12.1:
   version "2.14.0"
@@ -6776,14 +6763,6 @@ parse-glob@^3.0.4:
     is-extglob "^1.0.0"
     is-glob "^2.0.0"
 
-parse-headers@^2.0.0:
-  version "2.0.1"
-  resolved "http://registry.npm.taobao.org/parse-headers/download/parse-headers-2.0.1.tgz#6ae83a7aa25a9d9b700acc28698cd1f1ed7e9536"
-  integrity sha1-aug6eqJanZtwCswoaYzR8e1+lTY=
-  dependencies:
-    for-each "^0.3.2"
-    trim "0.0.1"
-
 parse-json@^4.0.0:
   version "4.0.0"
   resolved "http://registry.npm.taobao.org/parse-json/download/parse-json-4.0.0.tgz#be35f5425be1f7f6c747184f98a788cb99477ee0"
@@ -6936,10 +6915,12 @@ pinkie@^2.0.0:
   resolved "http://registry.npm.taobao.org/pinkie/download/pinkie-2.0.4.tgz#72556b80cfa0d48a974e80e77248e80ed4f7f870"
   integrity sha1-clVrgM+g1IqXToDnckjoDtT3+HA=
 
-pkcs7@^1.0.2:
-  version "1.0.2"
-  resolved "http://registry.npm.taobao.org/pkcs7/download/pkcs7-1.0.2.tgz#b6dba527528c2942bfc122ce2dafcdb5e59074e7"
-  integrity sha1-ttulJ1KMKUK/wSLOLa/NteWQdOc=
+pkcs7@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/pkcs7/-/pkcs7-1.0.4.tgz#6090b9e71160dabf69209d719cbafa538b00a1cb"
+  integrity sha512-afRERtHn54AlwaF2/+LFszyAANTCggGilmcmILUzEjvs3XgFZT+xE6+QWQcAGmu4xajy+Xtj7acLOPdx5/eXWQ==
+  dependencies:
+    "@babel/runtime" "^7.5.5"
 
 pkg-dir@^3.0.0:
   version "3.0.0"
@@ -7059,11 +7040,6 @@ process@^0.11.10:
   version "0.11.10"
   resolved "http://registry.npm.taobao.org/process/download/process-0.11.10.tgz#7332300e840161bda3e69a1d1d91a7d4bc16f182"
   integrity sha1-czIwDoQBYb2j5podHZGn1LwW8YI=
-
-process@~0.5.1:
-  version "0.5.2"
-  resolved "http://registry.npm.taobao.org/process/download/process-0.5.2.tgz#1638d8a8e34c2f440a91db95ab9aeb677fc185cf"
-  integrity sha1-FjjYqONML0QKkduVq5rrZ3/Bhc8=
 
 promise-inflight@^1.0.1:
   version "1.0.1"
@@ -7457,7 +7433,7 @@ regenerate@^1.2.1, regenerate@^1.4.0:
   resolved "https://registry.npm.taobao.org/regenerate/download/regenerate-1.4.0.tgz#4a856ec4b56e4077c557589cae85e7a4c8869a11"
   integrity sha1-SoVuxLVuQHfFV1icroXnpMiGmhE=
 
-regenerator-runtime@0.13.3, regenerator-runtime@^0.13.2:
+regenerator-runtime@0.13.3:
   version "0.13.3"
   resolved "https://registry.npm.taobao.org/regenerator-runtime/download/regenerator-runtime-0.13.3.tgz#7cf6a77d8f5c6f60eb73c5fc1955b2ceb01e6bf5"
   integrity sha1-fPanfY9cb2Drc8X8GVWyzrAea/U=
@@ -7467,10 +7443,10 @@ regenerator-runtime@^0.11.0:
   resolved "http://registry.npm.taobao.org/regenerator-runtime/download/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
   integrity sha1-vgWtf5v30i4Fb5cmzuUBf78Z4uk=
 
-regenerator-runtime@^0.12.0:
-  version "0.12.1"
-  resolved "http://registry.npm.taobao.org/regenerator-runtime/download/regenerator-runtime-0.12.1.tgz#fa1a71544764c036f8c49b13a08b2594c9f8a0de"
-  integrity sha1-+hpxVEdkwDb4xJsToIsllMn4oN4=
+regenerator-runtime@^0.13.10:
+  version "0.13.10"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.10.tgz#ed07b19616bcbec5da6274ebc75ae95634bfc2ee"
+  integrity sha512-KepLsg4dU12hryUO7bp/axHAKvwGOCV0sGloQtpagJ12ai+ojVDqkeGSiRX1zlq+kjIMZ1t7gpze+26QqtdGqw==
 
 regenerator-transform@^0.14.0:
   version "0.14.1"
@@ -8693,10 +8669,10 @@ tmp@0.0.33, tmp@0.0.x, tmp@^0.0.33:
   dependencies:
     os-tmpdir "~1.0.2"
 
-tms-platform-component@^2.4.2-snapshot:
-  version "2.4.2-snapshot"
-  resolved "https://registry.npm.taobao.org/tms-platform-component/download/tms-platform-component-2.4.2-snapshot.tgz#df02238cd90c75c2dc0011efe5e4003a8f96f89a"
-  integrity sha1-3wIjjNkMdcLcABHv5eQAOo+W+Jo=
+tms-platform-component@^2.5.9-snapshot:
+  version "2.5.9-snapshot"
+  resolved "https://registry.yarnpkg.com/tms-platform-component/-/tms-platform-component-2.5.9-snapshot.tgz#0b85011985e0942aed693f71f493b5ba9c79df11"
+  integrity sha512-nhyT3mfqrK774W26q2srTxQx4oOlcItedQcWMP08pMw1E6N0mWNvMGT00gNWyuOK+s0dVh6GBDQ72d+tVcSb6g==
   dependencies:
     tslib "^1.9.0"
 
@@ -8804,11 +8780,6 @@ trim-right@^1.0.1:
   resolved "http://registry.npm.taobao.org/trim-right/download/trim-right-1.0.1.tgz#cb2e1203067e0c8de1f614094b9fe45704ea6003"
   integrity sha1-yy4SAwZ+DI3h9hQJS5/kVwTqYAM=
 
-trim@0.0.1:
-  version "0.0.1"
-  resolved "http://registry.npm.taobao.org/trim/download/trim-0.0.1.tgz#5858547f6b290757ee95cccc666fb50084c460dd"
-  integrity sha1-WFhUf2spB1fulczMZm+1AITEYN0=
-
 truncate-utf8-bytes@^1.0.0:
   version "1.0.2"
   resolved "https://registry.npm.taobao.org/truncate-utf8-bytes/download/truncate-utf8-bytes-1.0.2.tgz#405923909592d56f78a5818434b0b78489ca5f2b"
@@ -8855,11 +8826,6 @@ tslint@~5.20.0:
     semver "^5.3.0"
     tslib "^1.8.0"
     tsutils "^2.29.0"
-
-tsml@1.0.1:
-  version "1.0.1"
-  resolved "http://registry.npm.taobao.org/tsml/download/tsml-1.0.1.tgz#89f8218b9d9e257f47d7f6b56d01c5a4d2c68fc3"
-  integrity sha1-ifghi52eJX9H1/a1bQHFpNLGj8M=
 
 tsutils@^2.29.0:
   version "2.29.0"
@@ -9055,10 +9021,10 @@ url-parse@^1.4.3:
     querystringify "^2.0.0"
     requires-port "^1.0.0"
 
-url-toolkit@^2.1.1, url-toolkit@^2.1.3:
-  version "2.1.6"
-  resolved "http://registry.npm.taobao.org/url-toolkit/download/url-toolkit-2.1.6.tgz#6d03246499e519aad224c44044a4ae20544154f2"
-  integrity sha1-bQMkZJnlGarSJMRARKSuIFRBVPI=
+url-toolkit@^2.2.1:
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/url-toolkit/-/url-toolkit-2.2.5.tgz#58406b18e12c58803e14624df5e374f638b0f607"
+  integrity sha512-mtN6xk+Nac+oyJ/PrI7tzfmomRVNFIWKUbG8jdYFt52hxbiReFAXIjYskvu64/dvuW71IcB7lV8l0HvZMac6Jg==
 
 url@^0.11.0:
   version "0.11.0"
@@ -9156,48 +9122,34 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-"video.js@^6.8.0 || ^7.0.0":
-  version "7.3.0"
-  resolved "http://registry.npm.taobao.org/video.js/download/video.js-7.3.0.tgz#780de68a163b4ee16dfcacd78971680f18c9a68d"
-  integrity sha1-eA3mihY7TuFt/KzXiXFoDxjJpo0=
+"video.js@^6 || ^7", video.js@^7.20.3:
+  version "7.20.3"
+  resolved "https://registry.yarnpkg.com/video.js/-/video.js-7.20.3.tgz#5694741346dc683255993e5069daa15d4bacb646"
+  integrity sha512-JMspxaK74LdfWcv69XWhX4rILywz/eInOVPdKefpQiZJSMD5O8xXYueqACP2Q5yqKstycgmmEKlJzZ+kVmDciw==
   dependencies:
-    "@babel/runtime" "^7.0.0"
-    "@videojs/http-streaming" "1.4.1"
-    global "4.3.2"
-    safe-json-parse "4.0.0"
-    tsml "1.0.1"
-    videojs-font "3.1.0"
-    videojs-vtt.js "0.14.1"
-    xhr "2.4.0"
-
-video.js@^7.6.5:
-  version "7.6.5"
-  resolved "https://registry.npm.taobao.org/video.js/download/video.js-7.6.5.tgz#af66a71bc05fd79c581c1673ac5a78a6b31bc831"
-  integrity sha1-r2anG8Bf15xYHBZzrFp4prMbyDE=
-  dependencies:
-    "@babel/runtime" "^7.4.5"
-    "@videojs/http-streaming" "1.10.6"
-    global "4.3.2"
+    "@babel/runtime" "^7.12.5"
+    "@videojs/http-streaming" "2.14.3"
+    "@videojs/vhs-utils" "^3.0.4"
+    "@videojs/xhr" "2.6.0"
+    aes-decrypter "3.1.3"
+    global "^4.4.0"
     keycode "^2.2.0"
+    m3u8-parser "4.7.1"
+    mpd-parser "0.21.1"
+    mux.js "6.0.1"
     safe-json-parse "4.0.0"
     videojs-font "3.2.0"
-    videojs-vtt.js "^0.14.1"
-    xhr "2.4.0"
-
-videojs-font@3.1.0:
-  version "3.1.0"
-  resolved "http://registry.npm.taobao.org/videojs-font/download/videojs-font-3.1.0.tgz#ac33be9b517fe19299f61cccd2b3c7d75a1c6960"
-  integrity sha1-rDO+m1F/4ZKZ9hzM0rPH11ocaWA=
+    videojs-vtt.js "^0.15.4"
 
 videojs-font@3.2.0:
   version "3.2.0"
   resolved "https://registry.npm.taobao.org/videojs-font/download/videojs-font-3.2.0.tgz#212c9d3f4e4ec3fa7345167d64316add35e92232"
   integrity sha1-ISydP05Ow/pzRRZ9ZDFq3TXpIjI=
 
-videojs-vtt.js@0.14.1, videojs-vtt.js@^0.14.1:
-  version "0.14.1"
-  resolved "https://registry.npm.taobao.org/videojs-vtt.js/download/videojs-vtt.js-0.14.1.tgz#da583eb1fc9c81c826a9432b706040e8dea49911"
-  integrity sha1-2lg+sfycgcgmqUMrcGBA6N6kmRE=
+videojs-vtt.js@^0.15.4:
+  version "0.15.4"
+  resolved "https://registry.yarnpkg.com/videojs-vtt.js/-/videojs-vtt.js-0.15.4.tgz#5dc5aabcd82ba40c5595469bd855ea8230ca152c"
+  integrity sha512-r6IhM325fcLb1D6pgsMkTQT1PpFdUdYZa1iqk7wJEu+QlibBwATPfPc9Bg8Jiym0GE5yP1AG2rMLu+QMVWkYtA==
   dependencies:
     global "^4.3.1"
 
@@ -9496,16 +9448,6 @@ ws@~3.3.1:
     async-limiter "~1.0.0"
     safe-buffer "~5.1.0"
     ultron "~1.1.0"
-
-xhr@2.4.0:
-  version "2.4.0"
-  resolved "http://registry.npm.taobao.org/xhr/download/xhr-2.4.0.tgz#e16e66a45f869861eeefab416d5eff722dc40993"
-  integrity sha1-4W5mpF+GmGHu76tBbV7/ci3ECZM=
-  dependencies:
-    global "~4.3.0"
-    is-function "^1.0.1"
-    parse-headers "^2.0.0"
-    xtend "^4.0.0"
 
 xml2js@^0.4.17:
   version "0.4.19"
